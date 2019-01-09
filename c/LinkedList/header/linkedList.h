@@ -1,11 +1,15 @@
 #ifndef _List_H
 
+#define null NULL;
+
 struct Node;
 typedef struct Node *PtrToNode;
 typedef PtrToNode List;
 typedef PtrToNode Position;
 
 typedef int ElementType;
+
+int equals(ElementType obj1, ElementType obj2);
 
 List makeEmpty(List L);
 
@@ -15,7 +19,7 @@ int isLast(Position p, List L);
 
 Position find(ElementType e, List L);
 
-void remove(ElementType e, List L);
+void deleteItem(ElementType e, List L);
 
 Position findPrevious(ElementType e, List L);
 
