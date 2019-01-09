@@ -54,9 +54,25 @@ Position find(ElementType e, List L) {
   return result;
 }
 
-void deleteItem(ElementType e, List L);
+/**
+ * 删除指定ElementType第一次出现的结点
+ */
+void deleteItem(ElementType e, List L) {
+    Position p = findPrevious(e, L);
+    
+    if(!isLast(p, L)) {
+        Position delPosition = p->next;
+        p->next = delPosition->next;
+        free(delPosition);
+    }
+}
 
-Position findPrevious(ElementType e, List L);
+/**
+ * 查找指定ElementType的前驱结点
+ */
+Position findPrevious(ElementType e, List L) {
+    
+}
 
 void insert(ElementType e, List L, Position p);
 
