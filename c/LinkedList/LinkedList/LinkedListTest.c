@@ -6,8 +6,9 @@ int main(int argc, char const *argv[])
 {
     List list = (List) malloc(sizeof(List));
     list->elem = 3;
+    list->next = NULL;
 
-    throwError("This is my info...");
+    throwWarning("This is my info...");
 
     printf("Hello World!%d\n", list->elem);
 

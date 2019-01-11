@@ -1,5 +1,4 @@
 #include "../header/linkedList.h"
-#include "../util/logger.c"
 
 struct Node
 {

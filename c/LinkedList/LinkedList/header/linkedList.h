@@ -1,6 +1,8 @@
 #ifndef _List_H
 #define _List_H
 
+#include "../util/common.h"
+
 typedef int ElementType;
 
 struct Node;
