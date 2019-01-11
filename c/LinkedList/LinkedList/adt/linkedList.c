@@ -1,5 +1,5 @@
 #include "../header/linkedList.h"
-#include "../util/exceptionUtil.c"
+#include "../util/logger.c"
 
 struct Node
 {
@@ -11,16 +11,22 @@ int equals(ElementType obj1, ElementType obj2) {
   return obj1 == obj2;
 }
 
+void gcList(List L) {
+    if(L != null) {
+        Position temp;
+
+        while(L != NULL) {
+          temp = L;
+          L = L->next;
+          free(temp);
+        }
+    }
+}
+
 List makeEmpty(List L) {
   if(L != NULL) {
-    Position delList = L->next;
-    L->next = NULL;
-
-    while(delList != NULL) {
-      Position temp = delList;
-      delList = delList->next;
-      free(temp);
-    }
+    gcList(L->next);
+    L->next = null;
   }
   else {
     L = (List) malloc(sizeof(List));
@@ -95,13 +101,3 @@ void insert(ElementType e, List L, Position p) {
         p->next = insertNode;
     }
 }
-
-void deleteList(List L);
-
-Position header(List L);
-
-Position first(List L);
-
-Position advance(Position p);
-
-ElementType retrieve(Position p);

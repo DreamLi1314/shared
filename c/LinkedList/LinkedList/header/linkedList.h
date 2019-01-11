@@ -1,13 +1,12 @@
 #ifndef _List_H
-
-#define null NULL
-
-struct Node;
-typedef struct Node *PtrToNode;
-typedef PtrToNode List;
-typedef PtrToNode Position;
+#define _List_H
 
 typedef int ElementType;
+
+struct Node;
+typedef struct Node * PtrToNode;
+typedef PtrToNode List;
+typedef PtrToNode Position;
 
 /**
  * 定义 ElementType 相等的规则
@@ -15,9 +14,15 @@ typedef int ElementType;
 int equals(ElementType obj1, ElementType obj2);
 
 /**
+ * gc List
+ * @warning: 头结点也会被 gc
+ */
+void gcList(List L);
+
+/**
  * 将 List 置空(只有一个头结点).
  */
-List makeEmpty(List L);
+List makeEmpty(List L/*in and out*/);
 
 /**
  * 判断 List 是否是为空链表
@@ -48,15 +53,5 @@ Position findPrevious(ElementType e, List L);
  * 在 p 后面插入一个节点, 节点值为 e
  */
 void insert(ElementType e, List L, Position p);
-
-void deleteList(List L);
-
-Position header(List L);
-
-Position first(List L);
-
-Position advance(Position p);
-
-ElementType retrieve(Position p);
 
 #endif /* _List_H */

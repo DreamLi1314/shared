@@ -1,3 +1,6 @@
+#ifndef _LOGGER_H
+#define _LOGGER_H
+
 #include<stdio.h>
 #include<string.h>
 
@@ -15,3 +18,6 @@ void throwError(char * msg) {
     perror(error);
     exit(EXIT_FAILURE);
 }
+
+
+#endif /* _LOGGER_H */
