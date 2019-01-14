@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E57F5FD321E632E3009580A5 /* LinkedListTest.c in Sources */ = {isa = PBXBuildFile; fileRef = E57F5FD121E632E3009580A5 /* LinkedListTest.c */; };
+		E57F5FD321E632E3009580A5 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = E57F5FD121E632E3009580A5 /* main.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,7 +25,7 @@
 /* Begin PBXFileReference section */
 		E57F5FC621E63235009580A5 /* LinkedList */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LinkedList; sourceTree = BUILT_PRODUCTS_DIR; };
 		E57F5FD021E632E3009580A5 /* header */ = {isa = PBXFileReference; lastKnownFileType = folder; path = header; sourceTree = "<group>"; };
-		E57F5FD121E632E3009580A5 /* LinkedListTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LinkedListTest.c; sourceTree = "<group>"; };
+		E57F5FD121E632E3009580A5 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		E57F5FD221E632E3009580A5 /* adt */ = {isa = PBXFileReference; lastKnownFileType = folder; path = adt; sourceTree = "<group>"; };
 		E5FA88F421E8A297003B2BBA /* best-practices */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "best-practices"; sourceTree = "<group>"; };
 		E5FA88F521E8A2CD003B2BBA /* util */ = {isa = PBXFileReference; lastKnownFileType = folder; path = util; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 				E57F5FD221E632E3009580A5 /* adt */,
 				E5FA88F421E8A297003B2BBA /* best-practices */,
 				E57F5FD021E632E3009580A5 /* header */,
-				E57F5FD121E632E3009580A5 /* LinkedListTest.c */,
+				E57F5FD121E632E3009580A5 /* main.c */,
 			);
 			path = LinkedList;
 			sourceTree = "<group>";
@@ -126,7 +126,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E57F5FD321E632E3009580A5 /* LinkedListTest.c in Sources */,
+				E57F5FD321E632E3009580A5 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
