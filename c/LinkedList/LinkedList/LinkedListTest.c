@@ -2,6 +2,8 @@
 #include<stdlib.h>
 #include "adt/linkedList.c"
 
+#include "adt/linkedList.c"
+
 int main(int argc, char const *argv[])
 {
     List list = (List) malloc(sizeof(List));

@@ -1,3 +1,6 @@
+#ifndef _ADT_LINKED_LIST_IMPL_
+#define _ADT_LINKED_LIST_IMPL_
+
 #include "../header/linkedList.h"
 
 struct Node
@@ -100,3 +103,5 @@ void insert(ElementType e, List L, Position p) {
         p->next = insertNode;
     }
 }
+
+#endif
