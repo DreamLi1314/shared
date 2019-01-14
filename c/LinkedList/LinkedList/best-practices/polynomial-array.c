@@ -35,6 +35,10 @@ Polynomial add(Polynomial p1, Polynomial p2, Polynomial result/* in or out */) {
     result = reset(result);
     result->hightPower = max(p1->hightPower, p2->hightPower);
 
+    if(result->hightPower > MAX_DEGREE) {
+        throwError("Exceeded array size.")
+    }
+    
     for(int i = 0; i < result->hightPower + 1; i++) {
         result->coffs[i] = p1->coffs[i] + p2->coffs[i];
     }
@@ -48,6 +52,10 @@ Polynomial add(Polynomial p1, Polynomial p2, Polynomial result/* in or out */) {
 Polynomial mutiply(Polynomial p1, Polynomial p2, Polynomial result/* in or out */) {
     result = reset(result);
     result->hightPower = p1->hightPower + p2->hightPower;
+    
+    if(result->hightPower > MAX_DEGREE) {
+        throwError("Exceeded array size.")
+    }
     
     for(int i = 0; i < result->hightPower + 1; i++) {
         for(int j = 0; j < result->hightPower + 1; j++) {
