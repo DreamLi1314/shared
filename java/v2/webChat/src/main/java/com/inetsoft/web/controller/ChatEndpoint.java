@@ -13,8 +13,8 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
+import com.inetsoft.web.vo.ConnectionMsgVO;
 import com.inetsoft.web.vo.MessageVO;
-import com.inetsoft.web.vo.WelcomeMsgVO;
 
 /**
  * 多累, 每个客户端一个 @ServerEndpoint 实例
@@ -45,7 +45,7 @@ public class ChatEndpoint {
 		
 		MessageVO message = MessageVO.gson.fromJson(msg, MessageVO.class);
 		
-		if(message.getType() == MessageVO.WELCOME_TYPE) {
+		if(message.getType() == MessageVO.CONNECTION_CHAT_TYPE) {
 			System.out.println(message.getMsg());
 		}
 		else if(message.getType() == MessageVO.GROUP_CHAT_TYPE) {
@@ -79,10 +79,18 @@ public class ChatEndpoint {
 //		Set<Session> openSessions = session.getOpenSessions();
 
 		// 广播 WelcomeMsgVO
-		WelcomeMsgVO msgVO = new WelcomeMsgVO("<div style='color: red'>Welcome to "+ this.userName + ".<div>", sessions.stream().map((endPoint) -> endPoint.userName).collect(Collectors.toSet()));
+		ConnectionMsgVO msgVO = new ConnectionMsgVO("<div style='color: red'>Welcome to "+ this.userName + ".<div>", getSessions());
 		broadcat(msgVO.toJson());
 	}
 
+	/**
+	 * Get sessions of all opened.
+	 * @return
+	 */
+	private Set<String> getSessions() {
+		return sessions.stream().map((endPoint) -> endPoint.userName).collect(Collectors.toSet());
+	}
+	
 	/**
 	 * 用当前 Session 将 msg 广播出去
 	 * 
@@ -126,7 +134,7 @@ public class ChatEndpoint {
 		}
 		
 		sessions.remove(this);
-		broadcat(new MessageVO("<div style='color: red'>"+ this.userName + " has log out.....<div>", MessageVO.GROUP_CHAT_TYPE).toJson());
+		broadcat(new ConnectionMsgVO("<div style='color: red'>"+ this.userName + " has log out.....<div>", getSessions()).toJson());
 	}
 	
 	/**

@@ -75,7 +75,7 @@
 	var ws; // WebSocket 对象
 	var target = "/webChat/chat"; // 连接的 endpoint
 	
-	const WELCOME_TYPE = 1;
+	const CONNECTION_CHAT_TYPE = 1;
 	const SINGLE_CHAT_TYPE = 2;
 	const GROUP_CHAT_TYPE = 4;
 	
@@ -111,7 +111,7 @@
 
         ws.onopen = function () {
         	ws.send(JSON.stringify({
-        		type: WELCOME_TYPE,
+        		type: CONNECTION_CHAT_TYPE,
         		msg: "Hello, Server, I am " + userName + "...."
         	}));
         	console.log('Info: WebSocket connection opened.');
@@ -120,7 +120,7 @@
         	console.log('Received: ' + event);
         	var msg = JSON.parse(event.data);
         	
-        	if(msg.type == WELCOME_TYPE) {
+        	if(msg.type == CONNECTION_CHAT_TYPE) {
         		namesElem.innerHTML = "";
         		msg.names.forEach((name) => namesElem.innerHTML += ("<input type='checkbox' />" + name + "<br/>"));
         		namesElem.scrollTop = namesElem.scrollHeight;

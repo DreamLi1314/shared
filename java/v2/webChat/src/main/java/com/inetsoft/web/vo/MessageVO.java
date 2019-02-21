@@ -10,8 +10,8 @@ public class MessageVO implements Serializable {
 	protected String msg;
 	private int type;
 	
-	// welcome chat type
-	public static final int WELCOME_TYPE = 1;
+	// connection chat type. open/close
+	public static final int CONNECTION_CHAT_TYPE = 1;
 	// single chat type 
 	public static final int SINGLE_CHAT_TYPE = 2;
 	// group chat type
