@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Web Chat</title>
+
+<style type="text/css">
+		body {
+			height: 95%;
+			width: 95%;
+			border: 1px solid;
+			padding: 0px;
+			margin: 0px;
+			margin-left: 10px;
+			margin-top: 10px;
+			position: absolute;
+		}
+		
+		h1 {
+			padding: 0px;
+			margin: 0px;
+		}
+		
+		.chat_title{
+			color: red;
+			position: absolute;
+			left: 50%;
+			top: 0;
+		}
+		
+		.chat_content {
+			height: 100%;
+			width: 70%;
+			border: 1px solid;
+			position: absolute;
+		}
+		
+		.chat_window {
+			border: 1px solid;
+			height: 80%;
+			padding-top: 30px;
+			overflow: auto;
+		}
+		
+		.chat_input {
+			height: 20%;
+			display: flex;
+		}
+		
+		.chat_input_msg {
+			height: 53%;
+		}
+		
+		.chat_send_button {
+			margin: 0px;
+			padding: 0px;
+			height: 40px;
+			width: 60px;
+			margin-left: 30px;
+			margin-top: 5px;
+		}
+
+		.chat_names {
+			height: 100%;
+			width: 30%;
+			left: 70%;
+			border: 1px solid;
+			position: absolute;
+			overflow: auto;
+		}
+</style>
+</head>
+
+<script type="text/javascript">
+	var ws; // WebSocket 对象
+	var target = "/webChat/chat"; // 连接的 endpoint
+	
+	const WELCOME_TYPE = 1;
+	const SINGLE_CHAT_TYPE = 2;
+	const GROUP_CHAT_TYPE = 4;
+	
+	// 获取用户名
+	var path = location.search;
+	path = path.startsWith("?") ? path.substring(1) : path;
+	var userName = path.split("=")[1];
+	
+	console.log("===userName===", userName);
+	
+	// 添加 Socket 连接前缀
+	target = (window.location.protocol == 'http:'
+				? 'ws://' : 'wss://')
+			+ window.location.host + target;
+
+	// 将 userName 发送给 Server EndPoint
+	target += "/" + userName;
+
+	window.onload = function() {
+		// gui
+		var namesElem = document.getElementById("chat_names");
+		var contentElem = document.getElementById("chat_window");
+		
+		// 建立 Socket 连接
+		if ('WebSocket' in window) {
+            ws = new WebSocket(target);
+        } else if ('MozWebSocket' in window) {
+            ws = new MozWebSocket(target);
+        } else {
+            alert('WebSocket is not supported by this browser.');
+            return;
+        }
+
+        ws.onopen = function () {
+        	ws.send(JSON.stringify({
+        		type: WELCOME_TYPE,
+        		msg: "Hello, Server, I am " + userName + "...."
+        	}));
+        	console.log('Info: WebSocket connection opened.');
+        };
+        ws.onmessage = function (event) {
+        	console.log('Received: ' + event);
+        	var msg = JSON.parse(event.data);
+        	
+        	if(msg.type == WELCOME_TYPE) {
+        		namesElem.innerHTML = "";
+        		msg.names.forEach((name) => namesElem.innerHTML += ("<input type='checkbox' />" + name + "<br/>"));
+        		namesElem.scrollTop = namesElem.scrollHeight;
+        	}
+        	
+        	contentElem.innerHTML += msg.msg;
+        	contentElem.scrollTop = contentElem.scrollHeight;
+        };
+        ws.onclose = function (event) {
+        	console.log('Info: WebSocket connection closed, Code: ' + event.code + (event.reason == "" ? "" : ", Reason: " + event.reason));
+        	ws.close();
+        };
+	}
+	
+	// 出现 Socket 连接错误.
+	// 该问题主要发生在页面刷新的时候，ws连接实际已经断开，但前后台均为做断开操作
+	// 后台一直保持连接，待前端断开后，却没有释放掉该连接，故后台还在有状态的监听使用故报错。
+	// 另连接时间过长浏览器自动切断时也会出现此问题
+	window.onbeforeunload = function(event) {
+        ws.close();
+    }
+	
+	function sendMsg() {
+    	var msg = {
+    			msg: "[" + userName + "]: " + document.getElementById("chat_input_msg").value + "<br/>",
+    			type: GROUP_CHAT_TYPE
+    	};
+		ws.send(JSON.stringify(msg));
+		document.getElementById("chat_input_msg").value="";
+	}
+	
+</script>
+
+<body>
+	<div class="chat_title"><h1>Web Chat</h1></div>
+	<span class="chat_content">
+		<div class="chat_window" id="chat_window"></div>
+		<div class="chat_input" id="chat_input">
+			<textarea class="chat_input_msg" rows="2" cols="60" id="chat_input_msg"></textarea>
+			<button class="chat_send_button" onclick="sendMsg()">Send</button>
+		</div>
+	</span>
+	<span class="chat_names">
+		<div><h4>当前在线用户列表:</h4></div>
+		<span id="chat_names"></span>
+	</span>
+</body>
+</html>
