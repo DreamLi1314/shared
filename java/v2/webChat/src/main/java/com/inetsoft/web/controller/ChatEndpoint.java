@@ -17,7 +17,7 @@ import com.inetsoft.web.vo.ConnectionMsgVO;
 import com.inetsoft.web.vo.MessageVO;
 
 /**
- * 多累, 每个客户端一个 @ServerEndpoint 实例
+ * 多例, 每个客户端一个 @ServerEndpoint 实例
  * @author Administrator
  *
  */

@@ -1,0 +1,38 @@
+server:
+  port: 8082
+
+
+sb.person:
+  id: ${random.uuid}
+  name: dreamli2
+  email: dreamli@162.com
+  likes:
+    - pingpang
+    - lanqiu
+
+# 开启 Debug 模式后可以看到当前项目有哪些自动配置被启用了等详细信息
+debug: false
+
+# 启用指定的 Profiles 配置
+spring:
+  profiles:
+    active: dev
+
+logging:
+  level:
+    com.dreamli: trace
+---
+server:
+  port: 8083
+
+# 命名当前的 Profiles 配置名
+spring:
+  profiles: dev
+
+
+
+---
+server:
+     port: 8084
+spring:
+  profiles: prod

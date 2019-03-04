@@ -14,7 +14,7 @@ function setConnected(connected) {
 }
 
 function connect() {
-	var socket = new SockJS("/swt");// endpoint
+	var socket = new SockJS("/swta");// endpoint
 	stompClient = Stomp.over(socket);
 	
 	stompClient.connect({}, function (frame) {
