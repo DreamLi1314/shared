@@ -21,8 +21,6 @@ public class MainApplicationTests {
     @Autowired
     private Person person;
 
-
-
     @Test
     public void contextLoads() {
         System.out.println(person);

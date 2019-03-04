@@ -1,7 +1,6 @@
 server:
   port: 8082
 
-
 sb.person:
   id: ${random.uuid}
   name: dreamli2
@@ -21,6 +20,7 @@ spring:
 logging:
   level:
     com.dreamli: trace
+
 ---
 server:
   port: 8083
@@ -28,7 +28,6 @@ server:
 # 命名当前的 Profiles 配置名
 spring:
   profiles: dev
-
 
 
 ---
