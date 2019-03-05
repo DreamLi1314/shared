@@ -38,7 +38,7 @@
         <param name="File" value="log_"/>
         <param name="MaxFileSize" value="KB"/>
         <param name="MaxBackupIndex" value="2"/> -->
-   <appender name="log4jDebug" class="org.apache.log4j.rolling.RollingFileAppender">
+   <appender name="log4jDebug" class="org.apache.log4j.RollingFileAppender">
       <param name="Append" value="true"/>
       <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
          <param name="FileNamePattern" value="./log/log_%d{yyyy-MM-dd}.log"/>
@@ -58,7 +58,7 @@
         <param name="Append" value="true"/>
        <param name="MaxFileSize" value="5KB"/>
         <param name="MaxBackupIndex" value="2"/> -->
-   <appender name="log4jInfo" class="org.apache.log4j.rolling.RollingFileAppender">
+   <appender name="log4jInfo" class="org.apache.log4j.RollingFileAppender">
       <param name="Append" value="true"/>
       <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
          <param name="FileNamePattern" value="./log/log_%d{yyyy-MM-dd}.log"/>
@@ -78,7 +78,7 @@
         <param name="Append" value="true"/>
         <param name="MaxFileSize" value="5KB"/>
         <param name="MaxBackupIndex" value="2"/> -->
-   <appender name="log4jWarn" class="org.apache.log4j.rolling.RollingFileAppender">
+   <appender name="log4jWarn" class="org.apache.log4j.RollingFileAppender">
       <param name="Append" value="true"/>
       <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
          <param name="FileNamePattern" value="./log/log_%d{yyyy-MM-dd}.log"/>
@@ -93,7 +93,7 @@
       </filter>
    </appender>
    <!--  <appender name="log4jError" class="org.apache.log4j.DailyRollingFileAppender"> -->
-   <appender name="log4jError" class="org.apache.log4j.rolling.RollingFileAppender">
+   <appender name="log4jError" class="org.apache.log4j.RollingFileAppender">
       <!--  <param name="File" value="/error_"/>
        <param name="DatePattern" value="'.log'yyyy-MM-dd"/> -->
       <param name="Append" value="true"/>
@@ -139,7 +139,7 @@
    </appender>
 
    <root>
-      <level value="INFO"/>
+      <level value="ERROR"/>
       <appender-ref ref="CONSOLE"/>
       <appender-ref ref="log4jDebug"/>
       <appender-ref ref="log4jInfo"/>
