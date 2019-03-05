@@ -22,6 +22,38 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <!-- 切换日志框架到 log4j2
+                <exclusion>-->
+                    <!--<artifactId>spring-boot-starter-logging</artifactId>-->
+                    <!--<groupId>org.springframework.boot</groupId>-->
+                <!--</exclusion>
+                -->
+
+                <!-- 切换日志框架为 log4j -->
+                <exclusion>
+                    <artifactId>logback-classic</artifactId>
+                    <groupId>ch.qos.logback</groupId>
+                </exclusion>
+                <!-- 切换日志框架为 log4j -->
+                <exclusion>
+                    <artifactId>log4j-to-slf4j</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- 切换日志框架到 log4j2
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+        -->
+
+        <!-- 切换日志框架为 log4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
         </dependency>
 
         <dependency>
