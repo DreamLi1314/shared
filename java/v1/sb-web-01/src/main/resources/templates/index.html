@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html >
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
    <meta charset="UTF-8">
    <title>Index</title>
 </head>
 <body>
-Index....
+<h1>
+   Index....
+</h1>
+<hr>
+
+<div>
+   从 request 域中取值.....
+   <div th:text="${hello}"></div>
+</div>
+
+
 </body>
 </html>
