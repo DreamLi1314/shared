@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Thymeleaf 语法练习</title>
 </head>
 <body>
+
+
+<div>
+    <div>
+        从 Properties 文件中取本地化值:
+        <div th:text="#{msg.prop.key1}"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        取单个值:
+        <div th:text="${hello}"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        取一个集合并遍历:
+    </div>
+</div>
 
 </body>
 </html>

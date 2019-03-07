@@ -1,2 +1,13 @@
 server:
   port: 80
+
+spring:
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main # 监听目录
+  thymeleaf:
+    cache: false
+  messages:
+    basename: i18n.success
+    encoding: UTF-8
