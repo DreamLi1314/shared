@@ -1,6 +1,5 @@
 package com.dreamli.web.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.LocaleResolver;
@@ -14,14 +13,13 @@ import java.util.Locale;
 public class MyMvcConfig implements WebMvcConfigurer {
 
    /**
-    * TODO: 需要验证这是否是必须的
+    * 自定义 LocaleResolver 实现通过传递参数修改 Locale
     * @return LocaleResolver
     */
 //   @Bean
    public LocaleResolver localeResolver() {
       return new MyLocaleResolver();
    }
-
 
    public static class MyLocaleResolver implements LocaleResolver {
 
@@ -42,5 +40,4 @@ public class MyMvcConfig implements WebMvcConfigurer {
       public void setLocale(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Locale locale) {
       }
    }
-
 }

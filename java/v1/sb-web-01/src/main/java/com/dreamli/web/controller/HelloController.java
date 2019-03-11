@@ -25,6 +25,7 @@ public class HelloController {
       params.put("hello", "Test");
       params.put("intV", 12);
       params.put("booleanV", true);
+      params.put("name", " 来捣乱的....");
       params.put("list", Arrays.asList("dramli", "aaa", "bbb"));
 
       HttpSession session = request.getSession();
