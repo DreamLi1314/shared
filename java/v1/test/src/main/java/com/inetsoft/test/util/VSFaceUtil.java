@@ -31,6 +31,19 @@ import java.util.List;
  */
 public class VSFaceUtil {
 
+   public static BufferedImage getShadow(Dimension paneSize, int edge) {
+      BufferedImage out = new BufferedImage(paneSize.width + edge,
+            paneSize.height + edge,
+            BufferedImage.TYPE_INT_ARGB);
+      BufferedImage shadow = createDropShadowSVG(paneSize, edge / 3);
+
+      Graphics g2 = out.getGraphics();
+      g2.drawImage(shadow, 0, 0, null);
+      g2.dispose();
+
+      return out;
+   }
+
    /**
     * Add drop shadow to the svg.
     */
@@ -39,13 +52,7 @@ public class VSFaceUtil {
       int h = g.getSVGCanvasSize().height;
       Dimension dim = new Dimension(w, h);
 
-      BufferedImage out = new BufferedImage(w + edge, h + edge,
-            BufferedImage.TYPE_INT_ARGB);
-      BufferedImage shadow = createDropShadowSVG(dim, edge / 3);
-
-      Graphics g2 = out.getGraphics();
-      g2.drawImage(shadow, 0, 0, null);
-      g2.dispose();
+      BufferedImage out = getShadow(dim, edge);
 
       g.drawImage(out, 0, 0, null);
       g.dispose();

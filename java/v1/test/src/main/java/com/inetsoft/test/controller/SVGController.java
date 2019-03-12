@@ -37,18 +37,8 @@ public class SVGController {
       response.setHeader("Cache-Control", "no-cache");
       response.setHeader("Pragma", "no-cache");
 
-
-      int w = contentSize.width;
-      int h = contentSize.height;
       int edge = 6;
-      BufferedImage out = new BufferedImage(w + edge, h + edge,
-            BufferedImage.TYPE_INT_ARGB);
-
-      BufferedImage shadow = VSFaceUtil.createDropShadowSVG(contentSize, edge / 3);
-
-      Graphics g2 = out.getGraphics();
-      g2.drawImage(shadow, 0, 0, null);
-      g2.dispose();
+      BufferedImage out = VSFaceUtil.getShadow(contentSize, edge);
 
       ImageIO.write(out, "jpg", response.getOutputStream());
    }
@@ -63,10 +53,18 @@ public class SVGController {
 
       // create graphics
       SVGGraphics2D g = SVGUtil.getSVGGraphics2D();
+      setRenderingStratergy(g);
       g.setSVGCanvasSize(contentSize);
 
       // draw shadow
-      VSFaceUtil.addSVGShadow(g, 6);
+      int edge = 6;
+      BufferedImage out = VSFaceUtil.getShadow(contentSize, edge);
+
+      g.drawImage(out, 0, 0, null);
+      g.setColor(Color.GRAY);
+      g.fillRect(0, 0, out.getWidth(), out.getHeight());
+
+      g.dispose();
 
       // save svg to byte[]
       byte[] buf = saveSVGToBytes(g);
@@ -116,11 +114,11 @@ public class SVGController {
       setRenderingStratergy(g);
 
       // draw pane image
-//      g.drawImage(img, 0, 0, null);
+      g.drawImage(img, 0, 0, null);
       g.dispose();
 
       // draw shadow
-      g = VSFaceUtil.addSVGShadow(g, 6);
+//      g = VSFaceUtil.addSVGShadow(g, 6);
 
       // save svg to byte[]
       byte[] buf = saveSVGToBytes(g);
@@ -133,6 +131,7 @@ public class SVGController {
       final ByteArrayOutputStream out2 = new ByteArrayOutputStream();
       final OutputStreamWriter writer = new OutputStreamWriter(out2, StandardCharsets.UTF_8);
       g.stream(writer, true);
+
       return out2.toByteArray();
    }
 
