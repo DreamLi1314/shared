@@ -1,0 +1,28 @@
+server:
+  port: 80
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /crud
+
+spring:
+  profiles:
+    active: dev
+  messages:
+    basename: i18n.crud
+
+
+---
+
+spring:
+     profiles: dev
+     thymeleaf:
+       cache: false
+
+logging:
+  level:
+    com.dreamli.crud: trace
+---
+
+spring:
+  profiles: prod
