@@ -7,32 +7,40 @@
 		<meta name="author" content="">
 		<title th:text="#{crud.index.title}">Signin Template for Bootstrap</title>
 		<!-- Bootstrap core CSS -->
-		<link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.css}"
+		<link href="asserts/css/bootstrap.min.css" th:href="@{/static/webjars/bootstrap/4.3.1/css/bootstrap.css}"
             rel="stylesheet">
 		<!-- Custom styles for this template -->
-		<link href="asserts/css/signin.css" th:href="@{/asserts/css/signin.css}" rel="stylesheet">
+		<link href="asserts/css/signin.css" th:href="@{/static/asserts/css/signin.css}" rel="stylesheet">
 	</head>
 
 	<body class="text-center">
-		<form class="form-signin" action="dashboard.html">
-			<img class="mb-4" src="asserts/img/bootstrap-solid.svg" alt="" width="72" height="72">
+		<form class="form-signin" action="dashboard.html" th:action="@{/login}" th:method="POt">
+			<img class="mb-4" src="asserts/img/bootstrap-solid.svg"
+				 th:src="@{/static/asserts/img/bootstrap-solid.svg}"
+				 alt="" width="72" height="72">
 			<h1 class="h3 mb-3 font-weight-normal" th:text="#{crud.login.prompt}">Please sign in</h1>
 			<label class="sr-only" th:text="#{crud.login.username}">Username</label>
-			<input type="text" class="form-control" placeholder="Username" th:placeholder="#{crud.login.username}"
-					 required autofocus>
+			<input type="text" th:name="username" class="form-control" placeholder="Username" th:placeholder="#{crud.login.username}"
+					 autofocus>
 			<label class="sr-only" th:text="#{crud.login.pwd}">Password</label>
-			<input type="password" class="form-control" placeholder="Password" th:placeholder="#{crud.login.pwd}"
-					 required="">
+			<input type="password" th:name="password" class="form-control"
+				   placeholder="Password" th:placeholder="#{crud.login.pwd}">
+
+			<!-- 不能使用 error-msg 的变量名-->
+			<div class="login-error-msg" th:if="not ${#strings.isEmpty(errorMsg)}"
+				 th:text="${errorMsg}"></div>
+
 			<div class="checkbox mb-3">
 				<label>
-          <input type="checkbox" value="remember-me"> [[#{crud.login.remember}]]
-        </label>
+          			<input type="checkbox" value="remember-me"> [[#{crud.login.remember}]]
+        		</label>
 			</div>
-			<button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{curd.login.login}"
-            >Sign in</button>
+
+			<button class="btn btn-lg btn-primary btn-block" type="submit"
+					th:text="#{curd.login.login}">Sign in</button>
 			<p class="mt-5 mb-3 text-muted">© 2017-2019</p>
-			<a class="btn btn-sm" href="#" th:href="@{/index.html(locale='zh_CN')}">中文</a>
-			<a class="btn btn-sm" href="#" th:href="@{/index.html(locale='en_US')}">English</a>
+			<a class="btn btn-sm" href="#" th:href="@{/index.html(curd-locale='zh_CN')}">中文</a>
+			<a class="btn btn-sm" href="#" th:href="@{/index.html(curd-locale='en_US')}">English</a>
 		</form>
 
 	</body>

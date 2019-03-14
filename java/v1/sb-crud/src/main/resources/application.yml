@@ -10,6 +10,8 @@ spring:
     active: dev
   messages:
     basename: i18n.crud
+  mvc:
+    static-path-pattern: /static/**
 
 
 ---
