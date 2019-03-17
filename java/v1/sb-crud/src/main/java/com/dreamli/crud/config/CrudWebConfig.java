@@ -1,6 +1,6 @@
 package com.dreamli.crud.config;
 
-import com.dreamli.crud.controller.LoginController;
+import com.dreamli.crud.controller.BaseController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,14 +61,34 @@ public class CrudWebConfig implements WebMvcConfigurer {
       registry.addInterceptor(new HandlerInterceptor() {
          @Override
          public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-            Object user = request.getSession().getAttribute(LoginController.ACTIVE_USE_FLAG);
+            boolean hasLogin = request.getSession(false) != null &&
+                    request.getSession(false).getAttribute(BaseController.ACTIVE_USE_FLAG) != null;
+            boolean requestIndex = false;
 
-            if(user != null) {
-               // 已经登录
+            String contextPath = request.getContextPath();
+            String uri = request.getRequestURI();
+
+            LOGGER.debug("=============contextPath: " + contextPath);
+            LOGGER.debug("=============uri: " + uri);
+
+            for (String indexUri : INDEXS_PAGE_URI) {
+               if(uri.equals(contextPath + indexUri)) {
+                  requestIndex = true;
+                  break;
+               }
+            }
+
+            if(hasLogin && requestIndex) {
+               // 已经登录, 且访问登录页面, 跳转到 Dashboard 页面
+                request.getRequestDispatcher("/dashboard")
+                          .forward(request, response);
+                  return false;
+            }
+            else if(hasLogin || !hasLogin && requestIndex) {
                return true;
             }
 
-            // 没有登录, 提示用户信息, 并跳转到登录页面
+            // 没有登录, 切访问其他资源, 提示用户信息, 并跳转到登录页面
             request.setAttribute("errorMsg",
                messageSource.getMessage("crud.login.noLogin", null,
                LocaleContextHolder.getLocale()));
@@ -78,7 +98,9 @@ public class CrudWebConfig implements WebMvcConfigurer {
          }
       }).addPathPatterns("/**") // 设置拦截的请求 uri
         // 在拦截的 uri 中排除参数指定的 uri, 注意这里将静态资源的映射路径排除了.
-        .excludePathPatterns("/", "/index.html", "/login", "/static/**");
+//        .excludePathPatterns("/", "/index.html", "/login", "/static/**");
+        // 拦截登录页面, 判断当用户已经登录就跳转到 dashboard 页面
+        .excludePathPatterns("/static/**");
    }
 
 //   @Bean
@@ -101,20 +123,29 @@ public class CrudWebConfig implements WebMvcConfigurer {
          @Override
          public Locale resolveLocale(HttpServletRequest request) {
             Locale locale = Locale.getDefault();
-
             String reqLocale = request.getParameter(LOCALE_FLAG);
 
             LOGGER.debug("User Locale: " + reqLocale);
 
             if(StringUtils.isEmpty(reqLocale)
-                    && request.getHeader("Accept-Language") != null)
+               && request.getSession().getAttribute(LOCALE_FLAG) != null)
+            {
+               locale = (Locale) request.getSession().getAttribute(LOCALE_FLAG);
+               LOGGER.debug("Use Session Locale: " + locale);
+            }
+            else if(StringUtils.isEmpty(reqLocale)
+               && request.getHeader("Accept-Language") != null)
             {
                locale = request.getLocale();
                LOGGER.debug("Use Browser Locale: " + locale);
             }
             else if(!StringUtils.isEmpty(reqLocale)) {
                Locale tmp = StringUtils.parseLocale(reqLocale);
-               locale = tmp != null ? tmp : locale;
+
+               if(tmp != null) {
+                  locale = tmp;
+                  request.getSession().setAttribute(LOCALE_FLAG, tmp);
+               }
             }
 
             return locale;
@@ -127,6 +158,11 @@ public class CrudWebConfig implements WebMvcConfigurer {
    }
 
    private static final String LOCALE_FLAG = "curd-locale";
+   private static final String[] INDEXS_PAGE_URI = {
+           "/",
+           "/index.html",
+           "/login"
+   };
 
    private final MessageSource messageSource;
 

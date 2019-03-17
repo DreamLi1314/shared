@@ -8,7 +8,6 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -36,14 +35,12 @@ public class LoginController {
             return "index.html";
         }
 
-        session.setAttribute(ACTIVE_USE_FLAG,username);
+        session.setAttribute(BaseController.ACTIVE_USE_FLAG, username);
 
         return "redirect:/dashboard";
     }
 
     private final MessageSource messageSource;
-
-    public static final String ACTIVE_USE_FLAG = "activeUser";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 }
