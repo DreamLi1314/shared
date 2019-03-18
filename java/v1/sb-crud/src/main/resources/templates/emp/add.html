@@ -52,41 +52,56 @@
 				<div th:replace="common/side-bar :: side-bar(item='customers')"></div>
 
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-					<h2>Add Employee</h2>
+					<h2>[[${editEmp != null ? 'Edit' : 'Add'}]] Employee</h2>
 					<div>
-						<form>
+						<form action="#" th:action="@{/emp}" method="post">
+
+							<fieldset th:if="${editEmp != null}" >
+								<!-- edit -->
+								<input type="hidden" name="_method" th:value="'PUT'"  />
+								<input type="hidden" th:value="${editEmp.id}" name="id"/>
+							</fieldset>
+
 							<div class="form-group">
 								<label>LastName</label>
-								<input type="text" class="form-control" placeholder="zhangsan">
+								<input name="lastName" type="text" class="form-control" placeholder="zhangsan"
+									th:value="${editEmp != null} ? ${editEmp.lastName}">
 							</div>
 							<div class="form-group">
 								<label>Email</label>
-								<input type="email" class="form-control" placeholder="zhangsan@atguigu.com">
+								<input name="email" type="email" class="form-control"
+										 th:value="${editEmp != null} ? ${editEmp.email}"
+										 placeholder="zhangsan@atguigu.com">
 							</div>
 							<div class="form-group">
 								<label>Gender</label><br/>
 								<div class="form-check form-check-inline">
 									<input class="form-check-input" type="radio" name="gender"
-										   value="1" checked>
+										   value="1" th:checked="${editEmp == null || editEmp.gender == 1}">
 									<label class="form-check-label">男</label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="gender" value="0">
+									<input class="form-check-input" type="radio" name="gender" value="0"
+										th:checked="${editEmp != null && editEmp.gender == 0}">
 									<label class="form-check-label">女</label>
 								</div>
 							</div>
 							<div class="form-group">
 								<label>department</label>
-								<select class="form-control">
+								<select class="form-control" name="department.id">
 									<option th:each="dept: ${depts}" th:text="${dept.departmentName}"
+										th:selected="${editEmp != null && editEmp.department != null && editEmp.department.id == dept.id}"
 										th:value="${dept.id}">None</option>
 								</select>
 							</div>
 							<div class="form-group">
 								<label>Birth</label>
-								<input type="text" class="form-control" placeholder="zhangsan">
+								<input name="birth" type="text" class="form-control"
+										 th:value="${editEmp != null ? #dates.format(editEmp.birth, 'yyyy-MM-dd') : ''}"
+										 placeholder="2017-12-12">
 							</div>
-							<button type="submit" class="btn btn-primary">添加</button>
+							<button type="submit" class="btn btn-primary"
+									  th:text="${editEmp != null ? 'Edit' : 'Add'}">Add</button>
 						</form>
 					</div>
 				</main>

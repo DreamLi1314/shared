@@ -77,16 +77,24 @@
 									<td>[[${emp.email}]]</td>
 									<td>[[${emp.gender} == 1 ? #{crud.common.male} : #{crud.common.female}]]</td>
 									<td th:text="${emp.department.departmentName}"></td>
-									<td th:text="${#dates.format(emp.birth, 'yyyy-MM-dd HH:mm:ss.sss')}"></td>
+									<td th:text="${#dates.format(emp.birth, 'yyyy-MM-dd')}"></td>
 									<td>
-										<a class="btn btn-info" th:text="'Edit'" href="#"></a>
-										<a class="btn btn-danger" th:text="'Delete'" href="#"></a>
+										<a class="btn btn-info" th:href="@{/emp/} + ${emp.id}"
+											th:text="'Edit'" href="#"></a>
+										<button class="btn btn-danger btn_delete" th:text="'Delete'"
+											th:attr="delete_uri=@{/emp/} + ${emp.id}"></button>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 				</main>
+
+				<!-- convert POST to DELETE request method. See: HiddenHttpMethodFilter.java -->
+				<form id="delete_method_form" method="post" action="#">
+					<input type="hidden" name="_method" value="'DELETE'" />
+				</form>
+
 			</div>
 		</div>
 

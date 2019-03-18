@@ -12,7 +12,7 @@ spring:
     basename: i18n.crud
   mvc:
     static-path-pattern: /static/**
-
+    date-format: yyyy-MM-dd
 
 ---
 
