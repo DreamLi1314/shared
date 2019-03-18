@@ -31,7 +31,7 @@ public class CrudWebConfig implements WebMvcConfigurer {
 
    /**
     * 第一种配置 ViewController 的方式
-    * @param registry
+    * @param registry ViewControllerRegistry
     */
    @Override
    public void addViewControllers(ViewControllerRegistry registry) {
@@ -42,7 +42,6 @@ public class CrudWebConfig implements WebMvcConfigurer {
 
    /**
     * 第二种配置 ViewController 的方式. 其实相当于又创建了一个 WebMvcConfigurer 配置文件.
-    * @return
     */
 //   @Bean
 //   public WebMvcConfigurer getWebMvcConfigurer() {
@@ -85,6 +84,7 @@ public class CrudWebConfig implements WebMvcConfigurer {
                   return false;
             }
             else if(hasLogin || !hasLogin && requestIndex) {
+               // TODO: Should redirect to dashboard page when user has login and to access error target.
                return true;
             }
 
@@ -100,7 +100,7 @@ public class CrudWebConfig implements WebMvcConfigurer {
         // 在拦截的 uri 中排除参数指定的 uri, 注意这里将静态资源的映射路径排除了.
 //        .excludePathPatterns("/", "/index.html", "/login", "/static/**");
         // 拦截登录页面, 判断当用户已经登录就跳转到 dashboard 页面
-        .excludePathPatterns("/static/**");
+        .excludePathPatterns("/static/**", "/test-error");
    }
 
 //   @Bean
@@ -114,7 +114,7 @@ public class CrudWebConfig implements WebMvcConfigurer {
    /**
     * 1. 自定义 LocaleResolver 必须将 LocaleResolver 放入 IOC 中.
     * 2. 放入 IOC 中的 bean id(下面方法名) 必须为 localeResolver.
-    * @return
+    * @return LocaleResolver
     */
    @Bean
    public LocaleResolver localeResolver() {

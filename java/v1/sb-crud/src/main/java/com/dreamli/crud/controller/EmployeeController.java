@@ -4,15 +4,14 @@ import com.dreamli.crud.dao.DepartmentDao;
 import com.dreamli.crud.dao.EmployeeDao;
 import com.dreamli.crud.entities.Department;
 import com.dreamli.crud.entities.Employee;
+import com.dreamli.crud.exception.UserNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.Map;
@@ -69,6 +68,36 @@ public class EmployeeController {
         model.addAttribute("editEmp", employee);
 
         return toAddPage(model);
+    }
+
+    /**
+     * 更新员工信息
+     * @param emp 封装了最新员工信息的 Employee 对象
+     * @return 返回员工列表页面
+     * @throws Exception 如果没有指定员工 ID, 则抛出 UserNotFoundException 异常
+     */
+    @PutMapping("/emp")
+    public String edit(Employee emp) throws Exception {
+        if(emp.getId() != null) {
+            employeeDao.save(emp);
+        }
+        else {
+            throw new UserNotFoundException("you edit employee is not found.");
+        }
+
+        return "redirect:/emps";
+    }
+
+    /**
+     * 删除指定 ID 的员工信息.
+     * @param id 员工 ID
+     * @return 返回员工列表页面
+     */
+    @DeleteMapping("/emp/{id}")
+    public String delete(@PathVariable Integer id) {
+        employeeDao.delete(id);
+
+        return "redirect:/emps";
     }
 
     private final DepartmentDao departmentDao;

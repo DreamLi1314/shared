@@ -92,7 +92,7 @@
 
 				<!-- convert POST to DELETE request method. See: HiddenHttpMethodFilter.java -->
 				<form id="delete_method_form" method="post" action="#">
-					<input type="hidden" name="_method" value="'DELETE'" />
+					<input type="hidden" name="_method" value="DELETE" />
 				</form>
 
 			</div>
@@ -115,7 +115,14 @@
 		<script>
 			feather.replace()
 		</script>
-
+		<script>
+			$(".btn_delete").click(function () {
+				// 删除当前员工
+				$("#delete_method_form").attr("action", $(this).attr("delete_uri")).submit();
+				// 取消默认的点击事件
+				return false;
+            });
+		</script>
 
 	</body>
 
