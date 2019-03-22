@@ -67,9 +67,6 @@ public class CrudWebConfig implements WebMvcConfigurer {
             String contextPath = request.getContextPath();
             String uri = request.getRequestURI();
 
-            LOGGER.debug("=============contextPath: " + contextPath);
-            LOGGER.debug("=============uri: " + uri);
-
             for (String indexUri : INDEXS_PAGE_URI) {
                if(uri.equals(contextPath + indexUri)) {
                   requestIndex = true;
