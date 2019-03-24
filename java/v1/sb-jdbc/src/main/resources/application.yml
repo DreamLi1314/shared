@@ -1,0 +1,16 @@
+server:
+  port: 80
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1/db_jdbc
+    username: jackli
+    password: dreamli0812
+    schema:
+      - classpath:db/sql/ddl/ddl-department.sql
+      - classpath:db/sql/ddl/ddl-employee.sql
+    # \u6307\u5B9A\u4E3A ALWAYS \u5219\u6BCF\u6B21 Server \u542F\u52A8\u90FD\u4F1A\u8FD0\u884C, \u6570\u636E\u5C31\u4F1A\u4E22\u5931.
+    # NEVER: \u4ECE\u4E0D\u8FD0\u884C
+    # EMBEDDED: \u53EA\u6709\u4F7F\u7528 EMBED \u6570\u636E\u5E93\u65F6\u624D\u4F1A\u8FD0\u884C
+    initialization-mode: NEVER
