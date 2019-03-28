@@ -10,9 +10,7 @@ public interface DepartmentMapper {
      *  useGeneratedKeys: 指定启用主键返回
      *  keyProperty: 指定主键返回到 domain 对象的那个属性
      */
-    @Options(useGeneratedKeys = true, keyProperty = "id")
-    @Insert("INSERT INTO t_department(department_name) VALUE(#{departmentName})")
-    void insertDepartment(Department department);
+    void insertsDepartment(Department department);
 
     /**
      * 通过 id 查询部门信息.
@@ -21,9 +19,5 @@ public interface DepartmentMapper {
      * @param id 部门 id
      * @return 指定部门 id 的部门信息
      */
-    @Results(id="deptMap", value = {
-            @Result(column = "department_name", property = "departmentName", javaType = String.class)
-    })
-    @Select("SELECT * FROM t_department where id=#{deptId}")
     Department selectDepartment(@Param("deptId") int id);
 }

@@ -18,5 +18,10 @@ public class DeptController {
         return mapper.selectDepartment(id);
     }
 
+    @GetMapping("dept")
+    public Department insertDepartment(Department dept) {
+        mapper.insertsDepartment(dept);
+        return dept;
+    }
 
 }
