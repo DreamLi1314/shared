@@ -1,0 +1,15 @@
+server:
+  port: 80
+
+spring:
+  datasource:
+    username: jackli
+    password: dreamli0812
+    url: jdbc:mysql://localhost:3306/db_jpa
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+#      \u66F4\u65B0\u6216\u8005\u5E38\u89C1\u6570\u636E\u5E93\u8868\u7ED3\u6784
+      ddl-auto: update
+    show-sql: true
