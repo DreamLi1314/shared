@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.jack</groupId>
-    <artifactId>sb-elasticsearch</artifactId>
+    <artifactId>sb-es-springdata</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sb-elasticsearch</name>
+    <name>sb-es-springdata</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -19,18 +19,10 @@
     </properties>
 
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-data-elasticsearch</artifactId>-->
-        <!--</dependency>-->
-
-        <!-- https://mvnrepository.com/artifact/io.searchbox/jest -->
         <dependency>
-            <groupId>io.searchbox</groupId>
-            <artifactId>jest</artifactId>
-            <version>6.3.1</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -38,10 +30,14 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
