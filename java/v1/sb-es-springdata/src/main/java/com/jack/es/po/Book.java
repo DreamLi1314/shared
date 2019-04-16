@@ -1,9 +1,11 @@
 package com.jack.es.po;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 @Document(indexName = "jack", type = "book")
 public class Book {
+    @Id
     private Integer id;
     private String name;
     private String author;

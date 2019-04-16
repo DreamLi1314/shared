@@ -1,39 +1,35 @@
 package com.jack.es;
 
 import com.jack.es.po.Book;
-import com.jack.es.repository.BookRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+
+import static org.elasticsearch.index.query.QueryBuilders.matchPhraseQuery;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SbEsSpringdataApplicationTests {
 
     @Autowired
-    private BookRepository bookRepository;
-
-    @Test
-    public void testIndex() {
-        Book book = new Book();
-        book.setId(1);
-        book.setName("BookName");
-        book.setAuthor("Jack");
-
-        bookRepository.index(book);
-    }
+    private ElasticsearchTemplate elasticsearchTemplate;
 
     @Test
     public void testSearch() {
-        List<Book> list = bookRepository.findByNameLike("Boo");
+        SearchQuery searchQuery = new NativeSearchQueryBuilder()
+                .withQuery(matchPhraseQuery("name", "Boo"))
+                .build();
 
-        for (Book book: list) {
-            System.out.println(book);
-        }
+        List<Book> books = elasticsearchTemplate.queryForList(searchQuery, Book.class);
+
+        System.out.println("====" + books);
     }
 
 }
