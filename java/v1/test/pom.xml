@@ -36,6 +36,14 @@
          <optional>true</optional>
       </dependency>
 
+      <!-- https://mvnrepository.com/artifact/org.mozilla/rhino -->
+      <dependency>
+         <groupId>org.mozilla</groupId>
+         <artifactId>rhino</artifactId>
+         <version>1.7.10</version>
+      </dependency>
+
+
       <!-- batik -->
 
       <dependency>
