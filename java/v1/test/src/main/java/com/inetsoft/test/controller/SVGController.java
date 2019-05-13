@@ -4,10 +4,13 @@ import com.inetsoft.test.util.SVGTransformer;
 import com.inetsoft.test.util.SVGUtil;
 import com.inetsoft.test.util.VSFaceUtil;
 import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
+import org.apache.batik.anim.dom.SVGDOMImplementation;
+import org.apache.batik.svggen.SVGGeneratorContext;
 import org.apache.batik.svggen.SVGGraphics2D;
 import org.apache.batik.svggen.SVGGraphics2DIOException;
 import org.apache.batik.util.XMLResourceDescriptor;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.w3c.dom.Document;
@@ -21,6 +24,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -61,8 +65,8 @@ public class SVGController {
       BufferedImage out = VSFaceUtil.getShadow(contentSize, edge);
 
       g.drawImage(out, 0, 0, null);
-      g.setColor(Color.GRAY);
-      g.fillRect(0, 0, out.getWidth(), out.getHeight());
+//      g.setColor(Color.GRAY);
+//      g.fillRect(0, 0, out.getWidth(), out.getHeight());
 
       g.dispose();
 
@@ -83,7 +87,7 @@ public class SVGController {
       response.setHeader("Pragma", "no-cache");
 
       // draw guage
-      byte[] buf = drawGuage();
+      byte[] buf = drawGuage(request, response);
 
       // write svg response
       writeSvgResponse(request, response, buf);
@@ -98,30 +102,54 @@ public class SVGController {
 
          response.addHeader("Content-Encoding", "gzip");
          out.write(buf);
+         out.flush();
       }
       catch (Exception e) {
          e.printStackTrace();
       }
    }
 
-   private byte[] drawGuage() throws Exception {
+   String panelPath = "/static/svg/02_panel.svg";
+
+
+
+   private byte[] drawGuage(HttpServletRequest request, HttpServletResponse response) throws Exception {
       // create graphics
-      SVGGraphics2D g = SVGUtil.getSVGGraphics2D();
+//      String uri = ClassUtils.getDefaultClassLoader().getResource(panelPath).getPath();
+
+      String uri = "E:/shared/java/v1/test/src/main/resources/static/svg/02_panel.svg";
+      System.out.println("=========uri===" + uri);
+
+
+      SVGGraphics2D g = SVGUtil.getSVGGraphics2DByUri(uri);
+//      SVGGraphics2D g = SVGUtil.getSVGGraphics2D();
       g.setSVGCanvasSize(contentSize);
 
+      g.drawString("Test Label", 100, 100);
+      g.dispose();
+
+
       // get image
-      Image img = createPanelImage();
+//      Image img = createPanelImage();
       setRenderingStratergy(g);
 
       // draw pane image
-      g.drawImage(img, 0, 0, null);
+//      g.drawImage(img, 0, 0, null);
       g.dispose();
 
       // draw shadow
 //      g = VSFaceUtil.addSVGShadow(g, 6);
 
+//      SVGGraphics2D g2 = (SVGGraphics2D) g.create();
+
       // save svg to byte[]
+//      byte[] buf = SVGUtil.transcodeToSVG(g.getDOMFactory());
+//      writeSvgResponse(request, response, buf);
+
       byte[] buf = saveSVGToBytes(g);
+
+
+//      g.stream("E:\\shared\\java\\v1\\test/aaa.svg", true);
 
       return buf;
    }
@@ -149,7 +177,6 @@ public class SVGController {
    }
 
    protected BufferedImage createPanelImage() throws Exception {
-      String panelPath = "/static/svg/02_panel.svg";
       AffineTransform transform =
             AffineTransform.getScaleInstance(1, 1);
       BufferedImage image = getImageByURI(panelPath, transform);
