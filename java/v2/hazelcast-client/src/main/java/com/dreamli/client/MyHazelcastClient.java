@@ -10,6 +10,7 @@ public class MyHazelcastClient {
 		ClientConfig clientConfig = new ClientConfig();
 		
 		// 开启客户端统计, 如果不开启在 Hazelcast-Management Center 中无法检测到当前客户端的连接
+		// https://docs.hazelcast.org/docs/latest/manual/html-single/#system-properties
 		clientConfig.setProperty("hazelcast.client.statistics.enabled", "true");
 		
 		HazelcastInstance client = HazelcastClient.newHazelcastClient(clientConfig);
@@ -19,7 +20,7 @@ public class MyHazelcastClient {
 		System.out.println("Map get 2: "+ map.get(2));
 		System.out.println("Map get 3: "+ map.get(3));
 		
-		map.set(3, "Jack");
+//		map.set(3, "Jack");
 		
 		System.out.println("Map get 3: "+ map.get(3));
 	}
