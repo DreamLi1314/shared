@@ -4,7 +4,13 @@ import org.quartz.*;
 
 import java.time.LocalDateTime;
 
+@PersistJobDataAfterExecution // 标记当前 Job 为一个有状态的 Job
 public class PrintDateTimeJob implements Job {
+
+   public PrintDateTimeJob() {
+      System.out.println("======PrintDateTimeJob=======");
+   }
+
    public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
       String dateTime = LocalDateTime.now().toString();
 

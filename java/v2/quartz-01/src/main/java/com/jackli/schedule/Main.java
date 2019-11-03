@@ -19,16 +19,16 @@ public class Main {
 
       Thread.sleep(3000);
 
-//      SimpleTrigger trigger = newTrigger()
-//         .withIdentity("jack-dateTime", PrintDateTimeJob.JOB_GROUP)
-//         .forJob(jobDetail.getKey())
-//         .startNow()
-//         .withSchedule(simpleSchedule().withIntervalInSeconds(1).repeatForever())
-//         .build();
-//
-//      scheduleServer.scheduleJob(trigger); // 仅用 trigger 执行 job, trigger 必须指定 jobKey.
+      SimpleTrigger trigger = newTrigger()
+         .withIdentity("jack-dateTime", PrintDateTimeJob.JOB_GROUP)
+         .forJob(jobDetail.getKey())
+         .startNow()
+         .withSchedule(simpleSchedule().withIntervalInSeconds(1).repeatForever())
+         .build();
 
-      scheduleServer.executeJob(jobDetail.getKey()); // 立即执行
+      scheduleServer.scheduleJob(trigger); // 仅用 trigger 执行 job, trigger 必须指定 jobKey.
+
+//      scheduleServer.executeJob(jobDetail.getKey()); // 立即执行
 
       Thread.sleep(20000);
 
