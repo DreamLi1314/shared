@@ -28,8 +28,15 @@ public class ScheduleServer {
    }
 
    public void shutdown() throws SchedulerException {
+      shutdown(true);
+   }
+
+   /**
+    * @param waitForJobsToComplete wait current running jobs to completed if true.
+    */
+   public void shutdown(boolean waitForJobsToComplete) throws SchedulerException {
       if(!scheduler.isShutdown()) {
-         scheduler.shutdown();
+         scheduler.shutdown(waitForJobsToComplete);
       }
 
       LOGGER.warn("Schedule server is shutdown.");
