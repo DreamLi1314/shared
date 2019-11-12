@@ -30,7 +30,7 @@ public class Main {
 
 //      scheduleServer.executeJob(jobDetail.getKey()); // 立即执行
 
-      Thread.sleep(20000);
+      Thread.sleep(10000);
 
       scheduleServer.shutdown();
    }

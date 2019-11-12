@@ -1,7 +1,13 @@
 package com.jackli.schedule.server;
 
+import com.jackli.schedule.job.PrintDateTimeJob;
+import com.jackli.schedule.listner.MyJobListener;
+import com.jackli.schedule.listner.MyTriggerListener;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
+import org.quartz.impl.matchers.EverythingMatcher;
+import org.quartz.impl.matchers.KeyMatcher;
+import org.quartz.impl.matchers.NameMatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +28,18 @@ public class ScheduleServer {
    public void start() throws SchedulerException {
       if(!scheduler.isStarted()) {
          scheduler.start();
+         // 创建全局 JobListener
+//         scheduler.getListenerManager().addJobListener(new MyJobListener(), EverythingMatcher.allJobs());
+         scheduler.getListenerManager().addJobListener(new MyJobListener());
+
+         // 创建局部 JobListener
+//         scheduler.getListenerManager().addJobListener(new MyJobListener(), NameMatcher.jobNameContains("jack"));
+//         scheduler.getListenerManager().addJobListener(new MyJobListener(),
+//            KeyMatcher.keyEquals(new JobKey("jack-dateTime", PrintDateTimeJob.JOB_GROUP)));
+
+         // 创建全局 TriggerListener
+         scheduler.getListenerManager().addTriggerListener(new MyTriggerListener(), EverythingMatcher.allTriggers());
+
       }
 
       LOGGER.warn("Schedule server is running.");
