@@ -3,7 +3,7 @@ package com.jackli.schedule;
 import com.jackli.schedule.job.PrintDateTimeJob;
 import com.jackli.schedule.server.ScheduleServer;
 import org.quartz.JobDetail;
-import org.quartz.SimpleTrigger;
+import org.quartz.Trigger;
 
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;
@@ -15,20 +15,21 @@ public class Main {
 
       JobDetail jobDetail = PrintDateTimeJob.buildJob("jack-dateTime");
 
-      scheduleServer.addJob(jobDetail);
+//      scheduleServer.addJob(jobDetail);
 
       Thread.sleep(3000);
 
-      SimpleTrigger trigger = newTrigger()
+      Trigger trigger = newTrigger()
          .withIdentity("jack-dateTime", PrintDateTimeJob.JOB_GROUP)
          .forJob(jobDetail.getKey())
          .startNow()
          .withSchedule(simpleSchedule().withIntervalInSeconds(1).repeatForever())
          .build();
 
-      scheduleServer.scheduleJob(trigger); // 仅用 trigger 执行 job, trigger 必须指定 jobKey.
+//      scheduleServer.scheduleJob(trigger); // 仅用 trigger 执行 job, trigger 必须指定 jobKey.
 
 //      scheduleServer.executeJob(jobDetail.getKey()); // 立即执行
+      scheduleServer.scheduleJob(jobDetail, trigger);
 
       Thread.sleep(10000);
 
