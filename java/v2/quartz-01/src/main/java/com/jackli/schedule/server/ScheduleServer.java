@@ -2,6 +2,7 @@ package com.jackli.schedule.server;
 
 import com.jackli.schedule.job.PrintDateTimeJob;
 import com.jackli.schedule.listner.MyJobListener;
+import com.jackli.schedule.listner.MyScheduleListener;
 import com.jackli.schedule.listner.MyTriggerListener;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
@@ -28,21 +29,26 @@ public class ScheduleServer {
    public void start() throws SchedulerException {
       if(!scheduler.isStarted()) {
          scheduler.start();
-         // 创建全局 JobListener
-//         scheduler.getListenerManager().addJobListener(new MyJobListener(), EverythingMatcher.allJobs());
-         scheduler.getListenerManager().addJobListener(new MyJobListener());
+         // 注册全局 JobListener
+         scheduler.getListenerManager().addJobListener(new MyJobListener(), EverythingMatcher.allJobs());
+//         scheduler.getListenerManager().addJobListener(new MyJobListener());
 
-         // 创建局部 JobListener
+         // 注册局部 JobListener
 //         scheduler.getListenerManager().addJobListener(new MyJobListener(), NameMatcher.jobNameContains("jack"));
-//         scheduler.getListenerManager().addJobListener(new MyJobListener(),
-//            KeyMatcher.keyEquals(new JobKey("jack-dateTime", PrintDateTimeJob.JOB_GROUP)));
+//         scheduler.getListenerManager().addJobListener(new MyJobListener(), KeyMatcher.keyEquals(new JobKey("jack-dateTime", PrintDateTimeJob.JOB_GROUP)));
 
-         // 创建全局 TriggerListener
+         // 注册全局 TriggerListener
          scheduler.getListenerManager().addTriggerListener(new MyTriggerListener(), EverythingMatcher.allTriggers());
+
+         // 注册局部 TriggerListener
+//         scheduler.getListenerManager().addTriggerListener(new MyTriggerListener(), KeyMatcher.keyEquals(new TriggerKey("jack-dateTime", PrintDateTimeJob.JOB_GROUP)));
+
+         // 注册 ScheduleListener
+         scheduler.getListenerManager().addSchedulerListener(new MyScheduleListener());
 
       }
 
-      LOGGER.warn("Schedule server is running.");
+      LOGGER.info("Schedule server is running.");
    }
 
    public void shutdown() throws SchedulerException {

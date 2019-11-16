@@ -13,7 +13,7 @@ public class MyJobListener implements JobListener {
 
    @Override
    public void jobToBeExecuted(JobExecutionContext jobExecutionContext) {
-      System.out.println("Job 将要被执行....");
+      System.out.println("Job 将要被执行...." + jobExecutionContext.getJobDetail().getKey());
    }
 
    @Override

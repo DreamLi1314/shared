@@ -1,6 +1,5 @@
 package com.jackli.schedule.listner;
 
-import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.Trigger;
 import org.quartz.TriggerListener;
