@@ -12,5 +12,7 @@ package org.jack.thread01;
 * @Status: Accepted
  */
 public class CreateThread {
-	
+	public static void main(String[] args) {
+		
+	}
 }
