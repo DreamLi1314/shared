@@ -25,23 +25,23 @@
    </properties>
 
    <dependencies>
-      <dependency>
-         <groupId>org.openjfx</groupId>
-         <artifactId>javafx-base</artifactId>
-         <version>14</version>
-      </dependency>
+<!--      <dependency>-->
+<!--         <groupId>org.openjfx</groupId>-->
+<!--         <artifactId>javafx-base</artifactId>-->
+<!--         <version>14</version>-->
+<!--      </dependency>-->
 
-      <dependency>
-         <groupId>org.openjfx</groupId>
-         <artifactId>javafx-swing</artifactId>
-         <version>14</version>
-      </dependency>
+<!--      <dependency>-->
+<!--         <groupId>org.openjfx</groupId>-->
+<!--         <artifactId>javafx-swing</artifactId>-->
+<!--         <version>14</version>-->
+<!--      </dependency>-->
 
-      <dependency>
-         <groupId>org.openjfx</groupId>
-         <artifactId>javafx-controls</artifactId>
-         <version>14</version>
-      </dependency>
+<!--      <dependency>-->
+<!--         <groupId>org.openjfx</groupId>-->
+<!--         <artifactId>javafx-controls</artifactId>-->
+<!--         <version>14</version>-->
+<!--      </dependency>-->
 
       <dependency>
          <groupId>com.jfoenix</groupId>
