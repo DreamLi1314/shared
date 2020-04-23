@@ -1,4 +1,4 @@
-package org.javafamily;
+package org.javafamily.swing;
 
 import javax.swing.*;
 import java.util.concurrent.TimeUnit;

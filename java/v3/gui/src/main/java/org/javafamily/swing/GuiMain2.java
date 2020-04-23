@@ -1,4 +1,4 @@
-package org.javafamily;
+package org.javafamily.swing;
 
 import org.javafamily.util.SwingConsole;
 
