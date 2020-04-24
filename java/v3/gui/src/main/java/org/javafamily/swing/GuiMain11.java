@@ -25,11 +25,13 @@ public class GuiMain11 extends JFrame {
       JComboBox<String> type = new JComboBox<>(new String[] {"t1", "t2", "t3"});
 
       type.addActionListener(e -> {
-         int result = JOptionPane.showOptionDialog(null, "Choose one",
-            "Info", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
-            new String[] {"One", "Two", "Three"}, "One");
+         SwingUtilities.invokeLater(() -> {
+            int result = JOptionPane.showOptionDialog(this, "Choose one",
+               "Info", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
+               new String[] {"One", "Two", "Three"}, "One");
 
-         text.setText(result + "");
+            text.setText(result + "");
+         });
       });
 
       add(type);
