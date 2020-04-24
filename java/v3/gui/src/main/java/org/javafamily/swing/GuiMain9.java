@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Buttons
+ * Tabs
  */
 public class GuiMain9 extends JFrame {
 
