@@ -28,7 +28,7 @@ public class GuiMain8 extends JFrame {
       });
    }
 
-   public static void main(String[] args) throws Exception {
+   public static void main(String[] args) {
       mainFrame = new GuiMain8();
 
       SwingConsole.run(mainFrame, 800, 600);
