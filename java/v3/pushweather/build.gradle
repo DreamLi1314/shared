@@ -1,5 +1,6 @@
 buildscript {
     ext {
+        jsonPathVersion = '2.4.0'
         httpClientVersion = '4.5.12'
         jupiterVersion = '5.6.2'
     }
@@ -19,8 +20,10 @@ repositories {
 }
 
 dependencies {
-    implementation('org.apache.httpcomponents:httpclient:4.5.12')
-    testImplementation('org.junit.jupiter:junit-jupiter:5.6.2')
+   implementation "com.jayway.jsonpath:json-path:${jsonPathVersion}"
+   implementation "org.apache.httpcomponents:httpclient:${httpClientVersion}"
+
+   testImplementation "org.junit.jupiter:junit-jupiter:${jupiterVersion}"
 }
 
 test {

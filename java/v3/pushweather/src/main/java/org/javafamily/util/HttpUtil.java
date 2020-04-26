@@ -8,7 +8,9 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -48,7 +50,16 @@ public final class HttpUtil {
 
    private static String parseParams(Map<String, String> params) {
       return params.entrySet().stream()
-         .map(entry -> entry.getKey() + "=" + entry.getValue())
+         .map(entry -> {
+            try {
+               return entry.getKey() + "=" + URLEncoder.encode(URLDecoder.decode(entry.getValue(), "utf-8"), "gbk");
+            } catch (UnsupportedEncodingException e) {
+               e.printStackTrace();
+            }
+
+            return null;
+         })
+         .filter(kv -> kv != null && !kv.isEmpty())
          .collect(Collectors.joining("&"));
    }
 

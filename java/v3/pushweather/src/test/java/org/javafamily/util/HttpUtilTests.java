@@ -3,7 +3,6 @@ package org.javafamily.util;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
