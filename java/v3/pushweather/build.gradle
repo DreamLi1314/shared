@@ -1,0 +1,35 @@
+buildscript {
+    ext {
+        httpClientVersion = '4.5.12'
+        jupiterVersion = '5.6.2'
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+group 'org.javafamily'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation('org.apache.httpcomponents:httpclient:4.5.12')
+    testImplementation('org.junit.jupiter:junit-jupiter:5.6.2')
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+wrapper {
+    gradleVersion '6.2.1'
+}
