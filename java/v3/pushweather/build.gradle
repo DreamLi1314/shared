@@ -1,5 +1,6 @@
 buildscript {
     ext {
+        jacksonVersion = '2.10.3'
         jsonPathVersion = '2.4.0'
         httpClientVersion = '4.5.12'
         jupiterVersion = '5.6.2'
@@ -16,10 +17,12 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
 dependencies {
+   implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
    implementation "com.jayway.jsonpath:json-path:${jsonPathVersion}"
    implementation "org.apache.httpcomponents:httpclient:${httpClientVersion}"
 
