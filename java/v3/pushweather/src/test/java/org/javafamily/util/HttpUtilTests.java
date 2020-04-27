@@ -1,7 +1,6 @@
 package org.javafamily.util;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +8,7 @@ import java.util.Map;
 public class HttpUtilTests {
 
    @Test
+   @Disabled("Query count limit for everyday, so disable this test.")
    public void testGet() throws Exception {
       String api = "/Weather/Query";
       Map<String, String> params = new HashMap<>();

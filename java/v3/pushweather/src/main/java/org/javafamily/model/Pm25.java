@@ -1,5 +1,7 @@
 package org.javafamily.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.io.Serializable;
 
 public class Pm25 implements Serializable {
