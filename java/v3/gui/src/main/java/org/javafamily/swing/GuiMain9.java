@@ -1,6 +1,6 @@
 package org.javafamily.swing;
 
-import org.javafamily.util.SwingConsole;
+import org.javafamily.util.SwingUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,9 +19,12 @@ public class GuiMain9 extends JFrame {
       super("JTabbedPane JFrame!");
 
       JTabbedPane tabbedPane = new JTabbedPane();
-      JTextField textField = new JTextField(45);
-      textField.setEnabled(false);
 
+      // 创建一个 TextField 用于显示当前选中的 Tab
+      JTextField textField = new JTextField(45);
+      textField.setEnabled(false); // 设置 Enabled 为 false 禁止编辑
+
+      // 创建一组 Tab  并加入到 tabbedPane
       for (int i = 0; i < tabs.length; i++) {
          tabbedPane.addTab(tabs[i], new JButton(tabs[i]));
       }
@@ -29,6 +32,7 @@ public class GuiMain9 extends JFrame {
       add(tabbedPane);
       add(textField, BorderLayout.SOUTH);
 
+      // 监听 Tab 切换事件, 并更新 textField 显示当前打开的 Tab.
       tabbedPane.addChangeListener(event -> {
          textField.setText(tabbedPane.getSelectedIndex() + " has been selected.");
       });
@@ -37,6 +41,6 @@ public class GuiMain9 extends JFrame {
    public static void main(String[] args) throws Exception {
       mainFrame = new GuiMain9();
 
-      SwingConsole.run(mainFrame, 400, 200);
+      SwingUtils.run(mainFrame, 400, 200);
    }
 }

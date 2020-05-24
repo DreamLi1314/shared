@@ -14,6 +14,7 @@ public class GuiMain0 extends JFrame {
 
       add(label);
 
+      // 设置当 Window 窗口关闭时退出 Java 主进程
       setDefaultCloseOperation(EXIT_ON_CLOSE);
       setSize(400, 300);
       setVisible(true);

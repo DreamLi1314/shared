@@ -1,6 +1,6 @@
 package org.javafamily.swing;
 
-import org.javafamily.util.SwingConsole;
+import org.javafamily.util.SwingUtils;
 
 import javax.swing.*;
 import java.util.concurrent.TimeUnit;
@@ -21,7 +21,7 @@ public class GuiMain2 extends JFrame {
    public static void main(String[] args) throws Exception {
       mainFrame = new GuiMain2();
 
-      SwingConsole.run(mainFrame, 800, 600);
+      SwingUtils.run(mainFrame, 800, 600);
 
       TimeUnit.SECONDS.sleep(10);
 

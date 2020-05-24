@@ -1,6 +1,6 @@
 package org.javafamily.swing;
 
-import org.javafamily.util.SwingConsole;
+import org.javafamily.util.SwingUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -72,6 +72,6 @@ public class GuiMain16 extends JFrame {
    public static void main(String[] args) {
       mainFrame = new GuiMain16();
 
-      SwingConsole.run(mainFrame, 800, 600);
+      SwingUtils.run(mainFrame, 800, 600);
    }
 }

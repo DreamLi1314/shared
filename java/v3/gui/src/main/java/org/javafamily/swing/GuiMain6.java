@@ -1,6 +1,6 @@
 package org.javafamily.swing;
 
-import org.javafamily.util.SwingConsole;
+import org.javafamily.util.SwingUtils;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -43,6 +43,6 @@ public class GuiMain6 extends JFrame {
    public static void main(String[] args) throws Exception {
       mainFrame = new GuiMain6();
 
-      SwingConsole.run(mainFrame, 350, 200);
+      SwingUtils.run(mainFrame, 350, 200);
    }
 }

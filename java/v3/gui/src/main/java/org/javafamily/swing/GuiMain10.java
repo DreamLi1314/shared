@@ -1,9 +1,8 @@
 package org.javafamily.swing;
 
-import org.javafamily.util.SwingConsole;
+import org.javafamily.util.SwingUtils;
 
 import javax.swing.*;
-import javax.swing.border.*;
 import java.awt.*;
 
 /**
@@ -68,6 +67,6 @@ public class GuiMain10 extends JFrame {
    public static void main(String[] args) throws Exception {
       mainFrame = new GuiMain10();
 
-      SwingConsole.run(mainFrame, 800, 600);
+      SwingUtils.run(mainFrame, 800, 600);
    }
 }

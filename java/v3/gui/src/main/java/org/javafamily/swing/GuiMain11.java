@@ -1,11 +1,9 @@
 package org.javafamily.swing;
 
-import org.javafamily.util.SwingConsole;
+import org.javafamily.util.SwingUtils;
 
 import javax.swing.*;
-import javax.swing.border.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
@@ -74,6 +72,6 @@ public class GuiMain11 extends JFrame {
    public static void main(String[] args) throws Exception {
       mainFrame = new GuiMain11();
 
-      SwingConsole.run(mainFrame, 800, 600);
+      SwingUtils.run(mainFrame, 800, 600);
    }
 }

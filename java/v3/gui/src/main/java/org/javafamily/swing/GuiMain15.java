@@ -1,6 +1,6 @@
 package org.javafamily.swing;
 
-import org.javafamily.util.SwingConsole;
+import org.javafamily.util.SwingUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,7 +30,7 @@ public class GuiMain15 extends JFrame {
    public static void main(String[] args) {
       mainFrame = new GuiMain15();
 
-      SwingConsole.run(mainFrame, 800, 600);
+      SwingUtils.run(mainFrame, 800, 600);
    }
 
    class MyDialog extends JDialog {
@@ -39,7 +39,7 @@ public class GuiMain15 extends JFrame {
 
          setLayout(new FlowLayout());
          setSize(400, 300);
-         setLocation(SwingConsole.getPosition(this));
+         setLocation(SwingUtils.getPosition(this));
 
          ActionListener listener = e -> {
            JOptionPane.showMessageDialog(this, e.getActionCommand());

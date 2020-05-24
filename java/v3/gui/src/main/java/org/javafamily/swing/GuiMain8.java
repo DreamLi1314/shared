@@ -1,13 +1,13 @@
 package org.javafamily.swing;
 
-import org.javafamily.util.SwingConsole;
+import org.javafamily.util.SwingUtils;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.UUID;
 
 /**
- * Buttons
+ * JTextPane
  */
 public class GuiMain8 extends JFrame {
 
@@ -31,6 +31,6 @@ public class GuiMain8 extends JFrame {
    public static void main(String[] args) {
       mainFrame = new GuiMain8();
 
-      SwingConsole.run(mainFrame, 800, 600);
+      SwingUtils.run(mainFrame, 800, 600);
    }
 }
