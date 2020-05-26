@@ -35,4 +35,9 @@ public class DeptControllerConsumer {
 		return this.restTemplate.getForObject(URL_PREFIX + "/dept/list", List.class);
 	}
 	
+	@GetMapping("/consumer/dept/discovery")
+	public Object getDiscovery() {
+		return this.restTemplate.getForObject(URL_PREFIX + "/dept/discovery", Object.class);
+	}
+	
 }
