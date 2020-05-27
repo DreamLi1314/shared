@@ -14,6 +14,7 @@
 		<junit.version>4.12</junit.version>
 		<log4j.version>1.2.17</log4j.version>
 		<lombok.version>1.16.18</lombok.version>
+		<build.plugins.plugin.version>3.1.0</build.plugins.plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -70,6 +71,12 @@
 				<artifactId>log4j</artifactId>
 				<version>${log4j.version}</version>
 			</dependency>
+
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>1.18.12</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -90,6 +97,7 @@
 						<delimit>$</delimit>
 					</delimiters>
 				</configuration>
+				<version>${build.plugins.plugin.version}</version>
 			</plugin>
 		</plugins>
 	</build>
