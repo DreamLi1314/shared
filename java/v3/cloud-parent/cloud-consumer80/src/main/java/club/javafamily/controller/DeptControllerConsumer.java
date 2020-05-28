@@ -17,7 +17,8 @@ public class DeptControllerConsumer {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	private static final String URL_PREFIX = "http://localhost:8001";
+//	private static final String URL_PREFIX = "http://localhost:8001";
+	private static final String URL_PREFIX = "http://CLOUD-DEPT";
 
 	@GetMapping("/consumer/dept")
 	public boolean add(Dept dept) {
