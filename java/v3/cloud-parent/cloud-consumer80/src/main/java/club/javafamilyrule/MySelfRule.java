@@ -3,6 +3,7 @@ package club.javafamilyrule;
 import java.util.Random;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.RandomRule;
@@ -17,10 +18,11 @@ import com.netflix.loadbalancer.RandomRule;
 * @Date: May 29, 2020 12:21:14 AM
 * @Version: 1.0.0
  */
+@Configuration
 public class MySelfRule {
 
 	@Bean
-	public IRule myRule() {
+	public IRule iRule() {
 		return new RandomRule();
 	}
 	
