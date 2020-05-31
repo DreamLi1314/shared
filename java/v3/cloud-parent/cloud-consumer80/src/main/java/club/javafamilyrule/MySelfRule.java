@@ -23,7 +23,8 @@ public class MySelfRule {
 
 	@Bean
 	public IRule iRule() {
-		return new RandomRule();
+//		return new RandomRule();
+		return new RoundRobin5Rule();
 	}
 	
 }

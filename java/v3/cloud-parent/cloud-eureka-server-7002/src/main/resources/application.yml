@@ -1,11 +1,11 @@
-server:
+server: 
   port: 7002
   
 eureka: 
   instance: 
-    hostname: node2.com #eureka服务端的实例名称
+    hostname: node2.com 
   client: 
-    register-with-eureka: false     #false表示不向注册中心注册自己。
-    fetch-registry: false     #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+    register-with-eureka: false 
+    fetch-registry: false 
     service-url: 
-      defaultZone: http://node3.com:7003/eureka,http://node1.com:7001/eureka
+      defaultZone: http://node3.com:7003/eureka/,http://node1.com:7001/eureka/ 

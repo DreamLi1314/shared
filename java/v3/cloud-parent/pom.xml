@@ -111,5 +111,7 @@
 		<module>cloud-eureka-server-7001</module>
 		<module>cloud-eureka-server-7002</module>
 		<module>cloud-eureka-server-7003</module>
+		<module>cloud-consumer-feign80</module>
+		<module>cloud-provider-hystrix-8001</module>
 	</modules>
 </project>

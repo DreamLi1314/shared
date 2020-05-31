@@ -19,42 +19,45 @@ public class DeptController {
 
 	@Autowired
 	private DeptService deptService;
-	
+
 	@Autowired
 	private DiscoveryClient client;
-	
+
 	@PostMapping("/dept")
 	public boolean add(@RequestBody Dept dept) {
 		return deptService.add(dept);
 	}
-	
+
 	@GetMapping("/dept/{id}")
 	public Dept get(@PathVariable("id") Long id) {
-		return deptService.get(id);
+		Dept dept = deptService.get(id);
+
+		if (dept == null) {
+			throw new RuntimeException(id + " 不存在.");
+		}
+
+		return dept;
 	}
-	
+
 	@GetMapping("/dept/list")
 	public List<Dept> list() {
 		return deptService.list();
 	}
-	
-	@SuppressWarnings("deprecation")
+
 	@GetMapping("/dept/discovery")
 	public DiscoveryClient discovery() {
 		List<String> services = client.getServices();
-		
+
 		System.out.println("=========services========" + services);
-		
+
 		List<ServiceInstance> instances = client.getInstances("cloud-dept");
-		
+
 		for (ServiceInstance serviceInstance : instances) {
 			System.out.println("===" + serviceInstance.getServiceId() + "==getHost==" + serviceInstance.getHost()
-				+ "====getPort=========" + serviceInstance.getPort()
-				+ "====getUri===" + serviceInstance.getUri()
-			);
+					+ "====getPort=========" + serviceInstance.getPort() + "====getUri===" + serviceInstance.getUri());
 		}
-		
+
 		return client;
 	}
-	
+
 }
