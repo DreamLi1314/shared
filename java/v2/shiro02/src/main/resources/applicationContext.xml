@@ -14,6 +14,7 @@
       <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"></property>
    </bean>
 
+   <!-- 配置 Realm, 现在只是一个实现了 Realm 接口的空实现  -->
    <bean id="shiroRealm" class="club.javafamily.shiro.realm.ShiroRealm"></bean>
 
    <!--
@@ -32,8 +33,10 @@
    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
       depends-on="lifecycleBeanPostProcessor"></bean>
 
-   <!-- id 必须和 web.xml 文件中配置的 DelegatingFilterProxy 的 <filter-name> 一致
-      如何不一致则会抛出异常:
+   <!-- 配置 Shiro Filter
+      id 必须和 web.xml 文件中配置的 DelegatingFilterProxy 的 targetBeanName 一致,
+      如果没有指定 targetBeanName 则默认为  <filter-name> 指定的 filter 名称.
+      如果不一致则会抛出异常:
          严重: Exception starting filter shiroFilter
          org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'shiroFilter' available
       因为 web.xml 配置的是 Filter 代理

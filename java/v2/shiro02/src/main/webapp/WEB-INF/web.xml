@@ -12,7 +12,7 @@
   </context-param>
 
   <!-- 配置 Shiro Filter, 注意 DelegatingFilterProxy 这是一个代理类,
-    默认情况下, 这将从 Spring IOC 容器中查找 <filter-name> 指定名称的 Bean 作为具体的 Filter
+    默认情况下, 这将从 Spring IOC 容器中查找 <filter-name> 指定的 Filter Name 的 Bean 作为具体的 Filter
     也可以通过 targetBeanName 初始化参数去指定 IOC 中具体 Filter Bean 的名称
   -->
   <filter>
