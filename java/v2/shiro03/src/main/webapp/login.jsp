@@ -12,7 +12,6 @@
       <br>
 
       Password: <input type="password" name="password">
-
       <br>
       <br>
 

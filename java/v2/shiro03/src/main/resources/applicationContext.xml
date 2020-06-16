@@ -63,8 +63,11 @@
      -->
    <bean id="shiroFilter2" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
       <property name="securityManager" ref="securityManager"></property>
+      <!-- 设置登录页面的 URL -->
       <property name="loginUrl" value="/login.jsp"></property>
+      <!-- 设置登录成功跳转的页面 -->
       <property name="successUrl" value="/list.jsp"></property>
+      <!-- 设置未授权页面 -->
       <property name="unauthorizedUrl" value="/unauthorizedUrl.jsp"></property>
 
       <!--   配置那些页面需要受保护, 以及访问这些页面那些权限

@@ -2,10 +2,8 @@ package club.javafamily.shiro.realm;
 
 import club.javafamily.shiro.dao.UserDao;
 import org.apache.shiro.authc.*;
-import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthenticatingRealm;
 import org.apache.shiro.util.ByteSource;
-import org.apache.shiro.util.SimpleByteSource;
 
 public class ShiroRealm extends AuthenticatingRealm {
 
