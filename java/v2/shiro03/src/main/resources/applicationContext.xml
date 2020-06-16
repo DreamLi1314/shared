@@ -14,9 +14,25 @@
       <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"></property>
    </bean>
 
-   <!-- 配置 Realm, 现在只是一个实现了 Realm 接口的空实现  -->
+   <!-- 配置 Realm
+        1. 配置 userDao 用于查询用户数据
+        2. 配置 credentialsMatcher 用于密码的加密, 一般使用单向不可逆的加密算法(比如 MD5),
+            Shiro 为我们提供了 MD5 加密算法 Md5CredentialsMatcher, 但是已经过时, 官方推荐
+            使用 HashedCredentialsMatcher 代替, 并配置 hashAlgorithmName 为 MD5 指定为
+            MD5 加密.
+            hashIterations: 配置加密的次数, 一般只加密一次可能比较容易破解, 所以可以根据密码安全性
+            要求修改加密次数. 默认为 1 次.
+   -->
    <bean id="shiroRealm" class="club.javafamily.shiro.realm.ShiroRealm">
       <property name="userDao" ref="userDao"></property>
+      <property name="credentialsMatcher">
+         <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+            <!-- 加密算法名称 -->
+            <property name="hashAlgorithmName" value="MD5"></property>
+            <!-- 加密的次数 -->
+            <property name="hashIterations" value="1024"></property>
+         </bean>
+      </property>
    </bean>
 
    <bean id="userDao" class="club.javafamily.shiro.dao.MockUserDao"></bean>
