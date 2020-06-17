@@ -10,6 +10,11 @@ import java.util.Map;
 @Component("userDao")
 public class MockUserDao implements UserDao {
 
+   public void addUser(String userName, String password) {
+      SimpleHash simpleHash = new SimpleHash("MD5", password, userName, 1024);
+      mockUsers.put(userName, simpleHash.toHex());
+   }
+
    @Override
    public Object getUser(Object userName) {
       for (Map.Entry<String, String> entrty : mockUsers.entrySet()) {
@@ -28,7 +33,7 @@ public class MockUserDao implements UserDao {
 
    private static final Map<String, String> mockUsers = new HashMap<>();
 
-   static {
+   {
       String userName = "admin";
       String pwd = "admin";
       // 使用 MD5 加密用户密码.
@@ -54,15 +59,11 @@ public class MockUserDao implements UserDao {
 
       userName = "jack";
       pwd = "jack";
-      simpleHash = new SimpleHash("MD5", pwd, userName, 1024);
-
-      mockUsers.put(userName, simpleHash.toHex());
+      addUser(userName, pwd);
 
       userName = "user";
       pwd = "user";
-      simpleHash = new SimpleHash("MD5", pwd, userName, 1024);
-
-      mockUsers.put(userName, simpleHash.toHex());
+      addUser(userName, pwd);
    }
 
 }
