@@ -12,3 +12,7 @@ body {
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
+
+.w-80 {
+    width: 80% !important;
+}

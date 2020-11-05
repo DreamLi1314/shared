@@ -3,7 +3,8 @@ var stompClient = null;
 function setConnected(connected) {
 	$("#connect").prop("disabled", connected);
 	$("#disconnect").prop("disabled", !connected);
-	
+	$("#name").prop("disabled", connected);
+
 	if(connected) {
 		$("conversation").show();
 	}
@@ -14,13 +15,13 @@ function setConnected(connected) {
 }
 
 function connect() {
-	var socket = new SockJS("/swta");// endpoint
+	var socket = new SockJS("/chat-channel");// endpoint
 	stompClient = Stomp.over(socket);
-	
+
 	stompClient.connect({}, function (frame) {
 		setConnected(true);
 		console.log("==========Connected==frame===" + frame);
-		stompClient.subscribe("/topic/greetings", function(greeting) {
+		stompClient.subscribe("/topic/broadcast", function(greeting) {
 			console.log("====topic===greeting====", greeting);
 			showGreeting(JSON.parse(greeting.body).content);
 		});
@@ -35,9 +36,10 @@ function disconnect() {
 	console.log("=====Disconnected!==");
 }
 
-function sendName() {
-	stompClient.send("/app/hello", {}, JSON.stringify({
-		'name': $("#name").val()
+function sendWords() {
+	stompClient.send("/chat/all", {}, JSON.stringify({
+		'name': $("#name").val(),
+		'words': $("#words").val()
 	}));
 }
 
@@ -49,8 +51,14 @@ $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
-    $( "#connect" ).click(function() { connect(); });
+    $( "#connect" ).click(function() {
+    	if(!!!$("#name").val()) {
+    		alert("先设置你的名字!");
+    		return;
+		}
+    	connect();
+    });
     $( "#disconnect" ).click(function() { disconnect(); });
-    $( "#send" ).click(function() { sendName(); });
+    $( "#send" ).click(function() { sendWords(); });
 });
 

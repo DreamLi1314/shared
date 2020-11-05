@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!-- 配置 SecurityManager  -->
+   <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+      <property name="cacheManager" ref="cacheManager"></property>
+      <property name="realm" ref="shiroRealm"></property>
+   </bean>
+
+   <!-- 使用 EhCache 作为 Shiro 缓存  -->
+   <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+      <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"></property>
+   </bean>
+
+   <!-- 配置 Realm
+        1. 配置 userDao 用于查询用户数据
+        2. 配置 credentialsMatcher 用于密码的加密, 一般使用单向不可逆的加密算法(比如 MD5),
+            Shiro 为我们提供了 MD5 加密算法 Md5CredentialsMatcher, 但是已经过时, 官方推荐
+            使用 HashedCredentialsMatcher 代替, 并配置 hashAlgorithmName 为 MD5 指定为
+            MD5 加密.
+            hashIterations: 配置加密的次数, 一般只加密一次可能比较容易破解, 所以可以根据密码安全性
+            要求修改加密次数. 默认为 1 次.
+   -->
+   <bean id="shiroRealm" class="club.javafamily.shiro.realm.ShiroRealm">
+      <property name="userDao" ref="userDao"></property>
+      <property name="credentialsMatcher">
+         <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+            <!-- 加密算法名称 -->
+            <property name="hashAlgorithmName" value="MD5"></property>
+            <!-- 加密的次数 -->
+            <property name="hashIterations" value="1024"></property>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="userDao" class="club.javafamily.shiro.dao.MockUserDao"></bean>
+
+   <!--
+      定义 Shiro BeanPostProcess 来自动调用实现了 {@link org.apache.shiro.util.Initializable}
+      或者 {@link org.apache.shiro.util.Destroyable} 接口的 init 和 destroy 方法
+      需要注意的是: LifecycleBeanPostProcessor 并不能确定 init 和 destroy 方法是否已经
+      被调用, 因此当配置了这个 BeanPostProcess 之后不要手动调用 init 和 destroy 方法,
+      也不要再配置 spring 的 init-method 和 destroy-method 属性
+    -->
+   <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
+
+   <!-- 启用 IOC 容器中使用 Shiro 的注解, 但是必须在配置了 lifecycleBeanPostProcessor 之后,
+     因为 DefaultAdvisorAutoProxyCreator 会扫描上下文(因为 DefaultAdvisorAutoProxyCreator
+     也是一个 BeanPostProcess ), 寻找所有的 Advisor 并应用到所有符合切点的 Bean.
+     -->
+   <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+      depends-on="lifecycleBeanPostProcessor"></bean>
+
+   <!-- 配置 Shiro Filter
+      id 必须和 web.xml 文件中配置的 DelegatingFilterProxy 的 targetBeanName 一致,
+      如果没有指定 targetBeanName 则默认为  <filter-name> 指定的 filter 名称.
+      如果不一致则会抛出异常:
+         严重: Exception starting filter shiroFilter
+         org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'shiroFilter' available
+      因为 web.xml 配置的是 Filter 代理
+     -->
+   <bean id="shiroFilter2" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+      <property name="securityManager" ref="securityManager"></property>
+      <!-- 设置登录页面的 URL -->
+      <property name="loginUrl" value="/login.jsp"></property>
+      <!-- 设置登录成功跳转的页面 -->
+      <property name="successUrl" value="/list.jsp"></property>
+      <!-- 设置未授权页面 -->
+      <property name="unauthorizedUrl" value="/unauthorizedUrl.jsp"></property>
+
+      <!--   配置那些页面需要受保护, 以及访问这些页面那些权限
+         anon: 代表可以被匿名访问(不配置也代表可以匿名访问, 但是需要注意 /** 是配置所有的请求)
+         authc: 代表必须认证登录后才能访问
+         /** 代表所有请求
+
+         filterChainDefinitions 采用第一次匹配优先的方式.
+         并支持通配符匹配
+          ?: 匹配一个任意字符
+          *: 匹配 0 个或者多个任意字符
+          **: 匹配多层路径
+         -->
+      <property name="filterChainDefinitions">
+         <value>
+            /login.jsp = anon
+            /ping = anon
+            /login = anon
+            <!-- 使用 Shiro 提供的 logout filter, 我们不用写 logout 的任何逻辑  -->
+            /logout = logout
+            /** = authc
+         </value>
+      </property>
+   </bean>
+</beans>
