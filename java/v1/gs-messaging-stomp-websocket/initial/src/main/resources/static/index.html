@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="host">
 <head>
 <meta charset="UTF-8">
 <title>Hello WebSocket</title>
@@ -38,31 +38,38 @@
             </form>
         </div>
 
-        <div class="col-md-12 media">
-            <form class="form-inline w-80">
-                <div class="form-group w-80">
-                    <textarea id="words" class="form-control w-80"
+    </div>
+
+    <div class="row media">
+        <div class="col-md-12">
+            <form class="form-inline w-100">
+                <div class="form-group w-95">
+                    <textarea id="words" class="form-control w-95"
                               rows="3"
                               placeholder="写下你的心里话..."></textarea>
                 </div>
             </form>
         </div>
+    </div>
 
-        <div class="col-lg-offset-10 col-md-2 media">
+    <div class="row media w-100">
+        <div class="col-md-offset-10 col-md-2 form-group">
             <button id="send" class="btn btn-default"
                     type="submit">Send</button>
         </div>
-
     </div>
-    <div class="row">
+
+    <div class="row media w-100">
+        <div class="col form-group">
+            <label>消息记录</label>
+            <hr/>
+        </div>
+    </div>
+
+    <div class="row media table-row" id="msgs-container">
         <div class="col-md-12">
             <table id="conversation" class="table table-striped">
-                <thead>
-                <tr>
-                    <th>消息记录</th>
-                </tr>
-                </thead>
-                <tbody id="greetings">
+                <tbody id="msgs" class="msg-body">
                 </tbody>
             </table>
         </div>

@@ -23,7 +23,7 @@ function connect() {
 		console.log("==========Connected==frame===" + frame);
 		stompClient.subscribe("/topic/broadcast", function(greeting) {
 			console.log("====topic===greeting====", greeting);
-			showGreeting(JSON.parse(greeting.body).content);
+			showMsg(JSON.parse(greeting.body).content);
 		});
 	});
 }
@@ -43,8 +43,11 @@ function sendWords() {
 	}));
 }
 
-function showGreeting(message) {
-    $("#greetings").append("<tr><td>" + message + "</td></tr>");
+function showMsg(message) {
+    $("#msgs").append("<tr><td>" + message + "</td></tr>");
+
+	 document.getElementById("msgs-container").scrollTop
+		 = document.getElementById("msgs-container").scrollHeight;
 }
 
 $(function () {

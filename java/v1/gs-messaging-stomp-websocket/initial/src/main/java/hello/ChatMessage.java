@@ -4,7 +4,7 @@ package hello;
  * @Description: 客户端发送给 Server 的对象
  * @Warning:
  * @Author: dreamli
- * @Package: initial - hello.HelloMessage.java
+ * @Package: initial - hello.ChatMessage.java
  * @Date: Jan 17, 2019 12:13:11 AM
  * @Version: 1.0.0
  */
@@ -30,7 +30,7 @@ public class ChatMessage {
 
     @Override
     public String toString() {
-        return "HelloMessage{" +
+        return "ChatMessage{" +
            "name='" + name + '\'' +
            ", words='" + words + '\'' +
            '}';
