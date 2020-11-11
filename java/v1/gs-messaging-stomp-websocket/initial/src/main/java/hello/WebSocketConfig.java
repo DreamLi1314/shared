@@ -20,8 +20,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		// 注册“/ gs-guide-websocket”端点，启用SockJS后备选项，以便在WebSocket不可用时
-		// 可以使用备用传输。 SockJS客户端将尝试连接到“/swt”并使用可用的最佳传输
+		// 注册端点，启用SockJS后备选项，以便在WebSocket不可用时
+		// 可以使用备用传输。 SockJS客户端将尝试连接到“/chat-channel”并使用可用的最佳传输
 		//（websocket，xhr-streaming，xhr-polling等）。
 		registry.addEndpoint("/chat-channel").withSockJS();
 	}
