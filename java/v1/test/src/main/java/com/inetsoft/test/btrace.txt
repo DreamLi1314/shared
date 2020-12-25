@@ -5,16 +5,23 @@ import static com.sun.btrace.BTraceUtils.*;
 /* run TestApplication3 for demo */
 @BTrace
 public class TracingScript {
-	/* put your code here */
+	/* put your code here
+	   Kind.ENTRY
+	   Kind.RETURN
+	 */
     @OnMethod(
         clazz="com.inetsoft.test.MyMBAnnoImpl",
         method="sayHello",
         location=@Location(Kind.RETURN)
     )
-    public static void func(@Self com.inetsoft.test.MyMBAnnoImpl instance, String name, @Return String result) {
-        println("Trace.....");
-        jstack();
-        println("param:" + str(name));
-        println("result: " + str(result));
-    }
+     public static void func(@Self com.inetsoft.test.MyMBAnnoImpl instance, String name,
+          @Return String result, @Duration long time)
+        {
+            println("\n\n\n Trace...................................................................");
+            println("testAttr:" + str(get(field("com.inetsoft.test.MyMBAnnoImpl","testAttr"), instance)));
+            println("param:" + str(name));
+            println("result: " + str(result));
+            println("time: " + str(time));
+            jstack();
+        }
 }

@@ -51,12 +51,12 @@ public class TestMainApp {
          + threadMXBean.getDaemonThreadCount());
 
       // cpu
+      System.out.println("runtime.availableProcessors: " + runtime.availableProcessors());
+
       for (int i = 0; i < 5; i++) {
          TimeUnit.MILLISECONDS.sleep(1000);
          System.out.println("osMXBean.getSystemCpuLoad: " + (osMXBean.getSystemCpuLoad() * 100));
       }
-
-      System.out.println("runtime.availableProcessors: " + runtime.availableProcessors());
 
       Scanner scanner = new Scanner(System.in);
       scanner.next();
