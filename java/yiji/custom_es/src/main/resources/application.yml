@@ -1,0 +1,6 @@
+server:
+   port: 80
+
+es:
+   host: localhost
+   port: 9200
