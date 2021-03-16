@@ -19,9 +19,20 @@ public class WeatherServiceImpl implements WeatherService {
 
    @Override
    public String getRealtimeCode(String areaCode) {
+//     try {
+//        return doQueryRealtimeCode(areaCode);
+//     }
+//     catch(Exception e) {
+//        e.printStackTrace();
+//     }
+
+     return doQueryRealtimeCode(areaCode);
+   }
+
+   private String doQueryRealtimeCode(String areaCode) {
       ResponseEntity<WeatherResponse> response = restTemplate.getForEntity(
          "http://gfapi.mlogcn.com/weather/v001/now?areacode="
-         + areaCode + "&key=TRFmZurYkr0zQZmj6GHe4zHADoyMBJhU",
+            + areaCode + "&key=TRFmZurYkr0zQZmj6GHe4zHADoyMBJhU",
          WeatherResponse.class);
 
       return response.getBody() != null ? response.getBody().getCode() : null;

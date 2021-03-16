@@ -4,3 +4,8 @@ server:
 es:
    host: localhost
    port: 9200
+mlog:
+   http:
+      keep-alive-target-host:
+         - www.gfapi.mlogcn.com: 10
+         - gfapi.mlogcn.com: 10

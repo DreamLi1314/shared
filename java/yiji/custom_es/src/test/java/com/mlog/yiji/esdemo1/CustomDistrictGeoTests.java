@@ -29,6 +29,7 @@ import java.util.*;
 
 import static com.mlog.yiji.esdemo1.util.QueryLevelMappingUtil.*;
 
+@Disabled
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CustomDistrictGeoTests {

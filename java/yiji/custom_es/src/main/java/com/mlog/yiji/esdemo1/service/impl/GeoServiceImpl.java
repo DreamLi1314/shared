@@ -4,18 +4,24 @@ import com.mlog.yiji.esdemo1.enums.QueryLevel;
 import com.mlog.yiji.esdemo1.service.GeoService;
 import com.mlog.yiji.esdemo1.service.WeatherService;
 import com.mlog.yiji.esdemo1.util.QueryLevelMappingUtil;
+import com.mlog.yiji.esdemo1.util.ThreadPoolUtil;
 import com.mlog.yiji.esdemo1.vo.GeoVo;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.geo.GeoUtils;
 import org.elasticsearch.index.query.*;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.*;
+import java.util.stream.Collectors;
 
 import static com.mlog.yiji.esdemo1.util.QueryLevelMappingUtil.LEVEL_DISTRICT;
 
@@ -34,46 +40,134 @@ public class GeoServiceImpl implements GeoService {
 
    @Override
    public List<GeoVo> searchGeoBoundingBox(QueryLevel queryLevel,
-                                           Double top, Double left, Double bottom, Double right)
+                                           Double maxLat, Double minLon,
+                                           Double minLat, Double maxLon)
       throws IOException
    {
-      SearchResponse districtResponse = searchGeo(
-         queryLevel, DISTRICT_INDEX_NAME, DISTRICT_TYPE, top, left, bottom, right);
-      SearchResponse globalResponse = searchGeo(
-         queryLevel, GLOBAL_INDEX_NAME, GLOBAL_TYPE, top, left, bottom, right);
+      // normalize lon and lat. 190 lon === -170 lon
+      minLon = GeoUtils.normalizeLon(minLon);
+      maxLon = GeoUtils.normalizeLon(maxLon);
+      minLat = GeoUtils.normalizeLat(minLat);
+      maxLat = GeoUtils.normalizeLat(maxLat);
 
-      return mergeResponseHints(districtResponse, globalResponse);
+      ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
+         2, 4, 1, TimeUnit.SECONDS, new LinkedBlockingQueue<>(),
+         Executors.defaultThreadFactory(),
+         new ThreadPoolExecutor.DiscardOldestPolicy());
+
+      Future<SearchResponse> districtResponse = searchGeo(threadPoolExecutor,
+         queryLevel, DISTRICT_INDEX_NAME, DISTRICT_TYPE, maxLat, minLon, minLat, maxLon);
+      Future<SearchResponse> globalResponse = searchGeo(threadPoolExecutor,
+         queryLevel, GLOBAL_INDEX_NAME, GLOBAL_TYPE, maxLat, minLon, minLat, maxLon);
+
+      List<Future<SearchResponse>> response = Arrays.asList(districtResponse, globalResponse);
+
+      List<GeoVo> geoVos = mergeResponseHints(response);
+
+      threadPoolExecutor.shutdown();
+
+      return geoVos;
    }
 
-   private List<GeoVo> mergeResponseHints(SearchResponse districtResponse,
-                                          SearchResponse globalResponse)
+   private List<GeoVo> mergeResponseHints(List<Future<SearchResponse>> hits)
    {
-      if(districtResponse == null && globalResponse == null) {
+      if(hits == null) {
          return null;
       }
 
-      SearchHit[] hits = districtResponse != null && districtResponse.getHits() != null
-         ? districtResponse.getHits().getHits()
-         : new SearchHit[0];
-      SearchHit[] globalHints = globalResponse != null && globalResponse.getHits() != null
-         ? globalResponse.getHits().getHits()
-         : new SearchHit[0];
-      List<GeoVo> geos = new ArrayList<>();
+//      long start = System.currentTimeMillis();
 
-      buildGeoVo(hits, geos);
-      buildGeoVo(globalHints, geos);
+      List<SearchHit> totalHits = hits.parallelStream()
+         .map(hit -> {
+            try {
+//               long start = System.currentTimeMillis();
+               SearchResponse searchResponse = hit.get(50, TimeUnit.SECONDS);
 
-      return geos;
+               SearchHit[] searchHits = searchResponse != null && searchResponse.getHits() != null
+                  ? searchResponse.getHits().getHits() : null;
+
+//               LOGGER.info("Query es data {} seconds. hints count is: {}",
+//                  (System.currentTimeMillis() - start) * 1.0 / 1000,
+//                  searchHits != null ? searchHits.length : 0);
+
+               return searchHits;
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+
+            return null;
+         })
+         .filter(hs -> hs != null && hs.length > 0)
+         .map(Arrays::stream)
+         .flatMap(hit -> hit)
+         .collect(Collectors.toList());
+
+      int nthread = ThreadPoolUtil.getThreadNumber(totalHits.size());
+      int count = (int) Math.ceil(totalHits.size() * 1.0 / nthread);
+
+      ExecutorService executors = new ThreadPoolExecutor(nthread, nthread,
+         0L, TimeUnit.MILLISECONDS,
+         new LinkedBlockingQueue<>(),
+         new ThreadPoolExecutor.CallerRunsPolicy());
+
+      SearchHit[] searchHits = totalHits.toArray(new SearchHit[0]);
+
+      List<Future<List<GeoVo>>> result = new ArrayList<>();
+
+      for(int i = 0; i < nthread; i++) {
+         List<SearchHit> list = ThreadPoolUtil.getThreadHits(i, count, searchHits);
+
+         Future<List<GeoVo>> future =
+            executors.submit(() ->  buildGeoVo(list));
+
+         result.add(future);
+      }
+//      LOGGER.info("Query http data {} seconds.",
+//         (System.currentTimeMillis() - start) * 1.0 / 1000);
+
+      List<GeoVo> geoVos = convertGeoVO(result);
+
+      executors.shutdown();
+
+      return geoVos;
 
    }
 
-   private void buildGeoVo(SearchHit[] hits, List<GeoVo> geos) {
-      if(hits == null || hits.length < 1) {
-         return;
+   private List<GeoVo> convertGeoVO(List<Future<List<GeoVo>>> result) {
+      if(result ==  null) {
+         return null;
       }
 
-      for(SearchHit hint : hits) {
-         Map<String, Object> sourceAsMap = hint.getSourceAsMap();
+      Vector<GeoVo> vos = new Vector<>();
+
+      result.parallelStream()
+         .map(listFuture -> {
+            try {
+               List<GeoVo> geoVos = listFuture.get(30, TimeUnit.SECONDS);
+
+               return geoVos != null ? geoVos.stream() : null;
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+
+            return null;
+         })
+         .filter(Objects::nonNull)
+         .flatMap(geoVo -> geoVo)
+         .forEach(vos::add);
+
+      return vos;
+   }
+
+   private List<GeoVo> buildGeoVo(List<SearchHit> hits) {
+      if(hits == null || hits.size() < 1) {
+         return null;
+      }
+
+      List<GeoVo> geos = new ArrayList<>();
+
+      for(SearchHit hit : hits) {
+         Map<String, Object> sourceAsMap = hit.getSourceAsMap();
          GeoVo geoVo = new GeoVo();
 
          String areaCode = (String) sourceAsMap.get("areacode");
@@ -95,40 +189,49 @@ public class GeoServiceImpl implements GeoService {
 
          geos.add(geoVo);
       }
+
+      return geos;
    }
 
-   private SearchResponse searchGeo(QueryLevel queryLevel, String index,
-                                    String type, Double top, Double left,
-                                    Double bottom, Double right)
+   private Future<SearchResponse> searchGeo(ThreadPoolExecutor threadPoolExecutor,
+                                            QueryLevel queryLevel, String index,
+                                            String type, Double top, Double left,
+                                            Double bottom, Double right)
       throws IOException
    {
       if(queryLevel == null) {
          queryLevel = QueryLevel.CAPITAL;
       }
 
-      GeoBoundingBoxQueryBuilder queryBuilder = QueryBuilders
-         .geoBoundingBoxQuery("location")
-         .setCorners(top, left, bottom, right);
+      final QueryLevel queryLevelTemp = queryLevel;
 
-      // 通过SearchSourceBuilder构建搜索参数
-      SearchSourceBuilder builder = new SearchSourceBuilder();
-      // 设置query参数，绑定前面创建的Query对象
-      builder.query(queryBuilder);
-      builder.size(Integer.MAX_VALUE);
+      return threadPoolExecutor.submit(() -> {
+         GeoBoundingBoxQueryBuilder queryBuilder = QueryBuilders
+            .geoBoundingBoxQuery("location")
+            .setCorners(top, left, bottom, right);
 
-      QueryBuilder postFilter = QueryLevelMappingUtil.getPostFilter(queryLevel);
+         // 通过SearchSourceBuilder构建搜索参数
+         SearchSourceBuilder builder = new SearchSourceBuilder();
+         // 设置query参数，绑定前面创建的Query对象
+         builder.query(queryBuilder);
+         builder.size(Integer.MAX_VALUE);
 
-      if(postFilter != null) {
-         builder.postFilter(postFilter);
-      }
+         QueryBuilder postFilter = QueryLevelMappingUtil.getPostFilter(queryLevelTemp);
 
-      SearchRequest searchRequest = new SearchRequest();
-      // 设置SearchRequest搜索参数
-      searchRequest.source(builder);
-      searchRequest.indices(index);
-      searchRequest.types(type);
+         if(postFilter != null) {
+            builder.postFilter(postFilter);
+         }
 
-      return restHighLevelClient.search(
-         searchRequest, RequestOptions.DEFAULT);
+         SearchRequest searchRequest = new SearchRequest();
+         // 设置SearchRequest搜索参数
+         searchRequest.source(builder);
+         searchRequest.indices(index);
+         searchRequest.types(type);
+
+         return restHighLevelClient.search(
+            searchRequest, RequestOptions.DEFAULT);
+      });
    }
+
+   private static final Logger LOGGER = LoggerFactory.getLogger(GeoServiceImpl.class);
 }
