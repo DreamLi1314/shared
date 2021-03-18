@@ -9,3 +9,10 @@ mlog:
       keep-alive-target-host:
          - www.gfapi.mlogcn.com: 10
          - gfapi.mlogcn.com: 10
+
+   weather:
+      baseUri: http://gfapi.mlogcn.com
+
+      realTime:
+         api: /weather/v001/now
+         params: areacode,key

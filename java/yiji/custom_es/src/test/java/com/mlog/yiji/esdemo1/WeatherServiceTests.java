@@ -16,7 +16,8 @@ public class WeatherServiceTests {
    @ParameterizedTest
    @ValueSource(strings = "101010100")
    public void testGetWeather(String areaCode) {
-      String realtimeCode = weatherService.getRealtimeCode(areaCode);
+      String realtimeCode = weatherService.getRealtimeCode(
+         areaCode, 116.405285, 39.904989);
 
       Assertions.assertNotNull(realtimeCode, "Query realTime code error.");
    }

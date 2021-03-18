@@ -19,7 +19,7 @@ public class GeoQueryController {
    }
 
    @GetMapping("/api/query/geo")
-   public List<GeoVo> queryCustomGlobalGeo(@RequestParam("zoom") Integer zoom,
+   public List<GeoVo> queryCustomGlobalGeo(@RequestParam("zoom") Double zoom,
                                            @RequestParam("minLon") Double minLon,
                                            @RequestParam("minLat") Double minLat,
                                            @RequestParam("maxLon") Double maxLon,

@@ -182,10 +182,12 @@ public class GeoServiceImpl implements GeoService {
 
          HashMap<String, Double> location
             = (HashMap<String, Double>) sourceAsMap.get("location");
+         Double lon = location.get("lon");
+         Double lat = location.get("lat");
 
-         geoVo.setLon(location.get("lon"));
-         geoVo.setLat(location.get("lat"));
-         geoVo.setRealTimeCode(weatherService.getRealtimeCode(areaCode));
+         geoVo.setLon(lon);
+         geoVo.setLat(lat);
+         geoVo.setRealTimeCode(weatherService.getRealtimeCode(areaCode, lon, lat));
 
          geos.add(geoVo);
       }

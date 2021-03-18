@@ -7,21 +7,17 @@ public class QueryLevelMappingUtil {
 
    public static final String CAPITAL = "level_capital";
    public static final String PROVINCE_CAPITAL = "level_province_capital";
-   public static final String P_CAPITAL_CITY = "level_p_capital_city";
    public static final String LEVEL_CITY = "level_city";
    public static final String LEVEL_DISTRICT = "level_district";
 
-   public static QueryLevel mappingQueryLevel(int zoom){
-      if(zoom < 5) {
+   public static QueryLevel mappingQueryLevel(double zoom){
+      if(zoom <= 4) {
          return QueryLevel.CAPITAL;
       }
-      else if(zoom < 7) {
+      else if(zoom <= 5) {
          return QueryLevel.PROVINCE_CAPITAL;
       }
-      else if(zoom < 9) {
-         return QueryLevel.P_CAPITAL_CITY;
-      }
-      else if(zoom < 11) {
+      else if(zoom <= 8) {
          return QueryLevel.CITY;
       }
       else {
@@ -29,21 +25,38 @@ public class QueryLevelMappingUtil {
       }
    }
 
+   // This is just a patch.
+   // for show province capital and city at the same time
+   // when queryLevel is <code>PROVINCE_CAPITAL</code>
+   // or <code>CITY</code>
    public static QueryBuilder getPostFilter(QueryLevel queryLevel) {
-      if(queryLevel == null) {
+      // if DISTRICT to find all
+      if(queryLevel == null || queryLevel == QueryLevel.DISTRICT) {
          return null;
       }
 
-//      MultiMatchQueryBuilder multiMatchQueryBuilder
-//         = new MultiMatchQueryBuilder(
-//            true, "level_province_capital", "level_city");
-//
-//      return multiMatchQueryBuilder;
+      // capital always display
+      MultiMatchQueryBuilder builder = new MultiMatchQueryBuilder(
+         true, CAPITAL)
+         .operator(Operator.OR)
+         ;
 
-      MatchQueryBuilder builder
-         = new MatchQueryBuilder(queryLevel.getKey(),
-         true);
+      // if province capital
+      if(queryLevel == QueryLevel.PROVINCE_CAPITAL) {
+         builder.field(PROVINCE_CAPITAL);
+      }
+
+      if(queryLevel == QueryLevel.CITY) {
+         builder.field(PROVINCE_CAPITAL);
+         builder.field(LEVEL_CITY);
+      }
 
       return builder;
+
+//      MatchQueryBuilder builder
+//         = new MatchQueryBuilder(queryLevel.getKey(),
+//         true);
+
+//      return builder;
    }
 }
