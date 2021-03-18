@@ -128,17 +128,19 @@ public class CustomDistrictGeoTests {
          }
       }
 
-      QueryLevel queryLevel = null;
+      QueryLevel queryLevel;
 
       if("1".equals(source.get("exclude"))) {
+         String districtCode = (String) source.get("districtcode");
+
          if(capital) {
             queryLevel = QueryLevel.CAPITAL;
          }
-         else if(((String) source.get("districtcode")).endsWith("0100")
+         else if((districtCode).endsWith("0100")
             // 香港(810000)/澳门(820010)特别行政区, 台湾省(710113)
-            || ((String) source.get("districtcode")).equals("810000")
-            || ((String) source.get("districtcode")).equals("820010")
-            || ((String) source.get("districtcode")).equals("710113"))
+            || "810000".equals(districtCode)
+            || "820010".equals(districtCode)
+            || "710113".equals(districtCode))
          {
             queryLevel = QueryLevel.PROVINCE_CAPITAL;
          }
