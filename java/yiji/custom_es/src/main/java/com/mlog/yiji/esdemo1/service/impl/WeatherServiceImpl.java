@@ -44,6 +44,7 @@ public class WeatherServiceImpl implements WeatherService {
       params.put("areacode", areaCode);
       params.put("lon", lon + "");
       params.put("lat", lat + "");
+      params.put("lonlat", lon + "," + lat);
       params.put("key", "TRFmZurYkr0zQZmj6GHe4zHADoyMBJhU");
 
      return doQueryRealtimeCode(params);
