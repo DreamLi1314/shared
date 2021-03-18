@@ -1,6 +1,5 @@
 package com.mlog.yiji.esdemo1.service;
 
-import com.mlog.yiji.esdemo1.enums.QueryLevel;
 import com.mlog.yiji.esdemo1.vo.GeoVo;
 
 import java.io.IOException;
@@ -14,6 +13,6 @@ public interface GeoService {
    String GLOBAL_INDEX_NAME = "global_geo";
    String GLOBAL_TYPE = "geo_g";
 
-   List<GeoVo> searchGeoBoundingBox(QueryLevel queryLevel,
+   List<GeoVo> searchGeoBoundingBox(Double zoom,
                                     Double top, Double left, Double bottom, Double right) throws IOException;
 }

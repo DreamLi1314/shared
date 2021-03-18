@@ -26,10 +26,8 @@ public class GeoQueryController {
                                            @RequestParam("maxLat") Double maxLat)
       throws IOException
    {
-      QueryLevel queryLevel = QueryLevelMappingUtil.mappingQueryLevel(zoom);
-
       // query
-      return geoService.searchGeoBoundingBox(queryLevel,
+      return geoService.searchGeoBoundingBox(zoom,
          maxLat, minLon, minLat, maxLon);
    }
 

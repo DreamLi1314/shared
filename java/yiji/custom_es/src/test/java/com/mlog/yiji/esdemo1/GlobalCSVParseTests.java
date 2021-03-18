@@ -6,6 +6,8 @@ import com.mlog.yiji.esdemo1.service.GeoService;
 import com.mlog.yiji.esdemo1.vo.GeoVo;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -56,6 +58,17 @@ public class GlobalCSVParseTests {
       restHighLevelClient.indices().create(request, RequestOptions.DEFAULT);
    }
 
+   @Test
+   public void deleteIndex() throws IOException {
+      DeleteIndexRequest request
+         = new DeleteIndexRequest(CUSTOM_INDEX_NAME);
+
+      DeleteIndexResponse response = restHighLevelClient.indices()
+         .delete(request, RequestOptions.DEFAULT);
+
+      Assertions.assertTrue(response.isAcknowledged(), "Delete index failed.");
+   }
+
    @ParameterizedTest
    @ValueSource(strings = "global_20200304.csv")
    @Order(2)
@@ -85,7 +98,7 @@ public class GlobalCSVParseTests {
    @Order(3)
    public void testCustomQueryGeo() throws IOException {
       List<GeoVo> response = geoService.searchGeoBoundingBox(
-         QueryLevel.DISTRICT, 90D, -180D, -90D, 180D);
+         5D, 90D, -180D, -90D, 180D);
 
       Assertions.assertNotNull(response, "Query geo response is null");
 
@@ -121,6 +134,7 @@ public class GlobalCSVParseTests {
          }
       }
 
+      // down-cycled for global region province and city.
       if("1".equals(source.get("capital"))) {
          queryLevel = QueryLevel.CAPITAL;
       }

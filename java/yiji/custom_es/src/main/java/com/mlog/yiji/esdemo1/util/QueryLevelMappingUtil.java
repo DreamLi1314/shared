@@ -10,8 +10,8 @@ public class QueryLevelMappingUtil {
    public static final String LEVEL_CITY = "level_city";
    public static final String LEVEL_DISTRICT = "level_district";
 
-   public static QueryLevel mappingQueryLevel(double zoom){
-      if(zoom <= 4) {
+   public static QueryLevel mappingQueryLevel(Double zoom){
+      if(zoom == null || zoom <= 4) {
          return QueryLevel.CAPITAL;
       }
       else if(zoom <= 5) {
@@ -25,13 +25,28 @@ public class QueryLevelMappingUtil {
       }
    }
 
-   // This is just a patch.
-   // for show province capital and city at the same time
-   // when queryLevel is <code>PROVINCE_CAPITAL</code>
-   // or <code>CITY</code>
-   public static QueryBuilder getPostFilter(QueryLevel queryLevel) {
+   public static QueryLevel mappingGlobalQueryLevel(Double zoom){
+      if(zoom == null || zoom < 6) {
+         return QueryLevel.CAPITAL;
+      }
+      else if(zoom <= 8) {
+         return QueryLevel.PROVINCE_CAPITAL;
+      }
+      else {
+         return QueryLevel.CITY;
+      }
+   }
+
+   public static QueryBuilder getPostFilter(Double zoom, boolean global) {
+      QueryLevel queryLevel = global
+         ? mappingGlobalQueryLevel(zoom)
+         : mappingQueryLevel(zoom);
+
       // if DISTRICT to find all
-      if(queryLevel == null || queryLevel == QueryLevel.DISTRICT) {
+      if(queryLevel == QueryLevel.DISTRICT && !global
+         // global no district
+         || queryLevel == QueryLevel.CITY && global)
+      {
          return null;
       }
 

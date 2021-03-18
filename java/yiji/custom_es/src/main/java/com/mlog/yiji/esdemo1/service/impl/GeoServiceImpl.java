@@ -1,6 +1,5 @@
 package com.mlog.yiji.esdemo1.service.impl;
 
-import com.mlog.yiji.esdemo1.enums.QueryLevel;
 import com.mlog.yiji.esdemo1.service.GeoService;
 import com.mlog.yiji.esdemo1.service.WeatherService;
 import com.mlog.yiji.esdemo1.util.QueryLevelMappingUtil;
@@ -39,7 +38,7 @@ public class GeoServiceImpl implements GeoService {
    }
 
    @Override
-   public List<GeoVo> searchGeoBoundingBox(QueryLevel queryLevel,
+   public List<GeoVo> searchGeoBoundingBox(Double zoom,
                                            Double maxLat, Double minLon,
                                            Double minLat, Double maxLon)
       throws IOException
@@ -56,9 +55,9 @@ public class GeoServiceImpl implements GeoService {
          new ThreadPoolExecutor.DiscardOldestPolicy());
 
       Future<SearchResponse> districtResponse = searchGeo(threadPoolExecutor,
-         queryLevel, DISTRICT_INDEX_NAME, DISTRICT_TYPE, maxLat, minLon, minLat, maxLon);
+         zoom, DISTRICT_INDEX_NAME, DISTRICT_TYPE, maxLat, minLon, minLat, maxLon, false);
       Future<SearchResponse> globalResponse = searchGeo(threadPoolExecutor,
-         queryLevel, GLOBAL_INDEX_NAME, GLOBAL_TYPE, maxLat, minLon, minLat, maxLon);
+         zoom, GLOBAL_INDEX_NAME, GLOBAL_TYPE, maxLat, minLon, minLat, maxLon, true);
 
       List<Future<SearchResponse>> response = Arrays.asList(districtResponse, globalResponse);
 
@@ -196,17 +195,12 @@ public class GeoServiceImpl implements GeoService {
    }
 
    private Future<SearchResponse> searchGeo(ThreadPoolExecutor threadPoolExecutor,
-                                            QueryLevel queryLevel, String index,
+                                            Double zoom, String index,
                                             String type, Double top, Double left,
-                                            Double bottom, Double right)
+                                            Double bottom, Double right,
+                                            boolean global)
       throws IOException
    {
-      if(queryLevel == null) {
-         queryLevel = QueryLevel.CAPITAL;
-      }
-
-      final QueryLevel queryLevelTemp = queryLevel;
-
       return threadPoolExecutor.submit(() -> {
          GeoBoundingBoxQueryBuilder queryBuilder = QueryBuilders
             .geoBoundingBoxQuery("location")
@@ -218,7 +212,7 @@ public class GeoServiceImpl implements GeoService {
          builder.query(queryBuilder);
          builder.size(Integer.MAX_VALUE);
 
-         QueryBuilder postFilter = QueryLevelMappingUtil.getPostFilter(queryLevelTemp);
+         QueryBuilder postFilter = QueryLevelMappingUtil.getPostFilter(zoom, global);
 
          if(postFilter != null) {
             builder.postFilter(postFilter);

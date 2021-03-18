@@ -85,7 +85,7 @@ public class CustomDistrictGeoTests {
    @Order(3)
    public void testCustomQueryGeo() throws IOException {
       List<GeoVo> response = geoService.searchGeoBoundingBox(
-         QueryLevel.CAPITAL, 90D, -180D, -90D, 180D);
+         5D, 90D, -180D, -90D, 180D);
 
       Assertions.assertNotNull(response, "Query geo response is null");
 
