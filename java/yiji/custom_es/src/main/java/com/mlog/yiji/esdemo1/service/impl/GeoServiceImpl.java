@@ -16,6 +16,7 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.io.IOException;
 import java.util.*;
@@ -173,7 +174,16 @@ public class GeoServiceImpl implements GeoService {
          geoVo.setAreaCode(areaCode);
 
          if((Boolean) sourceAsMap.get(LEVEL_DISTRICT)) {
-            geoVo.setAreaName((String) sourceAsMap.get("district"));
+            String region = (String) sourceAsMap.get("country");
+
+            if(ObjectUtils.isEmpty(region)) {
+               // china
+               geoVo.setAreaName((String) sourceAsMap.get("district"));
+            }
+            else {
+               // global
+               geoVo.setAreaName(region);
+            }
          }
          else {
             geoVo.setAreaName((String) sourceAsMap.get("city"));

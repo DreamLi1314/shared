@@ -26,14 +26,17 @@ public class QueryLevelMappingUtil {
    }
 
    public static QueryLevel mappingGlobalQueryLevel(Double zoom){
-      if(zoom == null || zoom < 6) {
+      if(zoom == null || zoom < 6.5) {
          return QueryLevel.CAPITAL;
       }
       else if(zoom <= 8) {
          return QueryLevel.PROVINCE_CAPITAL;
       }
-      else {
+      else if(zoom <= 9.5) {
          return QueryLevel.CITY;
+      }
+      else {
+         return QueryLevel.DISTRICT;
       }
    }
 
@@ -43,10 +46,7 @@ public class QueryLevelMappingUtil {
          : mappingQueryLevel(zoom);
 
       // if DISTRICT to find all
-      if(queryLevel == QueryLevel.DISTRICT && !global
-         // global no district
-         || queryLevel == QueryLevel.CITY && global)
-      {
+      if(queryLevel == QueryLevel.DISTRICT) {
          return null;
       }
 

@@ -141,17 +141,35 @@ public class GlobalCSVParseTests {
       else if(((String) source.get("areacode")).endsWith("01001")) {
          queryLevel = QueryLevel.PROVINCE_CAPITAL;
       }
-      else {
+      else if(((String) source.get("areacode")).endsWith("001")
+         && !Objects.equals(source.get("city"), source.get("country")))
+      {
          queryLevel = QueryLevel.CITY;
       }
+      else {
+         queryLevel = QueryLevel.DISTRICT;
+      }
 
+      doInsert(queryLevel, source);
+
+      if(queryLevel == QueryLevel.CITY) {
+         doInsert(QueryLevel.DISTRICT, source);
+      }
+   }
+
+   private void doInsert(QueryLevel queryLevel, Map<String, Object> source)
+      throws IOException
+   {
       source.put(CAPITAL, queryLevel == QueryLevel.CAPITAL);
       source.put(PROVINCE_CAPITAL,
-         (queryLevel.getLevel() & QueryLevel.PROVINCE_CAPITAL.getLevel()) == QueryLevel.PROVINCE_CAPITAL.getLevel());
+         (queryLevel.getLevel() & QueryLevel.PROVINCE_CAPITAL.getLevel())
+            == QueryLevel.PROVINCE_CAPITAL.getLevel());
       source.put(LEVEL_CITY,
-         (queryLevel.getLevel() & QueryLevel.CITY.getLevel()) == QueryLevel.CITY.getLevel());
+         (queryLevel.getLevel() & QueryLevel.CITY.getLevel())
+            == QueryLevel.CITY.getLevel());
       source.put(LEVEL_DISTRICT,
-         (queryLevel.getLevel() & QueryLevel.DISTRICT.getLevel()) == QueryLevel.DISTRICT.getLevel());
+         (queryLevel.getLevel() & QueryLevel.DISTRICT.getLevel())
+            == QueryLevel.DISTRICT.getLevel());
 
       IndexRequest request = new IndexRequest(CUSTOM_INDEX_NAME)
          .type(CUSTOM_TYPE)
