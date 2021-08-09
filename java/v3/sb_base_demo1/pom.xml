@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>club.javafamily</groupId>
+   <artifactId>sb_base_demo1</artifactId>
+   <version>0.0.1-SNAPSHOT</version>
+   <name>sb_base_demo1</name>
+   <description>Demo project for Spring Boot</description>
+
+   <properties>
+      <java.version>1.8</java.version>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+      <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
+   </properties>
+
+   <dependencies>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-thymeleaf</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-web</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-configuration-processor</artifactId>
+         <optional>true</optional>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-test</artifactId>
+         <scope>test</scope>
+         <exclusions>
+            <exclusion>
+               <groupId>org.junit.vintage</groupId>
+               <artifactId>junit-vintage-engine</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>io.minio</groupId>
+         <artifactId>minio</artifactId>
+<!--         <version>6.0.8</version>-->
+         <version>8.2.2</version>
+      </dependency>
+   </dependencies>
+
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>${spring-boot.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
+
+   <build>
+
+      <finalName>mlog-minio-test</finalName>
+
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+            <configuration>
+               <source>1.8</source>
+               <target>1.8</target>
+               <encoding>UTF-8</encoding>
+            </configuration>
+         </plugin>
+         <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>2.3.7.RELEASE</version>
+            <configuration>
+               <mainClass>club.javafamily.sb_base_demo1.SbBaseDemo1Application</mainClass>
+               <includeSystemScope>true</includeSystemScope>
+               <outputDirectory>${basedir}/target/container</outputDirectory>
+               <fork>true</fork>
+               <skip>false</skip>
+            </configuration>
+            <executions>
+               <execution>
+                  <id>repackage</id>
+                  <goals>
+                     <goal>repackage</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+               <execution>
+                  <phase>compile</phase>
+                  <goals>
+                     <goal>run</goal>
+                  </goals>
+                  <configuration>
+                     <tasks>
+                        <echo>Copy Docker file</echo>
+                        <copy file="Dockerfile" tofile="${basedir}/target/container/Dockerfile"/>
+                        <copy file="tianqi.docx" tofile="${basedir}/target/container/tianqi.docx"/>
+                     </tasks>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+
+         <plugin>
+            <!-- https://github.com/spotify/dockerfile-maven/blob/master/docs/usage.md -->
+            <groupId>com.spotify</groupId>
+            <artifactId>dockerfile-maven-plugin</artifactId>
+            <version>1.4.13</version>
+            <executions>
+               <execution>
+                  <id>default</id>
+                  <phase>deploy</phase>
+                  <goals>
+                     <goal>build</goal>
+                     <!--                     <goal>push</goal>-->
+                  </goals>
+               </execution>
+            </executions>
+            <configuration>
+               <!--镜像仓库地址 -->
+               <repository>registry.aws.mlogcn.com/mlog/mlog-minio-test</repository>
+               <!--镜像tag -->
+               <tag>${project.version}</tag>
+               <!--镜像仓库用户名和密码 -->
+               <username>admin</username>
+               <password><![CDATA[mN!8LCB3&YHcM20Z]]></password>
+
+               <!--自定义构建参数，可传递到Dockerfile文件中 -->
+               <buildArgs>
+                  <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+               </buildArgs>
+
+               <noCache>true</noCache>
+               <contextDirectory>${basedir}/target/container</contextDirectory>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+</project>

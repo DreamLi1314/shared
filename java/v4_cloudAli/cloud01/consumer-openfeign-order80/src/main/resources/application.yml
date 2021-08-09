@@ -1,0 +1,15 @@
+eureka:
+   client:
+      register-with-eureka: false
+      service-url:
+         defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+
+ribbon:
+#   读取服务端返回时间
+   ReadTimeout: 5000
+#   连接服务端时间
+   ConnectTimeout: 5000
+
+logging:
+   level:
+      club.javafamily.cloud.service.PaymentFeignService: debug

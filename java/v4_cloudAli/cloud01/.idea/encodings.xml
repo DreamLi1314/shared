@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/api-commons/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/api-commons/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/consumer-openfeign-hystrix-order80/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/consumer-openfeign-hystrix-order80/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/consumer-openfeign-order80/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/consumer-openfeign-order80/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/consumer-order-consul-80/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/consumer-order-consul-80/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/consumer-order-zk-80/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/consumer-order-zk-80/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/consumer-order80/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/consumer-order80/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dashboard-hystrix-7001/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dashboard-hystrix-7001/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-server-7001/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-server-7001/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-server-7002/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-server-7002/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider-hystrix-payment8001/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider-hystrix-payment8001/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider-payment8001/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider-payment8001/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider-payment8002/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider-payment8002/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider-payment8004/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider-payment8004/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider-payment8006/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider-payment8006/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

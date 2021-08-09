@@ -143,7 +143,7 @@ public class GeoServiceImpl implements GeoService {
       result.parallelStream()
          .map(listFuture -> {
             try {
-               List<GeoVo> geoVos = listFuture.get(30, TimeUnit.SECONDS);
+               List<GeoVo> geoVos = listFuture.get(60, TimeUnit.SECONDS);
 
                return geoVos != null ? geoVos.stream() : null;
             } catch (Exception e) {

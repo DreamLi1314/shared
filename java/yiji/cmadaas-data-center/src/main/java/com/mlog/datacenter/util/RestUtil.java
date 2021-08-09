@@ -1,13 +1,7 @@
 package com.mlog.datacenter.util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
-
+import cma.music.*;
+import com.alibaba.fastjson.JSON;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -17,12 +11,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import com.alibaba.fastjson.JSON;
-
-import cma.music.Apiinterface;
-import cma.music.DataFormatChange;
-import cma.music.RequestInfo;
-import cma.music.RetGetway;
+import java.io.*;
+import java.net.*;
 
 public class RestUtil {
 
@@ -30,7 +20,7 @@ public class RestUtil {
    * TODO:REST服务地址，依具体环境设置
    */
 	//private final String host = "10.40.17.54:80";
-	private final String host = "10.28.104.47:8008";
+	private final String host = "10.172.90.120:80";
 	private final int timeoutInMilliSeconds =  1000 * 60 * 2 ; //2 MINUTE
 	static String getwayFlag = "\"flag\":\"slb\""; //网关返回错误标识
 

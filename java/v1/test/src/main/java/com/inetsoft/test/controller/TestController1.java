@@ -16,19 +16,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class TestController1 {
 
    @GetMapping("/callback")
-   public void callback(HttpServletRequest request) {
+   public String callback(HttpServletRequest request) {
       Map<String, String[]> parameterMap = request.getParameterMap();
+
+      StringJoiner sj = new StringJoiner(",");
 
       parameterMap.forEach((l, u) -> {
          System.out.println("======l===" + l + "======u===" + Arrays.asList(u));
+         sj.add(l + " = " + Arrays.asList(u));
       });
+
+      return sj.toString();
    }
 
 }

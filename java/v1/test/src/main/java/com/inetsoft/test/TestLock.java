@@ -1,59 +1,62 @@
 package com.inetsoft.test;
 
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 public class TestLock {
    public static void main(String[] args) {
-      Lock lock1 = new ReentrantLock();
-      Lock lock2 = new ReentrantLock();
+      double a = 0.0;
 
-      new Thread(() -> {
-         try {
-            for(int i = 0; i < 100; i++) {
-               lock1.lock();
+      List<Rectangle> list  = new ArrayList<>();
 
-               System.out.println("thread1 get lock1");
+      final Rectangle rec1 = new Rectangle(104, 111, 71, 0);
+      final Rectangle rec2 = new Rectangle(104, 103, 71, 0);
+      final Rectangle rec3 = new Rectangle(104, 389, -104, -277);
 
-               lock2.lock();
-               System.out.println("thread1 get lock2");
+      final AxisComparator2 comparator2 = new AxisComparator2();
 
-               TimeUnit.SECONDS.sleep(1);
+      System.out.println(comparator2.compare(rec2, rec3));
 
-               lock2.unlock();
+      System.out.println(comparator2.compare(rec1, rec2));
+      System.out.println(comparator2.compare(rec1, rec3));
 
-               lock1.unlock();
-               System.out.println("====thread1== " + i);
-            }
-         } catch(InterruptedException e) {
-            e.printStackTrace();
+      list.add(rec1);
+      list.add(rec2);
+      list.add(rec3);
+
+      Rectangle[] rectangles = new Rectangle[list.size()];
+      list.toArray(rectangles);
+      Arrays.sort(rectangles, comparator2);
+
+      System.out.println(rectangles.length);
+   }
+
+   private static class AxisComparator2 implements Comparator<Rectangle> {
+      @Override
+      public int compare(Rectangle ra, Rectangle rb) {
+         // handle null
+         if(ra == rb) {
+            return 0;
          }
-      }).start();
-
-      new Thread(() -> {
-         try {
-            for(int i = 0; i < 100; i++) {
-               lock2.lock();
-
-               System.out.println("thread2 get lock2");
-
-               lock1.lock();
-               System.out.println("thread2 get lock1");
-
-               TimeUnit.SECONDS.sleep(1);
-
-               lock1.unlock();
-
-               lock2.unlock();
-
-               System.out.println("====thread2== " + i);
-            }
-         } catch(InterruptedException e) {
-            e.printStackTrace();
+         else if(ra == null) {
+            return -1;
          }
-      }).start();
+         else if(rb == null) {
+            return 1;
+         }
 
+         if(ra.getX() + ra.getWidth() <= rb.getX() + 1 ||
+            rb.getX() + rb.getWidth() <= ra.getX() + 1)
+         {
+            double xinc = ra.getX() - rb.getX();
+            return xinc == 0 ? 0 : (xinc > 0 ? 1 : -1);
+         }
+         else {
+            double yinc = ra.getY() - rb.getY();
 
+            return yinc == 0 ? 0 : (yinc > 0 ? 1 : -1);
+         }
+      }
    }
 }

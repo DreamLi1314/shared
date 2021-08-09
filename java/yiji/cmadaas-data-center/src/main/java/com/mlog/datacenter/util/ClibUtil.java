@@ -35,8 +35,8 @@ public class ClibUtil {
         System.out.print( retArray2D.data[iRow][iCol] + "\t" ) ;
       }
       System.out.println() ;
-      //DEMO中，最多只输出10行
-      if( iRow > 10 ) {
+      //DEMO中，最多只输出 Short.MAX_VALUE 行
+      if( iRow > Short.MAX_VALUE ) {
         System.out.println( "\t......" ) ;
         break ;
       }

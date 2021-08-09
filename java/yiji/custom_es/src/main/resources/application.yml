@@ -11,12 +11,12 @@ mlog:
          - gfapi.mlogcn.com: 10
 
    weather:
-#      baseUri: http://gfapi.mlogcn.com
-#      realTime:
-#         api: /weather/v001/now
-#         params: areacode,key
-
-      baseUri: http://117.50.104.9:8081
+      baseUri: http://gfapi.mlogcn.com
       realTime:
-         api: /v1/realtime/weather/now
-         params: lonlat
+         api: /weather/v001/now
+         params: areacode,key
+
+#      baseUri: http://117.50.104.9:8081
+#      realTime:
+#         api: /v1/realtime/weather/now
+#         params: lonlat

@@ -1,8 +1,6 @@
 package com.mlog.yiji.esdemo1.controller;
 
-import com.mlog.yiji.esdemo1.enums.QueryLevel;
 import com.mlog.yiji.esdemo1.service.GeoService;
-import com.mlog.yiji.esdemo1.util.QueryLevelMappingUtil;
 import com.mlog.yiji.esdemo1.vo.GeoVo;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class GeoQueryController {
 
    private final GeoService geoService;
