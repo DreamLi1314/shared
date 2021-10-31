@@ -1,0 +1,12 @@
+{
+  "groups": [
+    {
+      "name": "spring.datasource",
+      "type": "javax.sql.DataSource",
+      "sourceType": "mlog.demo.client.conf.DruidDataSourceConfig",
+      "sourceMethod": "tempDs()"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}

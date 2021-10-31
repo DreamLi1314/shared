@@ -1,0 +1,29 @@
+eureka:
+   client:
+      register-with-eureka: true
+      service-url:
+         defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+
+spring:
+   cloud:
+      gateway:
+         routes:
+            - id: payment
+#              uri: http://localhost:8001
+              uri: lb://PROVIDER-PAYMENT
+              predicates:
+                 - Path=/provider/payment/**
+
+         globalcors:
+            cors-configurations:
+               '[/**]':
+                  allowedOrigins: "*"
+                  allowedMethods:
+                     - GET
+                     - POST
+                     - PUT
+                     - DELETE
+                     - OPTION
+         discovery:
+            locator:
+               enabled: true
