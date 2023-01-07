@@ -62,7 +62,6 @@ def custom_filter():
 
     return render_template("custom_filter.html", user=user, datetime=df)
 
-
 # 控制语句
 @app.route('/control')
 def control():
@@ -80,6 +79,14 @@ def control():
 
     return render_template("control.html", age=age, books=books)
 
+# 模板继承
+@app.route("/child1")
+def child1():
+    return render_template("child1.html")
+
+@app.route("/child2")
+def child2():
+    return render_template("child2.html")
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=80)
