@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤器使用 Demo</title>
+</head>
+<body>
+
+<h1>用户名: {{ user.username }}, 长度: {{ user.username | length }} </h1>
+<h1>邮箱: {{ user.email }}</h1>
+
+<h2>当前时间: {{ datetime | dformat }}</h2>
+
+</body>
+</html>

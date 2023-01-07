@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>控制语句</title>
+</head>
+<body>
+<h1>If 语句</h1>
+<div>
+    {% if age > 18 %}
+        <div>您已经满 18 岁, 可以进入网吧!</div>
+    {% elif age == 18 %}
+        <div>您刚满 18 岁, 需要父母陪同</div>
+    {% else %}
+        <div>您未满 18 岁, 不能进入网吧</div>
+    {% endif %}
+</div>
+
+
+<h1>For 循环</h1>
+<table>
+    <tr>
+        <td>名称</td>
+        <td>作者</td>
+    </tr>
+
+    {% for book in books %}
+        <tr>
+            <td>{{ book.name }}</td>
+            <td>{{ book.author }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
