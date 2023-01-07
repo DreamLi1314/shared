@@ -1,0 +1,77 @@
+package com.mlog.yiji.global.util;
+
+import com.mlog.yiji.global.enums.QueryLevel;
+import org.elasticsearch.index.query.*;
+
+public class QueryLevelMappingUtil {
+
+   public static final String CAPITAL = "level_capital";
+   public static final String PROVINCE_CAPITAL = "level_province_capital";
+   public static final String LEVEL_CITY = "level_city";
+   public static final String LEVEL_DISTRICT = "level_district";
+
+   public static QueryLevel mappingQueryLevel(Double zoom){
+      if(zoom == null || zoom <= 4) {
+         return QueryLevel.CAPITAL;
+      }
+      else if(zoom <= 6) {
+         return QueryLevel.PROVINCE_CAPITAL;
+      }
+      else if(zoom <= 8.5) {
+         return QueryLevel.CITY;
+      }
+      else {
+         return QueryLevel.DISTRICT;
+      }
+   }
+
+   public static QueryLevel mappingGlobalQueryLevel(Double zoom){
+      if(zoom == null || zoom < 6.5) {
+         return QueryLevel.CAPITAL;
+      }
+      else if(zoom <= 8) {
+         return QueryLevel.PROVINCE_CAPITAL;
+      }
+      else if(zoom <= 10) {
+         return QueryLevel.CITY;
+      }
+      else {
+         return QueryLevel.DISTRICT;
+      }
+   }
+
+   public static QueryBuilder getPostFilter(Double zoom, boolean global) {
+      QueryLevel queryLevel = global
+         ? mappingGlobalQueryLevel(zoom)
+         : mappingQueryLevel(zoom);
+
+      // if DISTRICT to find all
+      if(queryLevel == QueryLevel.DISTRICT) {
+         return null;
+      }
+
+      // capital always display
+      MultiMatchQueryBuilder builder = new MultiMatchQueryBuilder(
+         true, CAPITAL)
+         .operator(Operator.OR)
+         ;
+
+      // if province capital
+      if(queryLevel == QueryLevel.PROVINCE_CAPITAL) {
+         builder.field(PROVINCE_CAPITAL);
+      }
+
+      if(queryLevel == QueryLevel.CITY) {
+         builder.field(PROVINCE_CAPITAL);
+         builder.field(LEVEL_CITY);
+      }
+
+      return builder;
+
+//      MatchQueryBuilder builder
+//         = new MatchQueryBuilder(queryLevel.getKey(),
+//         true);
+
+//      return builder;
+   }
+}

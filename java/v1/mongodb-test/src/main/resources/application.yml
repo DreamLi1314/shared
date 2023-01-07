@@ -1,0 +1,23 @@
+
+server:
+   port: 80
+
+spring:
+   application:
+      name: mongodb-test
+   #数据源配置
+   main:
+      allow-circular-references: true
+   data:
+      mongodb:
+#         uri: mongodb://root:javaFamily123!%40%23@192.168.3.26:27017,192.168.3.27:27017,192.168.3.28:27017/admin?replicaSet=rs0
+         #主机地址
+         host: 106.75.101.61
+         port: 27017
+         username: root
+         password: yiJi123!@#
+         authentication-database: admin
+         database: db_test
+
+   jpa:
+      generate-ddl: on

@@ -29,7 +29,7 @@ dependencies {
    }
 
    implementation("org.apache.httpcomponents:httpclient:${httpClientVersion}") {
-      exclude(group: 'commons-logging', module: 'commons-logging')
+//      exclude(group: 'commons-logging', module: 'commons-logging')
    }
 
    implementation "ch.qos.logback:logback-classic:${logbackVersion}"

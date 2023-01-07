@@ -1,0 +1,73 @@
+server:
+  port: 8089
+  servlet:
+    context-path: /auth
+
+spring:
+  profiles:
+    active: locale
+
+  datasource:
+    primary:
+      jdbc-url: jdbc:postgresql://${pg.addr}/${pg.db}?&ssl=false
+      username: ${pg.username}
+      password: ${pg.pwd}
+      driver-class-name: org.postgresql.Driver
+    secondary:
+      jdbc-url: jdbc:postgresql://${pg.addr}/${pg.db}?&ssl=false
+      username: ${pg.username}
+      password: ${pg.pwd}
+      driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      primary-dialect: org.hibernate.dialect.PostgreSQLDialect
+      secondary-dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  redis:
+    host: ${redis.host}
+    port: ${redis.port}
+    password: ${redis.pwd}
+    database: 11
+
+  mail:
+    host: smtp.163.com
+    username: yijimailbox@163.com
+    password: XWBZZBVNSBDCOKTL
+    properties:
+      mail:
+        smtp:
+          port: 465
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+    from: yijimailbox@163.com
+    default-encoding: utf-8
+
+management:
+  endpoints:
+    web:
+      exposure:
+        #        include: health,info
+        include: '*'
+        exclude:
+  endpoint:
+    #获得健康检查中所有指标的详细信息
+    health:
+      show-details: always
+    beans:
+      cache:
+        time-to-live: 10s
+# INFO ENDPOINT CONFIGURATION
+info:
+  app:
+    name: @project.name@
+    description: @project.description@
+    version: @project.version@
+    encoding: @project.build.sourceEncoding@
+    java:
+      version: @java.version@

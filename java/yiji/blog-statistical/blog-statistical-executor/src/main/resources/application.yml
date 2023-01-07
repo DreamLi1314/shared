@@ -1,0 +1,40 @@
+server:
+   port: 9886
+
+spring:
+   application:
+      name: blog-statistical-executor
+   profiles:
+      active: locale
+   datasource:
+      url: jdbc:mysql://161.189.73.116:3306/dblog?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: Yij0713!
+      initialization-mode: never
+
+mybatis-plus:
+   global-config:
+      db-config:
+         table-prefix:
+   mapper-locations: classpath*:/mapper/**/*.xml
+
+xxl:
+   job:
+      admin:
+         addresses: http://127.0.0.1:8088/xxl-job-admin
+      executor:
+         appname: ${spring.application.name}
+         address:
+         ip: 127.0.0.1
+         port: 9820
+         logretentiondays: 3
+         logpath: target/logs
+      accessToken:
+
+mlog:
+   dingtalk:
+      webhook:
+         url: https://oapi.dingtalk.com/robot/send?access_token=11cedfb9a18420b3195f28ea5ab0a0de863db3b6950ba11797f0e69f9eb3b3ce
+         keyword: 博客统计
+         blog-url: http://localhost:4200/blog-statistic/

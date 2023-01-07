@@ -1,0 +1,24 @@
+
+<div class="mat-dialog-title-container ">
+  <h2 mat-dialog-title>{{data.title}}</h2>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="table-view-container pt-3">
+  <div mat-dialog-content class="mat-typography w-100 m-0">
+
+    <div class="w-100" *ngIf="!!data.data">
+      <mat-table-view class="w-100" [hidePageSize]="true"
+                      [cols]="cols" [data]="data.data"></mat-table-view>
+    </div>
+
+  </div>
+</div>
+
+<div class="mat-dialog-footer-container">
+  <div mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="true">导出</button>
+    <button mat-button (click)="onNoClick()" cdkFocusInitial>关闭</button>
+  </div>
+</div>

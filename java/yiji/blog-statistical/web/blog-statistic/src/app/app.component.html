@@ -1,0 +1,33 @@
+
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img width="150" src="favicon.ico"/>
+
+  <div class="spacer-05"></div>
+  <span [className]="selectTab == DateConstant.LAST_MONTH ? currentTabClass : ''"
+        (click)="selectTab = DateConstant.LAST_MONTH"
+        [routerLink]="['blog-statistic', DateConstant.LAST_MONTH]">上月统计</span>
+  <div class="spacer"></div>
+  <span [className]="selectTab == DateConstant.MONTH_TAB ? currentTabClass : ''"
+        (click)="selectTab = DateConstant.MONTH_TAB"
+        [routerLink]="['blog-statistic', DateConstant.MONTH_TAB]">月度统计</span>
+  <div class="spacer"></div>
+  <span [className]="selectTab == DateConstant.QUARTER_TAB ? currentTabClass : ''"
+        (click)="selectTab = DateConstant.QUARTER_TAB"
+        [routerLink]="['blog-statistic', DateConstant.QUARTER_TAB]">季度统计</span>
+  <div class="spacer"></div>
+  <span [className]="selectTab == DateConstant.YEAR_TAB ? currentTabClass : ''"
+        (click)="selectTab = DateConstant.YEAR_TAB"
+        [routerLink]="['blog-statistic', DateConstant.YEAR_TAB]">年度统计</span>
+  <div class="spacer"></div>
+  <span [className]="selectTab == DateConstant.HISTORY_TAB ? currentTabClass : ''"
+        (click)="selectTab = DateConstant.HISTORY_TAB"
+        [routerLink]="['blog-statistic', DateConstant.HISTORY_TAB]">历史统计</span>
+  <div class="spacer"></div>
+</div>
+
+<router-outlet></router-outlet>
+
+<dl-download-target></dl-download-target>
+
+

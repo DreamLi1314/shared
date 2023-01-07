@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <parent>
+      <artifactId>test03-xxl-job</artifactId>
+      <groupId>org.example</groupId>
+      <version>1.0-SNAPSHOT</version>
+   </parent>
+   <modelVersion>4.0.0</modelVersion>
+
+   <artifactId>test03-xxl-executor</artifactId>
+
+   <distributionManagement>
+      <repository>
+         <id>deployment</id>
+         <name>Internal Releases</name>
+         <url>https://repo.mlogcn.com/repository/releases/</url>
+      </repository>
+      <snapshotRepository>
+         <id>deployment</id>
+         <name>Internal Snapshots</name>
+         <url>https://repo.mlogcn.com/repository/snapshots/</url>
+      </snapshotRepository>
+   </distributionManagement>
+
+   <dependencies>
+      <!-- xxl-job-core -->
+      <dependency>
+         <groupId>com.xuxueli</groupId>
+         <artifactId>xxl-job-core</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-web</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-data-jpa</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-data-redis</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-pool2</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.postgresql</groupId>
+         <artifactId>postgresql</artifactId>
+         <scope>runtime</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.hibernate</groupId>
+         <artifactId>hibernate-spatial</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>com.graphhopper.external</groupId>
+         <artifactId>jackson-datatype-jts</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>com.mlog</groupId>
+         <artifactId>mlog-utils</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-test</artifactId>
+         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>com.mlog</groupId>
+         <artifactId>mlog-minio-starter</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.example</groupId>
+         <artifactId>test03-base-common</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.example</groupId>
+         <artifactId>test03-pg-common</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>com.alibaba</groupId>
+         <artifactId>fastjson</artifactId>
+      </dependency>
+
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.8</version>
+            <executions>
+               <execution>
+                  <phase>compile</phase>
+                  <goals>
+                     <goal>run</goal>
+                  </goals>
+                  <configuration>
+                     <tasks>
+                        <echo>Copy Dockerfile file</echo>
+                        <copy file="Dockerfile" tofile="${basedir}/target/container/Dockerfile" />
+                     </tasks>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+
+         <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+               <layout>ZIP</layout>
+               <includeSystemScope>true</includeSystemScope>
+               <outputDirectory>${basedir}/target/container</outputDirectory>
+               <fork>true</fork>
+               <skip>false</skip>
+            </configuration>
+            <executions>
+               <execution>
+                  <goals>
+                     <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+
+         <plugin>
+            <!-- https://github.com/spotify/dockerfile-maven/blob/master/docs/usage.md -->
+            <groupId>com.spotify</groupId>
+            <artifactId>dockerfile-maven-plugin</artifactId>
+            <version>1.4.13</version>
+            <executions>
+               <execution>
+                  <id>default</id>
+                  <phase>verify</phase>
+                  <goals>
+                     <goal>build</goal>
+                     <goal>push</goal>
+                  </goals>
+               </execution>
+            </executions>
+            <configuration>
+               <!--镜像仓库地址 -->
+               <repository>106.75.70.89:8080/test03/${project.artifactId}</repository>
+               <!--镜像tag -->
+               <tag>${project.version}</tag>
+               <!--镜像仓库用户名和密码 -->
+               <username>pushuser</username>
+               <password>yiJi123!@#</password>
+
+               <!--自定义构建参数，可传递到Dockerfile文件中 -->
+               <buildArgs>
+                  <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+               </buildArgs>
+
+               <noCache>true</noCache>
+               <contextDirectory>${basedir}/target/container</contextDirectory>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+</project>

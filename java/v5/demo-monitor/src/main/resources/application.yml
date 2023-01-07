@@ -1,0 +1,33 @@
+# 应用名称
+spring:
+   application:
+      name: demo-monitor
+
+server:
+   port: 8080
+
+management:
+   endpoints:
+      web:
+         exposure:
+            include: 'prometheus'
+
+javafamily:
+   notify:
+      feishu:
+         hook-url: https://open.feishu.cn/open-apis/bot/v2/hook/ed772555-28a3-4a59-b967-3dd7c5f68b10
+
+   http:
+      client-impl: okhttp3
+
+#   http:
+#      proxy:
+#         type: socks
+#         host: 192.168.56.27
+#         port: 20080
+
+#   http:
+#      proxy:
+#         type: ${POXY_TYPE:}
+#         host: ${POXY_HOST:192.168.56.27}
+#         port: ${POXY_PORT:}

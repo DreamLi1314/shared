@@ -1,0 +1,38 @@
+
+
+
+spring:
+   application:
+      name: sb-redis-sentinel
+
+   # redis 配置
+   redis:
+      database: 1
+      # 数据节点密码
+      password: javaFamily123!!
+
+      sentinel:
+         # Sentinel 中配置的监控主节点名称
+         master: mymaster
+         # Sentinel 连接密码, 如果没配置就不写
+         # password:
+         nodes:
+            - 192.168.3.26:26379
+            - 192.168.3.27:26379
+            - 192.168.3.28:26379
+
+      # 配置 lettuce 客户端连接池信息
+      lettuce:
+         pool:
+            # 连接池中的最小空闲连接
+            min-idle: 5
+            # 连接池中的最大空闲连接
+            max-idle: 10
+            # 连接池的最大数据库连接数
+            max-active: 100
+            # 连接池最大阻塞等待时间（使用负值表示没有限制）
+            max-wait: -1
+
+logging:
+   level:
+      root: debug

@@ -1,0 +1,15 @@
+
+xxl:
+   job:
+      admin:
+         addresses: http://127.0.0.1:9018/xxl-job-admin
+      executor:
+         logpath: /logs/jobhandler
+
+spring:
+   redis:
+      database: 11
+
+#   datasource:
+#      primary:
+#         jdbc-url: jdbc:postgresql://127.0.0.1:5432/db_thunderstorm-test

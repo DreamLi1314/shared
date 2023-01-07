@@ -1,0 +1,10 @@
+server:
+   port: 80
+
+xxl:
+   job:
+      admin:
+         addresses: http://127.0.0.1:9818/xxl-job-admin
+      executor:
+         ip: 127.0.0.1
+         logpath: logs/jobhandler

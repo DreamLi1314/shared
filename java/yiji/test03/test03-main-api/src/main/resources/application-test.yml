@@ -1,0 +1,18 @@
+
+springfox:
+   documentation:
+      swagger:
+         v2:
+            host: 106.75.18.229/thunderstorm-api
+
+spring:
+   application:
+      name: thunderstorm-api-test
+
+   redis:
+      database: 11
+      client-name: thunderstorm-test
+
+   cache:
+      redis:
+         key-prefix: thunderstorm-test-

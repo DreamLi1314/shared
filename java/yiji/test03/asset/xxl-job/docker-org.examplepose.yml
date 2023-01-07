@@ -1,0 +1,38 @@
+version: '3.7'
+services:
+   thunderstorm-xxl-admin:
+      image: javafamily/xxl-job-admin-mysql:2.3.2-SNAPSHOT
+      container_name: thunderstorm-xxl-admin
+      restart: always
+      ports:
+         - "9380:8080"
+      environment:
+         ACTIVE_PROFILE: prod
+         MYSQL_IP: 106.75.70.77
+         MYSQL_PORT: 23306
+         MYSQL_DBNAME: thunderstorm
+         MYSQL_USERNAME: root
+         MYSQL_PWD: yijitech123
+         CONTEXT_PATH: /job-admin
+      # network_mode: "host"
+
+   companyapi-xxl-executor:
+      image: 192.168.100.62:8080/lightning/companyapi-xxl-executor:1.0-SNAPSHOT
+      container_name: companyapi-xxl-executor
+      restart: always
+      environment:
+         ACTIVE_PROFILE: prod
+         PG_ADDR: 106.75.70.77:25432
+         PG_DB: thunderstorm
+         PG_USER: postgres
+         PG_PWD: yiji_0716
+         REDIS_HOST: 106.75.70.77
+         REDIS_PORT: 26379
+         REDIS_PWD: yiji0713
+         MINIO_ENDPOINT: http://106.75.70.77:9000
+         MINIO_USER: admin
+         MINIO_PWD: yiJi123456
+         XXL_ADMIN_ADDR: http://192.168.100.252/job-admin
+         EXECUTOR_IP: 192.168.100.252
+         FEISHU_TOKEN: d4ba1429-f9d4-45a7-b521-7bd403cd5773
+      network_mode: "host"

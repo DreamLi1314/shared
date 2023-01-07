@@ -1,0 +1,127 @@
+server:
+  port: 9931
+  servlet:
+    context-path: /
+  max-http-header-size: 1024000
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/plain,text/css,application/x-javascript
+
+spring:
+  profiles:
+    active: locale
+
+  application:
+    name: thunderstorm-api
+
+  jackson:
+    default-property-inclusion: ALWAYS
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+  jpa:
+    show-sql: on
+    generate-ddl: on
+    open-in-view: on
+    hibernate:
+      ddl-auto: update
+      primary-dialect: org.hibernate.spatial.dialect.postgis.PostgisPG9Dialect
+    primary:
+      database: postgresql
+
+  data:
+    redis:
+      repositories:
+        enabled: false
+
+  datasource:
+    primary:
+      jdbc-url: jdbc:postgresql://${pg.addr}/${pg.db}?&ssl=false
+      driver-class-name: org.postgresql.Driver
+      username: ${pg.username}
+      password: ${pg.pwd}
+      initial-size: 10
+      max-active: 100
+      min-idle: 3
+      #验证连接的有效性
+      test-while-idle: true
+      #获取连接时候验证，会影响性能
+      test-on-borrow: true
+      validation-query: SELECT 1 FROM DUAL
+      #空闲连接回收的时间间隔，与test-while-idle一起使用，设置5分钟
+      time-between-eviction-runs-millis: 60000
+      #连接池空闲连接的有效时间 ，设置 10 分钟
+      min-evictable-idle-time-millis: 60000
+      maximum-pool-size: 200 # default is 10
+      max-lifetime: 60000 # default is 30 minus
+    initialization-mode: ${pg.init-mode}
+    sql-script-encoding: utf-8
+    separator: ;
+    continue-on-error: true
+    schema:
+      - classpath:sql/schema-postgis.sql
+    data:
+      - classpath:sql/data-postgis.sql
+
+  redis:
+#    host: 192.168.100.17
+    host: ${redis.host}
+    port: ${redis.port}
+    password: ${redis.pwd}
+    database: 1
+    timeout: 20s # 连接超时时间（毫秒）
+    lettuce:
+      pool:
+        maxActive: 1000					#最大连接数
+        maxIdle: 50						#连接池最大空闲连接数.
+        minIdle: 20						#连接池最小空闲连接数.
+        max-wait: 2000					#从连接池中获取连接时的最大等待时间
+        time-between-eviction-runs: 60s	#空闲对象逐出器线程的运行间隔时间.空闲连接线程释放周期时间.
+
+  cache:
+    type: redis
+    redis:
+      timeToLive: 1d
+      key-prefix: thunderstorm-default-
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "*"
+  endpoint:
+    health:
+      show-details: always
+
+mlog:
+  oss:
+    minio:
+      end-point: ${minio.end-point}
+      user: ${minio.user}
+      password: ${minio.pwd}
+      default-bucket: thunderstorm
+      prefix:
+        - ^date^
+
+  auth:
+    enable: true
+
+javafamily:
+  swagger:
+    title: 气象灾害风险预警平台 Apis
+    version: 1.0-SNAPSHOT
+    description: 气象灾害风险预警平台接口文档
+    contact:
+      name: Jack Li
+      email: lishuai@mlogcn.com
+
+logging:
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(69515){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m ====== requestId: [%X{requestId}], IP: [%X{traceIp}], PID: [%X{tracePid}], Token: [%X{Authorization}] %n%wEx"
+

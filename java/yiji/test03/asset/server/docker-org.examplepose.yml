@@ -1,0 +1,42 @@
+version: '3.7'
+services:
+   thunderstorm-api:
+      image: 192.168.100.62:8080/lightning/thunderstorm-api:1.0-SNAPSHOT
+      container_name: thunderstorm-api
+      restart: always
+      ports:
+         - "9931:9931"
+      environment:
+         PG_INIT_MODE: never
+         ACTIVE_PROFILE: prod
+         PG_ADDR: 106.75.70.77:25432
+         PG_DB: thunderstorm
+         PG_USER: postgres
+         PG_PWD: yiji_0716
+         REDIS_HOST: 106.75.70.77
+         REDIS_PORT: 26379
+         REDIS_PWD: yiji0713
+         MINIO_ENDPOINT: http://106.75.70.77:9000
+         MINIO_USER: admin
+         MINIO_PWD: yiJi123456
+         FEISHU_TOKEN: d4ba1429-f9d4-45a7-b521-7bd403cd5773
+
+   thunderstorm-auth-server:
+      image: 192.168.100.62:8080/lightning/auth-server:1.0-SNAPSHOT
+      container_name: thunderstorm-auth-server
+      restart: always
+      ports:
+         - "8089:8089"
+      environment:
+         ACTIVE_PROFILE: prod
+         PG_ADDR: 106.75.70.77:25432
+         PG_DB: db_thunderstorm_auth
+         PG_USER: postgres
+         PG_PWD: yiji_0716
+         REDIS_HOST: 106.75.70.77
+         REDIS_PORT: 26379
+         REDIS_PWD: yiji0713
+         MINIO_ENDPOINT: http://106.75.70.77:9000
+         MINIO_USER: admin
+         MINIO_PWD: yiJi123456
+         FEISHU_TOKEN: d4ba1429-f9d4-45a7-b521-7bd403cd5773

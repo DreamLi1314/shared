@@ -1,0 +1,9 @@
+
+javafamily:
+   notify:
+      feishu:
+         enabled: on
+
+spring:
+   redis:
+      database: 11

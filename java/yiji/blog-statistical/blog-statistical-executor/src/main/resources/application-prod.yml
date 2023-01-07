@@ -1,0 +1,15 @@
+
+#xxl:
+#   job:
+#      admin:
+#         addresses: http://sxyjzx-xxl-admin:9818/xxl-job-admin
+#      executor:
+#         ip: 52.82.123.116
+#         logpath: /logs/jobhandler
+
+mlog:
+   dingtalk:
+      webhook:
+         url: https://oapi.dingtalk.com/robot/send?access_token=ba85aac269b2eb462960987f861640b4bbe5cea7c4c1ffcb7f5d3347fde9b71c
+         keyword: 博客统计
+         blog-url: http://52.82.123.116:8088/blog-statistic/blog-statistic/

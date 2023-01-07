@@ -5,18 +5,24 @@ es:
    host: localhost
    port: 9200
 mlog:
-   http:
-      keep-alive-target-host:
-         - www.gfapi.mlogcn.com: 10
-         - gfapi.mlogcn.com: 10
+#   http:
+#      keep-alive-target-host:
+#         - www.gfapi.mlogcn.com: 10
+#         - gfapi.mlogcn.com: 10s
 
    weather:
-      baseUri: http://gfapi.mlogcn.com
+      baseUri: http://117.50.104.9:8081
       realTime:
-         api: /weather/v001/now
-         params: areacode,key
+         api: /v1/realtime/weather/now
+         params: lonlat
 
-#      baseUri: http://117.50.104.9:8081
+#      baseUri: http://gfapi.mlogcn.com
 #      realTime:
-#         api: /v1/realtime/weather/now
-#         params: lonlat
+#         api: /weather/v001/now
+#         params: areacode,key
+
+logging:
+   logback:
+      rollingpolicy:
+         max-file-size: 100MB
+         max-history: 7

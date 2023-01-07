@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.4.RELEASE'
+    id 'org.springframework.boot' version '2.3.2.RELEASE'
     id 'java'
 }
 
@@ -15,6 +15,10 @@ configurations {
     }
 }
 
+wrapper {
+    gradleVersion = '6.4.1'
+}
+
 repositories {
     mavenCentral()
 }
@@ -25,4 +29,6 @@ dependencies {
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation 'org.jfree:jfreechart:1.5.3'
 }

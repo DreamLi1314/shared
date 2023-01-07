@@ -1,0 +1,9 @@
+
+xxl:
+   job:
+      executor:
+         logpath: /logs/jobhandler
+
+spring:
+   redis:
+      database: 1
