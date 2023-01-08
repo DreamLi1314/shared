@@ -14,11 +14,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{user}:{pwd}@{host}:{p
 # SQLAlchemy 会自动读取 app.config 中设置好的连接数据库 url 信息
 db = SQLAlchemy(app)
 
-
 with app.app_context():
     with db.engine.connect() as conn:
         rs = conn.execute('select 1')
-        print(rs.fetchone()) # (1,)
+        print(rs.fetchone())  # (1,)
+
 
 @app.route('/')
 def hello_world():
