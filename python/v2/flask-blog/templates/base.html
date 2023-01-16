@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    {#  js/css import  #}
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+<nav class="blog-title">
+    <div>
+        <strong>博客</strong>
+    </div>
+</nav>
+
+<div class="container" align="center">
+</div>
+    {% block body %}{% endblock %}
+</body>
+</html>
