@@ -16,3 +16,6 @@ MAIL_PORT = 465
 MAIL_USERNAME = "243853974@qq.com"
 MAIL_PASSWORD = "svefkkqyfxmtbhba"
 MAIL_DEFAULT_SENDER = "243853974@qq.com"
+
+# 密码加密的 key
+SECRET_KEY = "javafamily:secrect:!@#$%^"

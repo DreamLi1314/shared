@@ -2,10 +2,12 @@
 
 {% block title %}Flask Blog - 注册页面{% endblock %}
 
-{% block head %}{% endblock %}
+{% block head %}
+    <script src="{{ url_for('static', filename = 'js/register.js') }}"></script>
+{% endblock %}
 
 {% block body %}
-<form>
+<form method="post">
     <div>
         <span>邮箱:</span>
         <input type="text" name="email">
@@ -13,7 +15,8 @@
 
     <div>
         <span>验证码:</span>
-        <input type="text" name="valid_code">
+        <input type="text" name="captcha">
+        <button id="captcha-btn" class="btn btn-outline-secondary">获取验证码</button>
     </div>
 
     <div>
@@ -27,7 +30,13 @@
     </div>
 
     <div>
-        <input type="button" value="注册">
+        <span>确认密码:</span>
+        <input type="password" name="password2">
+    </div>
+
+
+    <div>
+        <button id="submit-btn" class="btn btn-primary">注册</button>
     </div>
 </form>
 {% endblock %}

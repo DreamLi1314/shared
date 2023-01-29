@@ -4,16 +4,31 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
 
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     {#  js/css import  #}
     {% block head %}{% endblock %}
 </head>
 <body>
 
-<nav class="blog-title">
-    <div>
-        <strong>博客</strong>
-    </div>
+<nav class="blog-title nav">
+    <span class="fa-align-left">
+        <strong>Flask 博客</strong>
+    </span>
+
+    <span class="fa-align-right">
+        {% if user %}
+            <span class="nav-link">{{ user.username }}</span>
+            <a class="nav-link" href="{{ url_for('auth.logout') }}">退出登录</a>
+        {% else %}
+            <a class="nav-link" href="{{ url_for('auth.login') }}">登录</a>
+            <a class="nav-link" href="{{ url_for('auth.register') }}">注册</a>
+        {% endif %}
+    </span>
 </nav>
+
+<hr>
 
 <div class="container" align="center">
 </div>

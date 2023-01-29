@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Flask Blog - 发布问答{% endblock %}
+
+{% block head %}
+    <script src="{{ url_for('static', filename = 'js/publish.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row text-center">
+            <h1>发布问答</h1>
+        </div>
+
+        <form>
+            <div class="form-group">
+                <input class="form-control" type="text" name = "title" placeholder="请输入标题" />
+            </div>
+
+            <div class="form-group">
+                <textarea class="form-control" type="textarea" name = "content" placeholder="请输入内容" ></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">发布</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
