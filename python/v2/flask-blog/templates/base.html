@@ -12,10 +12,28 @@
 </head>
 <body>
 
-<nav class="blog-title nav">
-    <span class="fa-align-left">
-        <strong>Flask 博客</strong>
-    </span>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item active">
+            <strong>Flask 博客</strong>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('qa.publish') }}">发布问答</a>
+        </li>
+
+        <li class="nav-item">
+            <form class="form-inline my-2 my-lg-0" method="get" action="{{ url_for("qa.search") }}">
+                <input class="form-control mr-sm-2" type="search" placeholder="关键字" name="q"/>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+            </form>
+        </li>
+    </ul>
 
     <span class="fa-align-right">
         {% if user %}
@@ -26,12 +44,12 @@
             <a class="nav-link" href="{{ url_for('auth.register') }}">注册</a>
         {% endif %}
     </span>
-</nav>
+</div>
 
 <hr>
 
 <div class="container" align="center">
 </div>
-    {% block body %}{% endblock %}
+{% block body %}{% endblock %}
 </body>
 </html>

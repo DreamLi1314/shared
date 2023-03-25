@@ -43,11 +43,13 @@ def login():
             print(form.errors)
             return redirect(url_for("auth.login"))
 
+
 @bp.route("/logout")
 def logout():
     session.clear()
 
     return redirect("/")
+
 
 @bp.route("/captcha/email", methods=['GET'])
 def get_email_captcha():
@@ -113,6 +115,7 @@ def mail_test():
     mail.send(msg)
 
     return "Send Success!"
+
 
 @bp.route("/user-list")
 def user_list():

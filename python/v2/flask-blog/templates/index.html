@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-首页
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Flask Blog - 首页{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <ul>
+        {% for question in questions %}
+            <li>
+                <div>
+                    <img src="{{ url_for('static', filename="imgs/java.jpeg") }}" width="60" />
+                </div>
+
+                <div>
+                    <div>
+                        <a href="{{ url_for('qa.qa_detail', qa_id=question.id) }}">{{ question.title }}</a>
+                    </div>
+                    <div>{{ question.content }}</div>
+
+                    <div>
+                        <span>{{ question.author.username }}</span>
+                        <span>{{ question.create_time }}</span>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

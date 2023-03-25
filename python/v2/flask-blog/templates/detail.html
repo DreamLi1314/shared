@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}{{ question.title }}{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+    <div align="center">
+        <h3>{{ question.title }}</h3>
+
+        <p>
+            <span>作者: {{ question.author.username }}</span>
+            <span>时间: {{ question.create_time }}</span>
+        </p>
+    </div>
+
+    <hr>
+
+    <p>{{ question.content }}</p>
+
+    <hr>
+
+    <div>
+
+        <div>
+            <h4>评论({{ question.answers | length }}):</h4>
+
+            <form method="post" action="{{ url_for("qa.public_answer") }}">
+                <div class="form-group">
+                    <input type="text" placeholder="请填写评论" name="content" class="form-control" />
+                    <input type="hidden" name="question_id" value="{{ question.id }}" />
+                </div>
+
+                <div class="form-group" style="text-align: right">
+                    <button class="btn btn-primary">评论</button>
+                </div>
+            </form>
+        </div>
+
+        <div>
+            <ul>
+                {% for answer in question.answers %}
+                    <li>
+                        <div>
+                            <img src="{{ url_for('static', filename="imgs/java.jpeg") }}" width="60" />
+                            <span class="username">{{ question.author.username }}</span>
+                            <span class="create_time">{{ question.create_time }}</span>
+                        </div>
+                        <p>{{ answer.content }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+{% endblock %}

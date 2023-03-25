@@ -1,5 +1,5 @@
 import wtforms
-from wtforms.validators import Email, Length, EqualTo
+from wtforms.validators import Email, Length, EqualTo, InputRequired
 from models import User, EmailCaptchaModel
 from exts import db
 
@@ -38,3 +38,11 @@ class RegisterForm(wtforms.Form):
 class LoginForm(wtforms.Form):
     email = wtforms.StringField(validators=[Email(message='邮箱格式错误!')])
     password = wtforms.StringField(validators=[Length(min=6, max=20, message="密码最少 6 位!")])
+
+class QuestionForm(wtforms.Form):
+    title = wtforms.StringField(validators=[Length(min=3, max=100, message="标题长度错误!")])
+    content = wtforms.StringField(validators=[Length(min=3, message="内容长度错误!")])
+
+class AnswerForm(wtforms.Form):
+    content = wtforms.StringField(validators=[Length(min=3, message="内容长度错误!")])
+    question_id = wtforms.IntegerField(validators=[InputRequired(message="必须传入问题 id!")])

@@ -31,7 +31,8 @@ def run(playwright: Playwright) -> None:
     #     headless=False,
     #     args=['--disable-blink-features=AutomationControlled']
     # )
-    browser = playwright.chromium.launch(channel= 'chrome', headless=False)
+    # browser = playwright.chromium.launch(channel= 'chrome', headless=False)
+    browser = playwright.firefox.launch(channel='firefox', headless=False)
     context = browser.new_context()
     page = context.new_page()
     page.goto("http://106.75.70.103/log/login")

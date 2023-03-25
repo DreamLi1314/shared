@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QLayout, QMainWindow, QMenuBar,
-    QPushButton, QRadioButton, QSizePolicy, QStatusBar,
-    QTextEdit, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QButtonGroup, QLabel, QLayout,
+    QMainWindow, QMenuBar, QPushButton, QRadioButton,
+    QSizePolicy, QStatusBar, QVBoxLayout, QWidget)
+import main_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -25,54 +26,55 @@ class Ui_MainWindow(object):
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1438, 718)
         MainWindow.setAutoFillBackground(False)
-
-        # bg_img = QPixmap(":/assets/imgs/bg2.png")
-        MainWindow.setStyleSheet(u"background-image: url(:/assets/imgs/bg2.png);")
-
-        self.centralwidget = QWidget(MainWindow)
-        self.centralwidget.setObjectName(u"centralwidget")
-        self.centralwidget.setAutoFillBackground(False)
-        self.centralwidget.setStyleSheet(u"")
-        self.textEdit = QTextEdit(self.centralwidget)
-        self.textEdit.setObjectName(u"textEdit")
-        self.textEdit.setGeometry(QRect(470, 170, 531, 61))
-        self.textEdit.setAutoFillBackground(False)
-        self.textEdit.setStyleSheet(u"")
-        self.layoutWidget = QWidget(self.centralwidget)
+        MainWindow.setStyleSheet(u"")
+        self.container = QWidget(MainWindow)
+        self.container.setObjectName(u"container")
+        self.container.setAutoFillBackground(False)
+        self.container.setStyleSheet(u"#container{background-image: url(:/assets/imgs/bg2.png);}")
+        self.pushButton = QPushButton(self.container)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setGeometry(QRect(620, 510, 221, 41))
+        font = QFont()
+        font.setPointSize(24)
+        self.pushButton.setFont(font)
+        self.pushButton.setStyleSheet(u"background-color: rgb(0, 249, 0);")
+        self.layoutWidget = QWidget(self.container)
         self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(600, 280, 151, 171))
+        self.layoutWidget.setGeometry(QRect(670, 260, 151, 171))
         self.verticalLayout = QVBoxLayout(self.layoutWidget)
+        self.verticalLayout.setSpacing(60)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setSizeConstraint(QLayout.SetMaximumSize)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.radioButton = QRadioButton(self.layoutWidget)
-        self.radioButton.setObjectName(u"radioButton")
-        font = QFont()
-        font.setPointSize(18)
-        self.radioButton.setFont(font)
-
-        self.verticalLayout.addWidget(self.radioButton)
-
-        self.radioButton_2 = QRadioButton(self.layoutWidget)
-        self.radioButton_2.setObjectName(u"radioButton_2")
-        self.radioButton_2.setFont(font)
-
-        self.verticalLayout.addWidget(self.radioButton_2)
-
-        self.radioButton_3 = QRadioButton(self.layoutWidget)
-        self.radioButton_3.setObjectName(u"radioButton_3")
-        self.radioButton_3.setFont(font)
-
-        self.verticalLayout.addWidget(self.radioButton_3)
-
-        self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(600, 520, 141, 41))
+        self.chromeRadioButton = QRadioButton(self.layoutWidget)
+        self.buttonGroup = QButtonGroup(MainWindow)
+        self.buttonGroup.setObjectName(u"buttonGroup")
+        self.buttonGroup.addButton(self.chromeRadioButton)
+        self.chromeRadioButton.setObjectName(u"chromeRadioButton")
         font1 = QFont()
-        font1.setPointSize(24)
-        self.pushButton.setFont(font1)
-        self.pushButton.setStyleSheet(u"background-color: rgb(0, 249, 0);")
-        MainWindow.setCentralWidget(self.centralwidget)
+        font1.setPointSize(18)
+        self.chromeRadioButton.setFont(font1)
+        self.chromeRadioButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.chromeRadioButton.setChecked(True)
+
+        self.verticalLayout.addWidget(self.chromeRadioButton)
+
+        self.edgeRadioButton = QRadioButton(self.layoutWidget)
+        self.buttonGroup.addButton(self.edgeRadioButton)
+        self.edgeRadioButton.setObjectName(u"edgeRadioButton")
+        self.edgeRadioButton.setFont(font1)
+        self.edgeRadioButton.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.verticalLayout.addWidget(self.edgeRadioButton)
+
+        self.label = QLabel(self.container)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(520, 180, 471, 41))
+        font2 = QFont()
+        font2.setPointSize(36)
+        font2.setBold(False)
+        self.label.setFont(font2)
+        MainWindow.setCentralWidget(self.container)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
         self.menubar.setGeometry(QRect(0, 0, 1438, 24))
@@ -88,14 +90,11 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:36pt; color:#ff9300;\">\u8bf7\u9009\u62e9\u60a8\u7535\u8111\u652f\u6301\u7684\u6d4f\u89c8\u5668\uff1a</span></p></body></html>", None))
-        self.radioButton.setText(QCoreApplication.translate("MainWindow", u"Chrome", None))
-        self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"Edge", None))
-        self.radioButton_3.setText(QCoreApplication.translate("MainWindow", u"FireFox", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"\u81ea\u52a8\u62a5\u9001", None))
+        self.chromeRadioButton.setText(QCoreApplication.translate("MainWindow", u"Chrome", None))
+        self.chromeRadioButton.setProperty("value", QCoreApplication.translate("MainWindow", u"chrome", None))
+        self.edgeRadioButton.setText(QCoreApplication.translate("MainWindow", u"Edge", None))
+        self.edgeRadioButton.setProperty("value", QCoreApplication.translate("MainWindow", u"msedge", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u9009\u62e9\u60a8\u7535\u8111\u652f\u6301\u7684\u6d4f\u89c8\u5668\uff1a", None))
     # retranslateUi
 
