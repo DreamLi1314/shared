@@ -2,9 +2,11 @@ package com.geoviswtx.service;
 
 import com.geoviswtx.dao.pg.DatasetRepository;
 import com.geoviswtx.dao.cassandra.GridDataRepository;
+import com.geoviswtx.dao.pg.GridMetaRepository;
 import com.geoviswtx.entity.cassandra.GridDataEntity;
 import com.geoviswtx.entity.cassandra.GridDataKey;
 import com.geoviswtx.entity.pg.DatasetEntity;
+import com.geoviswtx.entity.pg.GridMetaEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
 
@@ -16,21 +18,22 @@ import java.util.*;
 public class GridQueryService {
 
     private final GridDataRepository dataRepository;
-//    private final GridMetaRepository metaRepository;
+    private final GridMetaRepository metaRepository;
     private final DatasetRepository datasetRepository;
 
     public GridQueryService(GridDataRepository dataRepository,
-//                            GridMetaRepository metaRepository,
-                            DatasetRepository datasetRepository) {
+                            GridMetaRepository metaRepository,
+                            DatasetRepository datasetRepository)
+    {
         this.dataRepository = dataRepository;
-//        this.metaRepository = metaRepository;
+        this.metaRepository = metaRepository;
         this.datasetRepository = datasetRepository;
     }
 
     /**
      * 穿透查询测试
      *
-     * @param baseTime
+     * @param baseTime    起报时间
      * @param datasetType 数据集名称
      * @param elem        要素名
      * @param lat         纬度
@@ -53,46 +56,34 @@ public class GridQueryService {
         // 获取 ds
         DatasetEntity dataset = datasetRepository.findByType(datasetType);
 
-//        int gridRowIndex = (int) Math.floor((lat - dataset.getStartY()) / dataset.getIncrementY());
-//        int gridColumnIndex = (int) Math.floor((lon - dataset.getStartX()) / dataset.getIncrementX());
-
         int gridRowIndex = (int) Math.ceil((dataset.getStartY() - lat) / dataset.getIncrementY());
         int gridColumnIndex = (int) Math.floor(lon / dataset.getIncrementX());
 
         int gridIdx = gridRowIndex * dataset.getCountX() + gridColumnIndex;
-//        int chuckIdx = (int) Math.floor(gridIdx * 1.0 / dataset.getChuckNumber());
-//        int dataIdx = gridIdx % dataset.getChuckNumber();
+        int chuckIdx = (int) Math.floor(gridIdx * 1.0 / dataset.getChuckNumber());
+        int dataIdx = gridIdx % dataset.getChuckNumber();
 
-//        // 获取 meta
-//        List<GridMetaEntity> metaList
-//                = metaRepository.findListByQbsjAndDatasetIdAndFeatureAndZOrderByYbsk(baseTime, dataset.getId(), elem, z);
+        final Calendar instance = Calendar.getInstance();
+        instance.setTime(baseTime);
+        instance.add(Calendar.HOUR_OF_DAY, 24);
+
+        // 获取 meta
+        List<GridMetaEntity> metaList
+                = metaRepository.findListByBaseTimeAndDsIdAndElemAndZAndForecastTimeAfterAndForecastTimeBeforeOrderByForecastTime(
+                   baseTime, dataset.getId(), elem, z, baseTime, instance.getTime());
 
         List<Double> result = new ArrayList<>();
 
         // 获取数据
-//        for (GridMetaEntity meta : metaList) {
-//            GridDataEntity data = dataRepository.findByMetaIdAndChuckIdx(meta.getId(), chuckIdx);
-//
-//            result.add(data.getDatas()[dataIdx]);
-//        }
-
-        final LocalDateTime baseLocalTime = baseTime
-           .toInstant()
-           .atZone(zoneId)
-           .toLocalDateTime();
-
-        for (int i = 0; i < 24; i++) {
-            final GridDataEntity gridData = dataRepository.findById(
+        for (GridMetaEntity meta : metaList) {
+            GridDataEntity data = dataRepository.findById(
                GridDataKey.builder()
-                  .dsId(dataset.getId())
-                  .elem("tem")
-                  .z(0D)
-                  .baseTime(baseLocalTime)
-                  .forecastTime(baseLocalTime.plusHours(1))
+                  .metaId(meta.getId())
+                  .chunkId(chuckIdx)
                   .build())
                .orElse(null);
 
-            result.add((double) gridData.getDs().get(gridIdx));
+            result.add(data.getDs().get(dataIdx));
         }
 
         stopWatch.stop();

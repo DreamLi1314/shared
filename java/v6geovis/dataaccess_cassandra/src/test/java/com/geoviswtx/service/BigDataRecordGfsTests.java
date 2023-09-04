@@ -2,9 +2,11 @@ package com.geoviswtx.service;
 
 import com.geoviswtx.dao.pg.DatasetRepository;
 import com.geoviswtx.dao.cassandra.GridDataRepository;
+import com.geoviswtx.dao.pg.GridMetaRepository;
 import com.geoviswtx.entity.cassandra.GridDataEntity;
 import com.geoviswtx.entity.cassandra.GridDataKey;
 import com.geoviswtx.entity.pg.DatasetEntity;
+import com.geoviswtx.entity.pg.GridMetaEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.jupiter.api.Assertions;
@@ -22,6 +24,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @SpringBootTest
@@ -30,8 +33,8 @@ public class BigDataRecordGfsTests {
     @Autowired
     private DatasetRepository repository;
 
-//    @Autowired
-//    private GridMetaRepository metaRepository;
+    @Autowired
+    private GridMetaRepository metaRepository;
 
     @Autowired
     private GridDataRepository dataRepository;
@@ -71,7 +74,9 @@ public class BigDataRecordGfsTests {
         NetcdfFile netcdfFile = NetcdfFile.openInMemory(nc.getAbsolutePath());
         Variable tem = netcdfFile.findVariable("Temperature_surface");
         float[] array = (float[]) tem.read().copyTo1DJavaArray();
-        List<Float> ds = Arrays.asList(ArrayUtils.toObject(array));
+        List<Double> ds = Arrays.stream(ArrayUtils.toObject(array))
+           .map(Double::valueOf)
+           .collect(Collectors.toList());
 
         Date baseTime = dateFormat.parse("2020-01-01 08");
         Calendar calendar = Calendar.getInstance();
@@ -86,29 +91,54 @@ public class BigDataRecordGfsTests {
         for (; hourOffset < fileCount; hourOffset++) {
             log.info("Process offset {} nc", hourOffset);
 
+            GridMetaEntity gridMetaEntity = metaRepository.save(
+               GridMetaEntity.builder()
+                  .dsId(dataset.getId())
+                  .elem("tem")
+                  .z(0D)
+                  .baseTime(baseTime)
+                  .forecastTime(calendar.getTime())
+                  .build());
+
             calendar.add(Calendar.HOUR_OF_DAY, 1);
 
+            Integer chuckNumber = dataset.getChuckNumber();
+
             if(DataType.FLOAT == tem.getDataType()) {
-                GridDataEntity gridData = GridDataEntity.builder()
-                   .gridDataKey(GridDataKey.builder()
-                      .dsId(dataset.getId())
-                      .elem("tem")
-                      .z(0D)
-                      .baseTime(baseTime
-                         .toInstant()
-                         .atZone(zoneId)
-                         .toLocalDateTime())
-                      .forecastTime(calendar.getTime()
-                         .toInstant()
-                         .atZone(zoneId)
-                         .toLocalDateTime())
-                      .build())
-                   .ds(ds)
-                   .build();
+                boolean addOne = array.length % chuckNumber != 0;
+                int checkRowCount = array.length / chuckNumber + (addOne ? 1 : 0);
 
-                gridData = dataRepository.save(gridData);
+                List<GridDataEntity> gridDatas = new ArrayList<>();
 
-                log.info("Saving grid data size：{}", calendar.getTime().toLocaleString());
+                for (int i = 0; i < checkRowCount; i++) {
+                    int size = chuckNumber;
+
+                    if((i == (checkRowCount - 1)) && addOne) {
+                        size = array.length % chuckNumber;
+                    }
+
+                    double[] dataArray = new double[size];
+
+                    for (int j = 0; j < size; j++) {
+                        dataArray[j] = (double) array[i * chuckNumber + j] - 273.15;
+                    }
+
+                    GridDataEntity gridData = GridDataEntity.builder()
+                       .gridDataKey(GridDataKey.builder()
+                          .metaId(gridMetaEntity.getId())
+                          .chunkId(i)
+                          .build())
+                       .ds(ds)
+                       .build();
+
+                    gridDatas.add(gridData);
+                }
+
+                log.info("Grid data size：{}", gridDatas.size());
+
+                gridDatas = dataRepository.saveAll(gridDatas);
+
+                log.info("Saving grid data size：{}", gridDatas.size());
             }
 
             log.info("{} file process completed!", nc.getName());

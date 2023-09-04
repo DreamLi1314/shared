@@ -6,22 +6,21 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
 @Data
 @Entity
 @SuperBuilder(toBuilder = true)
-@Table(name = "db_dataset_c")
+@Table(name = "t_c_dataset")
 @ToString
 @NoArgsConstructor
 public class DatasetEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dataset_sequence")
+    @SequenceGenerator(name = "dataset_sequence", sequenceName = "dataset_sequence", allocationSize = 1)
     private Long id;
 
     @Column(unique = true)

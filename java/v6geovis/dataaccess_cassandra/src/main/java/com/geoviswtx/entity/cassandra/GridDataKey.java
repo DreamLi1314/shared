@@ -17,19 +17,10 @@ import java.time.LocalDateTime;
 public class GridDataKey implements Serializable {
 
    @PrimaryKeyColumn(ordinal = 1, type = PrimaryKeyType.PARTITIONED)
-   private Long dsId;
+   private Long metaId;
 
-   @PrimaryKeyColumn(ordinal = 2, type = PrimaryKeyType.PARTITIONED)
-   private String elem;
-
-   @PrimaryKeyColumn(ordinal = 3, type = PrimaryKeyType.PARTITIONED)
-   private Double z;
-
-   @PrimaryKeyColumn(ordinal = 4, type = PrimaryKeyType.PARTITIONED)
-   private LocalDateTime baseTime;
-
-   @PrimaryKeyColumn(ordinal = 5, type = PrimaryKeyType.CLUSTERED)
-   private LocalDateTime forecastTime;
+   @PrimaryKeyColumn(ordinal = 2, type = PrimaryKeyType.CLUSTERED)
+   private Integer chunkId;
 
    @Tolerate
    public GridDataKey() {

@@ -60,7 +60,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     CreateKeyspaceSpecification specification = CreateKeyspaceSpecification
         .createKeyspace(properties.getKeyspaceName()).ifNotExists()
         .with(KeyspaceOption.DURABLE_WRITES, true)
-       .withSimpleReplication(1);
+       .withSimpleReplication(2);
 
     return Collections.singletonList(specification);
   }

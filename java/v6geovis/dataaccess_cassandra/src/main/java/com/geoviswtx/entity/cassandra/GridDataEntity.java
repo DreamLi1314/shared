@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Data
 @SuperBuilder(toBuilder = true)
-@Table("db_grid_data")
+@Table("t_grid_data")
 @ToString
 @NoArgsConstructor
 public class GridDataEntity {
@@ -22,7 +22,5 @@ public class GridDataEntity {
    @PrimaryKey
    protected GridDataKey gridDataKey;
 
-//   private Integer chuckIdx;
-
-   protected List<Float> ds;
+   protected List<Double> ds;
 }
