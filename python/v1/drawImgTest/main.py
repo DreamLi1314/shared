@@ -89,6 +89,6 @@ wind_dir_icon = Image.open('./wind-dir-icon.png')
 
 for xd in np.arange(0, len(x_dates), 3):
     icon = wind_dir_icon.rotate(wind_dir[xd])
-    plt.figimage(icon, 275 + xd * 22, 650)
+    plt.figimage(icon, 275 + xd * 23, 650)
 
 plt.show()

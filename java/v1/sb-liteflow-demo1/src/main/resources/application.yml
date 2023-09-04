@@ -1,0 +1,10 @@
+#liteflow:
+#   rule-source: config/flow.el.xml
+liteflow:
+   rule-source-ext-data-map:
+      serverAddr: lyzh.yijiweather.com:8848
+      dataId: test_rule
+      group: test_rule
+      namespace: dev
+      username: nacos
+      password: yiJi0713!@#

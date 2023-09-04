@@ -1,4 +1,4 @@
-from playwright.sync_api import Playwright, sync_playwright, expect
+from c.sync_api import Playwright, sync_playwright, expect
 import ddddocr
 import os
 from PIL import Image

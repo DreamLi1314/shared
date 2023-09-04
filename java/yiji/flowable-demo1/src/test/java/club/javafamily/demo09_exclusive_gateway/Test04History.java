@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Jack Li
@@ -22,8 +23,10 @@ public class Test04History {
    }
 
    @Test
-   void testQueryHistory() {
+   void testQueryHistory() throws InterruptedException {
       final HistoryService historyService = processEngine.getHistoryService();
+
+      TimeUnit.MINUTES.sleep(2);
 
       final List<HistoricActivityInstance> list = historyService.createHistoricActivityInstanceQuery()
          .processDefinitionId("holiday-candidate:1:4")

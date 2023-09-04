@@ -1,0 +1,44 @@
+
+
+spring:
+
+  jpa:
+    show-sql: off
+    generate-ddl: on
+    open-in-view: on
+    hibernate:
+      ddl-auto: update
+#      primary-dialect: org.hibernate.spatial.dialect.postgis.PostgisPG95Dialect
+      primary-dialect: com.geoviswtx.conf.CustomPostgreSQLDialect
+    primary:
+      database: postgresql
+
+  data:
+    redis:
+      repositories:
+        enabled: false
+
+  datasource:
+    primary:
+      jdbc-url: jdbc:postgresql://${pg.addr}/${pg.db}?&ssl=false
+      driver-class-name: org.postgresql.Driver
+      username: ${pg.username}
+      password: ${pg.pwd}
+      initial-size: 10
+      max-active: 100
+      min-idle: 3
+      #????????
+      test-while-idle: true
+      #??????????????
+      test-on-borrow: true
+      validation-query: SELECT 1 FROM DUAL
+      #?????????????test-while-idle???????5??
+      time-between-eviction-runs-millis: 60000
+      #???????????? ??? 10 ??
+      min-evictable-idle-time-millis: 60000
+      maximum-pool-size: 200 # default is 10
+      max-lifetime: 60000 # default is 30 minus
+    initialization-mode: ${pg.init-mode}
+    sql-script-encoding: utf-8
+    separator: ;
+    continue-on-error: true

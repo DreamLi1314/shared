@@ -1,0 +1,15 @@
+server:
+   port: 80
+
+spring:
+   application:
+      name: dead-letter-demo
+
+   rabbitmq:
+      host: service.yijiweather.com
+      username: test
+      password: test123!@#
+      port: 5672
+      virtual-host: test
+
+
