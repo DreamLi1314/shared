@@ -27,9 +27,17 @@ spring:
       session-name: ${cassandra.cluster}
       local-datacenter: ${cassandra.dc}
       request:
-        timeout: 15s
+        timeout: 60s
+        consistency: quorum
       connection:
-        init-query-timeout: 15s
+        init-query-timeout: 60s
+        connect-timeout: 30s
+      pool:
+        core-connections: 10
+        max-connections: 100
+        max-requests-per-connection: 100
+        idle-timeout: 5s
+        heartbeat-interval: 30s
 
   datasource:
     primary:
@@ -55,3 +63,6 @@ spring:
     sql-script-encoding: utf-8
     separator: ;
     continue-on-error: true
+
+server:
+  port: 8090

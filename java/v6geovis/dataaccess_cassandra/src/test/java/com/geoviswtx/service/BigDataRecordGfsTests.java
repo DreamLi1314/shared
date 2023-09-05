@@ -24,6 +24,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -74,15 +75,12 @@ public class BigDataRecordGfsTests {
         NetcdfFile netcdfFile = NetcdfFile.openInMemory(nc.getAbsolutePath());
         Variable tem = netcdfFile.findVariable("Temperature_surface");
         float[] array = (float[]) tem.read().copyTo1DJavaArray();
-        List<Double> ds = Arrays.stream(ArrayUtils.toObject(array))
-           .map(Double::valueOf)
-           .collect(Collectors.toList());
 
         Date baseTime = dateFormat.parse("2020-01-01 08");
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(baseTime);
 
-        int hourOffset = 0;
+        int hourOffset = 845;
 
         if(hourOffset > 0) {
             calendar.add(Calendar.HOUR_OF_DAY, hourOffset);
@@ -117,10 +115,10 @@ public class BigDataRecordGfsTests {
                         size = array.length % chuckNumber;
                     }
 
-                    double[] dataArray = new double[size];
+                    List<Double> ds = new ArrayList<>(size);
 
                     for (int j = 0; j < size; j++) {
-                        dataArray[j] = (double) array[i * chuckNumber + j] - 273.15;
+                        ds.add((double) array[i * chuckNumber + j] - 273.15);
                     }
 
                     GridDataEntity gridData = GridDataEntity.builder()
@@ -138,12 +136,15 @@ public class BigDataRecordGfsTests {
 
                 gridDatas = dataRepository.saveAll(gridDatas);
 
+                TimeUnit.SECONDS.sleep(1);
+
                 log.info("Saving grid data size：{}", gridDatas.size());
             }
 
             log.info("{} file process completed!", nc.getName());
         }
 
+        netcdfFile.close();
         log.info("all file process completed!");
     }
 

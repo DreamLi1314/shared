@@ -3,6 +3,7 @@ package com.geoviswtx.conf;
 import com.datastax.oss.driver.api.core.config.DefaultDriverOption;
 import com.datastax.oss.driver.api.core.config.DriverConfigLoader;
 import org.springframework.boot.autoconfigure.cassandra.CassandraProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.cassandra.config.*;
 import org.springframework.data.cassandra.core.cql.keyspace.CreateKeyspaceSpecification;
@@ -60,7 +61,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     CreateKeyspaceSpecification specification = CreateKeyspaceSpecification
         .createKeyspace(properties.getKeyspaceName()).ifNotExists()
         .with(KeyspaceOption.DURABLE_WRITES, true)
-       .withSimpleReplication(2);
+       .withSimpleReplication(3);
 
     return Collections.singletonList(specification);
   }

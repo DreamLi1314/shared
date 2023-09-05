@@ -69,7 +69,7 @@ public class DataQueryTests {
     }
 
     @Rollback(value = false)
-    @Transactional
+//    @Transactional
     @ParameterizedTest
     @ValueSource(longs = { 1 })
     void recordData(long dsId) throws Exception {
@@ -117,6 +117,7 @@ public class DataQueryTests {
 
             if(DataType.FLOAT == tem.getDataType()) {
                 float[] array = (float[]) tem.read().copyTo1DJavaArray();
+                netcdfFile.close();
 
                 boolean addOne = array.length % chuckNumber != 0;
                 int checkRowCount = array.length / chuckNumber + (addOne ? 1 : 0);
