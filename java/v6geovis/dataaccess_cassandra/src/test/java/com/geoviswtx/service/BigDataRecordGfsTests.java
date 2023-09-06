@@ -80,7 +80,7 @@ public class BigDataRecordGfsTests {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(baseTime);
 
-        int hourOffset = 845;
+        int hourOffset = 1546;
 
         if(hourOffset > 0) {
             calendar.add(Calendar.HOUR_OF_DAY, hourOffset);
