@@ -1,9 +1,12 @@
 package club.javafamily;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.net.URI;
@@ -35,10 +38,30 @@ public class HdfsClientDemo {
    public void mkdir() throws Exception {
       // 2 创建目录
       fs.mkdirs(new Path("/demo/huaguoshan/"));
+
+      System.out.println();
    }
 
    @Test
-   public void copyFromLocale() {
-      
+   public void copyFromLocale() throws Exception {
+      fs.copyFromLocalFile(false, true,
+              new Path("C:\\Users\\javaf\\Desktop\\Hycom\\runs_GLBy0.nc4"),
+              new Path("/tmp/"));
+
+      System.out.println();
+   }
+
+   @Test
+   public void checkFileAndDir() throws Exception {
+      FileStatus[] fileStatuses = fs.listStatus(new Path("/tmp"));
+
+      for (FileStatus fileStatus : fileStatuses) {
+         if (fileStatus.isFile()) {
+            System.out.println(fileStatus.getPath().getName() + " is file!");
+         }
+         else {
+            System.out.println(fileStatus.getPath().getName() + " is dir!");
+         }
+      }
    }
 }
