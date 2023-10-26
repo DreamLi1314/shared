@@ -5,35 +5,38 @@
    <modelVersion>4.0.0</modelVersion>
 
    <groupId>club.javafamily</groupId>
-   <artifactId>sb-hadoop01</artifactId>
+   <artifactId>sb-hive01</artifactId>
+   <packaging>pom</packaging>
    <version>1.0-SNAPSHOT</version>
 
+   <modules>
+      <module>hive-jdbc01</module>
+      <module>hive-sb02</module>
+   </modules>
+
    <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <jdk.version>1.8</jdk.version>
+      <maven.compiler.source>${jdk.version}</maven.compiler.source>
+      <maven.compiler.target>${jdk.version}</maven.compiler.target>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <maven.compile.plugin.version>3.6.0</maven.compile.plugin.version>
+
+      <spring.boot.version>2.3.2.RELEASE</spring.boot.version>
+      <docker-build.plugin.version>1.4.13</docker-build.plugin.version>
+      <javafamily.utils.version>2.3.2-beta.4</javafamily.utils.version>
+      <urule.version>2.1.7</urule.version>
+
+      <parent.version>1.0-SNAPSHOT</parent.version>
+      <module.version>1.0.0-SNAPSSHOT</module.version>
+      <geoviswtx.utils.version>0.0.1-SNAPSHOT</geoviswtx.utils.version>
    </properties>
 
    <dependencies>
       <dependency>
-         <groupId>org.apache.hadoop</groupId>
-         <artifactId>hadoop-client</artifactId>
-         <version>3.3.6</version>
-      </dependency>
-
-      <dependency>
          <groupId>org.junit.jupiter</groupId>
          <artifactId>junit-jupiter-api</artifactId>
          <version>5.9.3</version>
-      </dependency>
-
-<!--      <dependency>-->
-<!--         <groupId>org.slf4j</groupId>-->
-<!--         <artifactId>slf4j-log4j12</artifactId>-->
-<!--         <version>1.7.30</version>-->
-<!--      </dependency>-->
-
-      <dependency>
-         <groupId>edu.ucar</groupId>
-         <artifactId>netcdfAll</artifactId>
-         <version>5.1.0</version>
       </dependency>
 
       <dependency>
@@ -41,23 +44,41 @@
          <artifactId>lombok</artifactId>
          <version>1.18.28</version>
       </dependency>
+
       <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-         <version>4.13.1</version>
+         <groupId>org.apache.hive</groupId>
+         <artifactId>hive-jdbc</artifactId>
+         <version>3.1.2</version>
       </dependency>
    </dependencies>
 
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <groupId>com.geovis</groupId>
+            <artifactId>geovis-archetype-parent</artifactId>
+            <version>${parent.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+
+         <dependency>
+            <groupId>com.geoviswtx</groupId>
+            <artifactId>geoviswtx-common</artifactId>
+            <version>${geoviswtx.utils.version}</version>
+         </dependency>
+
+         <dependency>
+            <groupId>club.javafamily</groupId>
+            <artifactId>javafamily-utils-expression</artifactId>
+            <version>${javafamily.utils.version}</version>
+         </dependency>
+
+      </dependencies>
+   </dependencyManagement>
+
    <build>
       <plugins>
-<!--         <plugin>-->
-<!--            <groupId>org.apache.maven.plugins</groupId>-->
-<!--            <artifactId>maven-compiler-plugin</artifactId>-->
-<!--            <configuration>-->
-<!--               <source>8</source>-->
-<!--               <target>8</target>-->
-<!--            </configuration>-->
-<!--         </plugin>-->
 
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>

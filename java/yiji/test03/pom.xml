@@ -15,6 +15,8 @@
 
   <properties>
     <module.version>1.0-SNAPSHOT</module.version>
+    <httpclient.version>4.5.13</httpclient.version>
+    <httpcore.version>4.4.14</httpcore.version>
   </properties>
 
   <modules>
@@ -24,12 +26,22 @@
     <module>test03-main-api</module>
     <module>test03-xxl-job</module>
 
-<!--    <module>test03-auth-server</module>-->
-    <module>test03-auth-server</module>
   </modules>
 
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>4.5.13</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpcore</artifactId>
+        <version>4.4.14</version>
+      </dependency>
+
       <dependency>
         <groupId>org.example</groupId>
         <artifactId>test03-base-common</artifactId>

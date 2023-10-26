@@ -1,0 +1,8 @@
+spring:
+   datasource:
+      url: jdbc:hive2://10.1.109.140:10000/default
+      driver-class-name: org.apache.hive.jdbc.HiveDriver
+
+   jpa:
+      properties:
+         hibernate.dialect: org.hibernate.dialect.HiveDialect

@@ -7,9 +7,6 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-import java.util.Date;
-import java.util.List;
-
 public class NcProcessDriver {
 
     public static void main(String[] args) throws Exception {
@@ -33,8 +30,8 @@ public class NcProcessDriver {
         job.setOutputValueClass(ForecastData.class);
 
         // 6. 设置输入路径和输出路径
-        FileInputFormat.setInputPaths(job, "C:\\Workspace\\shared\\java\\v5\\sb-hadoop01\\dat\\input");
-        FileOutputFormat.setOutputPath(job, new Path("C:\\Workspace\\shared\\java\\v5\\sb-hadoop01\\target\\nc"));
+        FileInputFormat.setInputPaths(job, "/Users/dreamli/Workspace/shared/java/v5/sb-hadoop01/dat/input");
+        FileOutputFormat.setOutputPath(job, new Path("/Users/dreamli/Workspace/shared/java/v5/sb-hadoop01/target/nc"));
 
         // 7. 提交 Job
         boolean result = job.waitForCompletion(true);
