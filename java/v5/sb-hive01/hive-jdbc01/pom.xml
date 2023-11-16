@@ -11,4 +11,14 @@
 
    <artifactId>hive-jdbc01</artifactId>
 
+   <dependencies>
+      <dependency>
+         <groupId>edu.ucar</groupId>
+         <artifactId>netcdfAll</artifactId>
+         <version>${netcdf.version}</version>
+         <scope>test</scope>
+      </dependency>
+
+   </dependencies>
+
 </project>

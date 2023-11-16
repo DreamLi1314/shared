@@ -30,6 +30,7 @@
       <parent.version>1.0-SNAPSHOT</parent.version>
       <module.version>1.0.0-SNAPSSHOT</module.version>
       <geoviswtx.utils.version>0.0.1-SNAPSHOT</geoviswtx.utils.version>
+      <netcdf.version>5.1.0</netcdf.version>
    </properties>
 
    <dependencies>

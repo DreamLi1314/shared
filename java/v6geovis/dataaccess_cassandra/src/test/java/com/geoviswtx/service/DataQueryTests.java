@@ -68,8 +68,8 @@ public class DataQueryTests {
         System.out.println(dataset.getId());
     }
 
-    @Rollback(value = false)
-//    @Transactional
+    @Rollback(value = true)
+    @Transactional
     @ParameterizedTest
     @ValueSource(longs = { 1 })
     void recordData(long dsId) throws Exception {
@@ -153,6 +153,95 @@ public class DataQueryTests {
                 gridDatas = dataRepository.saveAll(gridDatas);
 
                 log.info("Saving grid data size：{}", gridDatas.size());
+            }
+
+            log.info("{} file process completed!", nc.getName());
+        }
+
+        log.info("all file process completed!");
+    }
+
+    @Rollback
+    @Transactional
+    @ParameterizedTest
+    @ValueSource(longs = { 1 })
+    void recordDataReadOnly(long dsId) throws Exception {
+        ZoneId zoneId = TimeZone.getTimeZone("GMT+08:00").toZoneId();
+        DatasetEntity dataset = repository.findById(dsId).orElse(null);
+
+        Assertions.assertNotNull(dataset, "Dataset id is null");
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH");
+//        File file = new File("dat");
+        File file = new File("C:\\Users\\javaf\\Desktop\\GFS");
+
+        Date baseTime = dateFormat.parse("2023-08-27 20");
+        File[] files = file.listFiles();
+        Pattern pattern = Pattern.compile("^gfs.t12z.pgrb2.0p25.f(\\d+)$");
+
+        for (File nc : files) {
+            Matcher matcher = pattern.matcher(nc.getName());
+            if(!matcher.matches()) {
+                log.info("{} not match nc！", nc.getName());
+                continue;
+            }
+
+            int hourOffset = Integer.parseInt(matcher.group(1));
+
+            log.info("Process offset {} nc", hourOffset);
+
+            NetcdfFile netcdfFile = NetcdfFile.openInMemory(nc.getAbsolutePath());
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(baseTime);
+            calendar.add(Calendar.HOUR_OF_DAY, hourOffset);
+
+            GridMetaEntity gridMetaEntity = GridMetaEntity.builder()
+                    .dsId(dataset.getId())
+                    .elem("tem")
+                    .z(0D)
+                    .baseTime(baseTime)
+                    .forecastTime(calendar.getTime())
+                    .build();
+
+            Integer chuckNumber = dataset.getChuckNumber();
+
+            Variable tem = netcdfFile.findVariable("Temperature_surface");
+
+            if(DataType.FLOAT == tem.getDataType()) {
+                float[] array = (float[]) tem.read().copyTo1DJavaArray();
+                netcdfFile.close();
+
+                boolean addOne = array.length % chuckNumber != 0;
+                int checkRowCount = array.length / chuckNumber + (addOne ? 1 : 0);
+
+                List<GridDataEntity> gridDatas = new ArrayList<>();
+
+                for (int i = 0; i < checkRowCount; i++) {
+                    int size = chuckNumber;
+
+                    if((i == (checkRowCount - 1)) && addOne) {
+                        size = array.length % chuckNumber;
+                    }
+
+                    List<Double> ds = new ArrayList<>(size);
+
+                    for (int j = 0; j < size; j++) {
+                        ds.add((double) array[i * chuckNumber + j] - 273.15);
+                    }
+
+                    GridDataEntity gridData = GridDataEntity.builder()
+                            .gridDataKey(GridDataKey.builder()
+                                    .metaId(gridMetaEntity.getId())
+                                    .chunkId(i)
+                                    .build())
+                            .ds(ds)
+                            .build();
+
+                    gridDatas.add(gridData);
+                }
+
+                log.info("Grid data size：{}", gridDatas.size());
             }
 
             log.info("{} file process completed!", nc.getName());
