@@ -1,20 +1,15 @@
 package com.geoviswtx.hive;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ucar.nc2.NetcdfFile;
 import ucar.nc2.Variable;
 
-import javax.sql.rowset.serial.SerialArray;
 import java.io.File;
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.time.ZoneId;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,7 +17,7 @@ import java.util.regex.Pattern;
 public class InsertTests {
 
     @Test
-    void insertGfs() {
+    public void insertGfs() {
         // JDBC连接URL，需要根据你的Hive配置进行修改
         String jdbcURL = "jdbc:hive2://10.1.109.140:10000/db_etl";
 
@@ -42,7 +37,7 @@ public class InsertTests {
             Connection connection = DriverManager.getConnection(jdbcURL, user, password);
 
             // 创建Statement
-            String sql = "insert into t_grid values(?, ?, ?, ?, ?, ?)";
+            String sql = "insert into t_grid(id,dataset_id,elem,base_time,forecast_time) values(?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
 
             File file = new File("C:\\Users\\javaf\\Desktop\\GFS");
@@ -78,7 +73,7 @@ public class InsertTests {
                 statement.setString(3, "tem");
                 statement.setTimestamp(4, new Timestamp(baseTime.getTime()));
                 statement.setTimestamp(5, new Timestamp(baseTime.getTime()));
-                statement.setString(6, "ARRAY(ARRAY(1, 2, 3), ARRAY(4, 5, 6))");
+//                statement.setString(6, "1.1,2.2,3.3");
 
                 // 执行 Hive SQL
                 int result = statement.executeUpdate();
