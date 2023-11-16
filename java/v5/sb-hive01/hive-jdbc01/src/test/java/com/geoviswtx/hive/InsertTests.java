@@ -78,8 +78,7 @@ public class InsertTests {
                 statement.setString(3, "tem");
                 statement.setTimestamp(4, new Timestamp(baseTime.getTime()));
                 statement.setTimestamp(5, new Timestamp(baseTime.getTime()));
-                Array array = connection.createArrayOf("FLOAT", data[0]);
-                statement.setArray(6, array);
+                statement.setString(6, "ARRAY(ARRAY(1, 2, 3), ARRAY(4, 5, 6))");
 
                 // 执行 Hive SQL
                 int result = statement.executeUpdate();
