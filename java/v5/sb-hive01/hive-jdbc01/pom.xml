@@ -13,6 +13,12 @@
 
    <dependencies>
       <dependency>
+         <groupId>org.apache.hadoop</groupId>
+         <artifactId>hadoop-client</artifactId>
+         <version>3.3.6</version>
+      </dependency>
+
+      <dependency>
          <groupId>edu.ucar</groupId>
          <artifactId>netcdfAll</artifactId>
          <version>${netcdf.version}</version>

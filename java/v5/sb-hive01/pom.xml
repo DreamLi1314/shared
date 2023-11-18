@@ -51,6 +51,12 @@
          <artifactId>hive-jdbc</artifactId>
          <version>3.1.2</version>
       </dependency>
+
+      <dependency>
+         <groupId>com.geoviswtx</groupId>
+         <artifactId>geoviswtx-common</artifactId>
+         <version>${geoviswtx.utils.version}</version>
+      </dependency>
    </dependencies>
 
    <dependencyManagement>

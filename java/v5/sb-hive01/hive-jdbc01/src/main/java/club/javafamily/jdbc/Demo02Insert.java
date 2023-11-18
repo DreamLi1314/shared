@@ -81,7 +81,7 @@ public class Demo02Insert {
 //            statement.setString(6, "1.1, 2.2, 3.3");
 
             // 执行 Hive SQL
-            int result = statement.executeUpdate();
+            int result = statement.executeUpdate(sql);
 
             System.out.println("data: " + result);
          }

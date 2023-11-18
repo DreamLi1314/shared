@@ -37,7 +37,7 @@ public class InsertTests {
             Connection connection = DriverManager.getConnection(jdbcURL, user, password);
 
             // 创建Statement
-            String sql = "insert into t_grid(id,dataset_id,elem,base_time,forecast_time) values(?, ?, ?, ?, ?)";
+            String sql = "insert into t_grid2(id,dataset_id,elem,base_time,forecast_time) values(?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
 
             File file = new File("C:\\Users\\javaf\\Desktop\\GFS");
