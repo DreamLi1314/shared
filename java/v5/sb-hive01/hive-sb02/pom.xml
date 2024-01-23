@@ -60,12 +60,6 @@
       </dependency>
 
       <dependency>
-         <groupId>org.apache.hive</groupId>
-         <artifactId>hive-jdbc</artifactId>
-         <version>3.1.2</version>
-      </dependency>
-
-      <dependency>
          <groupId>com.aspose</groupId>
          <artifactId>aspose-words</artifactId>
          <version>15.8.0</version>
