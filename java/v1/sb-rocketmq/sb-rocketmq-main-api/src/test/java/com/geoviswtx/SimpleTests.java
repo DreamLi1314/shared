@@ -30,10 +30,10 @@ public class SimpleTests {
         // 设置请求头，如果需要的话
         httpPost.setHeader("Content-Type", "application/json");
         httpPost.setHeader("x-tme-appid", "1047");
-        httpPost.setHeader("x-tme-timestamp", "1706005375");
+        httpPost.setHeader("x-tme-timestamp", "1706933951");
         httpPost.setHeader("x-tme-signature-method", "HMAC-SHA256");
         httpPost.setHeader("x-tme-signature-version", "1.0");
-        httpPost.setHeader("x-tme-signature", "5724deead1cd4c8ea501ff6930a9f473560a96542f2e4ac51aa08b64150094e6");
+        httpPost.setHeader("x-tme-signature", "0ffa9c60a850ece48c65bc8840a2e87968f75c7dd4db35ea2c20c991d144f34b");
 
         // 设置请求体，这里使用JSON格式的请求体
         String requestBody = "{\n" +

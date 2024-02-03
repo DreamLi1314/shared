@@ -2,6 +2,7 @@ package com.geoviswtx.consumer;
 
 import com.alibaba.fastjson.JSONObject;
 import com.geoviswtx.dto.DefaultMessage;
+import com.geoviswtx.dto.TmeCallbackDto;
 import com.geoviswtx.producer.MQProducerService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
@@ -17,10 +18,10 @@ public class MQConsumerService {
     // selectorExpression的意思指的就是tag，默认为“*”，不设置的话会监听所有消息
     @Service
     @RocketMQMessageListener(topic = MQProducerService.topic, consumerGroup = "Con_Group_One")
-    public static class ConsumerSend implements RocketMQListener<DefaultMessage> {
+    public static class ConsumerSend implements RocketMQListener<TmeCallbackDto> {
         @Override
-        public void onMessage(DefaultMessage user) {
-            log.info("监听到消息：user={}", JSONObject.toJSONString(user));
+        public void onMessage(TmeCallbackDto user) {
+            log.info("监听到消息：{}", JSONObject.toJSONString(user));
         }
     }
 

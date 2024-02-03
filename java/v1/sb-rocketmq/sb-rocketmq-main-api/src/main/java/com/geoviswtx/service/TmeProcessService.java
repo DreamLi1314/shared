@@ -1,18 +1,15 @@
 package com.geoviswtx.service;
 
-import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.geoviswtx.common.Tool;
+import com.geoviswtx.dto.TmeCallbackDto;
 import com.geoviswtx.properties.TmeConfProperties;
 import com.geoviswtx.utils.HttpPostUtils;
 import com.geoviswtx.utils.SignatureUtils;
 import com.geoviswtx.vo.*;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -156,5 +153,74 @@ public class TmeProcessService {
         }
 
         return header;
+    }
+
+    /**
+     * 测试点赞
+     * @param gameVo vo
+     * @return dto
+     */
+    public TmeTestResponse testLike(TmeGameVo gameVo) throws Exception {
+        String url = Tool.appendPath(confProperties.getBasePath(), "/common/api/msg_open/mock/like");
+
+        TmeConnectItem connectResponse = connectAndGetToken(gameVo);
+        Map<String, String> header = getHeaderParamsMap(connectResponse.getToken());
+
+        String signature = SignatureUtils.generateSignature(header, confProperties.getSecret());
+        header.put(SIGNATURE_HEADER, signature);
+
+//        TmeCodeItem tmeCodeItem = queryCode(gameVo);
+//        gameVo.setCode(tmeCodeItem.getCode());
+        TmeTestResponse response = HttpPostUtils.post(url, header, gameVo, TmeTestResponse.class);
+
+        log.info("Get response: {}", response);
+
+        return response;
+    }
+
+    /**
+     * 测试弹幕消息
+     * @param gameVo vo
+     * @return dto
+     */
+    public TmeTestResponse testComment(TestTmeGameVo gameVo) throws Exception {
+        String url = Tool.appendPath(confProperties.getBasePath(), "/common/api/msg_open/mock/comment");
+
+        TmeConnectItem connectResponse = connectAndGetToken(gameVo);
+        Map<String, String> header = getHeaderParamsMap(connectResponse.getToken());
+
+        String signature = SignatureUtils.generateSignature(header, confProperties.getSecret());
+        header.put(SIGNATURE_HEADER, signature);
+
+//        TmeCodeItem tmeCodeItem = queryCode(gameVo);
+//        gameVo.setCode(tmeCodeItem.getCode());
+        TmeTestResponse response = HttpPostUtils.post(url, header, gameVo, TmeTestResponse.class);
+
+        log.info("Get response: {}", response);
+
+        return response;
+    }
+
+    /**
+     * 测试礼物消息
+     * @param gameVo vo
+     * @return dto
+     */
+    public TmeTestResponse testGift(TestTmeGameVo gameVo) throws Exception {
+        String url = Tool.appendPath(confProperties.getBasePath(), "/common/api/msg_open/mock/send_gift");
+
+        TmeConnectItem connectResponse = connectAndGetToken(gameVo);
+        Map<String, String> header = getHeaderParamsMap(connectResponse.getToken());
+
+        String signature = SignatureUtils.generateSignature(header, confProperties.getSecret());
+        header.put(SIGNATURE_HEADER, signature);
+
+//        TmeCodeItem tmeCodeItem = queryCode(gameVo);
+//        gameVo.setCode(tmeCodeItem.getCode());
+        TmeTestResponse response = HttpPostUtils.post(url, header, gameVo, TmeTestResponse.class);
+
+        log.info("Get response: {}", response);
+
+        return response;
     }
 }

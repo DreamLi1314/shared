@@ -105,15 +105,15 @@ public class GlobalExceptionHandler {
            + "\n请求时间: " + DateUtil.formatNormal(new Date())
            + "\n错误信息: **" + e.getMessage() + "**";
 
-        final QyWechatMarkdownNotifyRequest notifyRequest
-           = QyWechatMarkdownNotifyRequest.of(content);
+//        final QyWechatMarkdownNotifyRequest notifyRequest
+//           = QyWechatMarkdownNotifyRequest.of(content);
 
-        final String response = notifyHandler.notify(notifyRequest);
-
-        LOGGER.info("报错企微通知响应: " + response);
+//        final String response = notifyHandler.notify(notifyRequest);
+//
+//        LOGGER.info("报错企微通知响应: " + response);
 
         return new ResultMsg<>(ResultCode.SYSTEM_ERROR.getCode(),
-           e.getMessage(), null);
+                e.getMessage(), null);
     }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(

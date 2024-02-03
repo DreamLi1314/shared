@@ -38,7 +38,7 @@ public class UtilsTests {
         header.put("x-tme-timestamp", String.valueOf(unixTimestamp));
         header.put("x-tme-signature-method", "HMAC-SHA256");
         header.put("x-tme-signature-version", "1.0");
-        header.put("x-tme-token", "mlive_JSR5czRTJSp6JSR5czRTJSdPJMbTJMBPc-b");
+        header.put("x-tme-token", "mlive_JSR5czRTJSp6JSR5czRTJSdPJMb7JzJqcMd");
 
         String appSecret = "T6pFfwU47CZk";
 
