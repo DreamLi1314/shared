@@ -39,7 +39,7 @@ public class TmeProcessService {
     }
 
     public TmePingResponse ping(TmeGameVo gameVo) throws Exception {
-        String url = Tool.appendPath(confProperties.getBasePath(), "/common/api/msg_open/access/ping");
+        String url = Tool.appendPath(confProperties.getBasePath(), "/api/msg_open/access/ping");
 
         TmeConnectItem connectResponse = connectAndGetToken(gameVo);
         Map<String, String> header = getHeaderParamsMap(connectResponse.getToken());
@@ -57,7 +57,7 @@ public class TmeProcessService {
     }
 
     public TmePingResponse disConnect(TmeGameVo gameVo) throws Exception {
-        String url = Tool.appendPath(confProperties.getBasePath(), "/common/api/msg_open/access/disconnect");
+        String url = Tool.appendPath(confProperties.getBasePath(), "/api/msg_open/access/disconnect");
 
         TmeCodeItem tmeCodeItem = queryCode(gameVo);
         gameVo.setCode(tmeCodeItem.getCode());
@@ -88,7 +88,7 @@ public class TmeProcessService {
             return tmeConnectItem;
         }
 
-        String url = Tool.appendPath(confProperties.getBasePath(), "/common/api/msg_open/access/connect");
+        String url = Tool.appendPath(confProperties.getBasePath(), "/api/msg_open/access/connect");
 
         TmeCodeItem tmeCodeItem = queryCode(gameVo);
         gameVo.setCode(tmeCodeItem.getCode());
@@ -118,7 +118,7 @@ public class TmeProcessService {
             return tmeCodeItem;
         }
 
-        String url = Tool.appendPath(confProperties.getBasePath(), "/common/api/msg_open/mock/get_code");
+        String url = Tool.appendPath(confProperties.getBasePath(), "/api/msg_open/mock/get_code");
 
         Map<String, String> header = getHeaderParamsMap(null);
 
@@ -161,7 +161,7 @@ public class TmeProcessService {
      * @return dto
      */
     public TmeTestResponse testLike(TmeGameVo gameVo) throws Exception {
-        String url = Tool.appendPath(confProperties.getBasePath(), "/common/api/msg_open/mock/like");
+        String url = Tool.appendPath(confProperties.getBasePath(), "/api/msg_open/mock/like");
 
         TmeConnectItem connectResponse = connectAndGetToken(gameVo);
         Map<String, String> header = getHeaderParamsMap(connectResponse.getToken());
@@ -184,7 +184,7 @@ public class TmeProcessService {
      * @return dto
      */
     public TmeTestResponse testComment(TestTmeGameVo gameVo) throws Exception {
-        String url = Tool.appendPath(confProperties.getBasePath(), "/common/api/msg_open/mock/comment");
+        String url = Tool.appendPath(confProperties.getBasePath(), "/api/msg_open/mock/comment");
 
         TmeConnectItem connectResponse = connectAndGetToken(gameVo);
         Map<String, String> header = getHeaderParamsMap(connectResponse.getToken());
@@ -207,7 +207,7 @@ public class TmeProcessService {
      * @return dto
      */
     public TmeTestResponse testGift(TestTmeGameVo gameVo) throws Exception {
-        String url = Tool.appendPath(confProperties.getBasePath(), "/common/api/msg_open/mock/send_gift");
+        String url = Tool.appendPath(confProperties.getBasePath(), "/api/msg_open/mock/send_gift");
 
         TmeConnectItem connectResponse = connectAndGetToken(gameVo);
         Map<String, String> header = getHeaderParamsMap(connectResponse.getToken());
