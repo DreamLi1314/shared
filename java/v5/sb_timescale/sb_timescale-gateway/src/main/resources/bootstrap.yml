@@ -1,0 +1,33 @@
+
+spring:
+   profiles:
+      active: prod
+
+   cloud:
+      nacos:
+         discovery:
+            ip: null
+            port: ${server.port}
+
+      inetutils:
+         ignored-interfaces:
+            - docker0
+            - veth.*
+            - lo
+            - virbr0
+
+      gateway:
+         httpclient:
+            connect-timeout: 10000
+            response-timeout: 60s
+
+         discovery:
+            locator:
+               enabled: true
+               lower-case-service-id: true
+
+         routes:
+            - id: sb_timescale-main-api
+              uri: lb://sb_timescale-main-api
+              predicates:
+                 - Path=/**

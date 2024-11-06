@@ -1,0 +1,56 @@
+image: harbor.geovis.cc/library/maven:3.8-jdk8
+
+variables:
+   MAVEN_OPTS: >-
+      -Dhttps.protocols=TLSv1.2
+      -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository
+      -Dorg.slf4j.simpleLogger.showDateTime=true
+      -Djava.awt.headless=true
+   MAVEN_CLI_OPTS: >-
+      --batch-mode
+      --errors
+      --fail-at-end
+      --show-version
+      --no-transfer-progress
+      -DinstallAtEnd=true
+      -DdeployAtEnd=true
+
+stages:
+   - build
+   - notify
+
+cache:
+   paths:
+      - .m2/repository
+
+build:
+   stage: build
+   only:
+      - main
+      - dev
+      - tags
+   script:
+      - if [ ! -f ci_settings.xml ]; then
+         echo "CI settings missing\!";
+         fi
+      - 'mvn $MAVEN_CLI_OPTS clean verify --settings ci_settings.xml'
+
+notify_success:
+   stage: notify
+   only:
+      - main
+      - dev
+      - tags
+   when: on_success
+   script:
+      - sh pushEvent.sh 成功
+
+notify_failed:
+   stage: notify
+   only:
+      - main
+      - dev
+      - tags
+   when: on_failure
+   script:
+      - sh pushEvent.sh 失败

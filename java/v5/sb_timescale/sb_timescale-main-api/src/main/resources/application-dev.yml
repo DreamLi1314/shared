@@ -1,0 +1,3 @@
+spring:
+   application:
+      name: sb_timescale-main-api-dev

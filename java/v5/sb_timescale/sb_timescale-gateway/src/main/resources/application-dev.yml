@@ -1,0 +1,3 @@
+spring:
+   application:
+      name: sb_timescale-gateway-dev

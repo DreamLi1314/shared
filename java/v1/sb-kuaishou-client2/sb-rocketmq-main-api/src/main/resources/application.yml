@@ -1,0 +1,114 @@
+
+server:
+  port: 19091
+  max-http-header-size: 1024000
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/plain,text/css,application/x-javascript
+
+spring:
+  profiles:
+    active: prod
+
+  application:
+    name: sb-rocketmq-main-api
+
+  jackson:
+    default-property-inclusion: ALWAYS
+    time-zone: GMT+8
+    date-format: yyyy/MM/dd HH:mm:ss
+
+  jpa:
+    show-sql: on
+    generate-ddl: on
+    open-in-view: on
+    hibernate:
+      ddl-auto: update
+      primary-dialect: org.hibernate.dialect.MySQL8Dialect
+    primary:
+      database: mysql
+
+  datasource:
+    primary:
+      jdbc-url: jdbc:mysql://${mysql.addr}/${mysql.db}?autoReconnect=true&useUnicode=true&characterEncoding=utf8
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: ${mysql.username}
+      password: ${mysql.pwd}
+      initial-size: 1
+      max-active: 10
+      min-idle: 3
+      #验证连接的有效性
+      test-while-idle: true
+      #获取连接时候验证，会影响性能
+      test-on-borrow: true
+      validation-query: SELECT 1
+      #空闲连接回收的时间间隔，与test-while-idle一起使用，设置5分钟
+      time-between-eviction-runs-millis: 60000
+      #连接池空闲连接的有效时间 ，设置 10 分钟
+      min-evictable-idle-time-millis: 60000
+      maximum-pool-size: 200 # default is 10
+      max-lifetime: 60000 # default is 30 minus
+    initialization-mode: ${db.init-mode}
+    sql-script-encoding: utf-8
+    separator: ;
+    continue-on-error: true
+
+  # Redis
+#  redis:
+#    #    host: 192.168.100.17
+#    host: ${redis.host}
+#    port: ${redis.port}
+#    password: ${redis.pwd}
+#    database: 3
+#    timeout: 20s # 连接超时时间（毫秒）
+##    client-name: whp
+#    lettuce:
+#      pool:
+#        max-active: 50 # 连接池最大连接数（使用负值表示没有限制）
+#        max-wait: -1 # 连接池最大阻塞等待时间（使用负值表示没有限制）
+#        max-idle: 10 # 连接池中的最大空闲连接
+#        min-idle: 0 # 连接池中的最小空闲连接
+#        time-between-eviction-runs: 1000 # 配置空闲连接回收间隔时间,min-idle才会生效,否则不生效
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "*"
+
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: t_
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.geoviswtx.entity
+  configuration:
+    map-underscore-to-camel-case: on
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+javafamily:
+  swagger:
+    title: Main Apis
+    version: 1.0
+    contact:
+      name: Jack Li
+      email: lis@geovis.com.cn
+
+rocketmq:
+  name-server: ${rocketmq.addr:10.1.109.141:9876} # 访问地址
+  producer:
+    group: KSH_Group # 必须指定group
+    send-message-timeout: 3000 # 消息发送超时时长，默认3s
+    retry-times-when-send-failed: 3 # 同步发送消息失败重试次数，默认2
+    retry-times-when-send-async-failed: 3 # 异步发送消息失败重试次数，默认2
+
+#logging:
+#  pattern:
+#    console: "{\"profile\": \"${spring.profiles.active}\", \"log_level\":\"%clr(${LOG_LEVEL_PATTERN})\", \"msg\": \"%replace(%m){'\"', \"'\"}\", \"date_time\":\"%clr(%d{${LOG_DATEFORMAT_PATTERN:yyyy-MM-dd HH:mm:ss.SSSZ}}){faint}\",\"logger\":\"%clr(%-40.40logger{39}){cyan}\",\"thread\":\"%clr([%15.15t]){faint}\",\"ServiceName\": \"${spring.application.name}\",\"requestId\":\"%X{requestId}\",\"IP\":\"%X{traceIp}\",\"PID\":\"${PID:- }\",\"Token\":\"%X{Authorization}\",\"exp\":\"${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}\"}%n"
+#    file: "{\"profile\": \"${spring.profiles.active}\", \"log_level\":\"%clr(${LOG_LEVEL_PATTERN})\",\"msg\":\"%replace(%m){'\"', \"'\"}\",\"date_time\":\"%clr(%d{${LOG_DATEFORMAT_PATTERN:yyyy-MM-dd HH:mm:ss.SSSZ}}){faint}\",\"logger\":\"%clr(%-40.40logger{39}){cyan}\",\"thread\":\"%clr([%15.15t]){faint}\",\"ServiceName\": \"${spring.application.name}\",\"requestId\":\"%X{requestId}\",\"IP\":\"%X{traceIp}\",\"PID\":\"${PID:- }\",\"Token\":\"%X{Authorization}\",\"exp\":\"${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}\"}%n"
+#  file:
+#    name: ./logs/app-${spring.application.name}-${spring.profiles.active}.log

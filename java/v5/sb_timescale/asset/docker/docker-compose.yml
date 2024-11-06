@@ -1,0 +1,72 @@
+
+version: '3.7'
+services:
+   sb_timescale-main-api:
+      image: harbor.geovis.cc/sb_timescale/sb_timescale-main-api:1.0.0-SNAPSHOT
+      container_name: sb_timescale-main-api
+      restart: always
+      ports:
+         - "9090:9090"
+      volumes:
+         - ${LOGS_DIR}/sb_timescale-main-api/:/logs/
+      environment:
+         PG_INIT_MODE: never
+         ACTIVE_PROFILE: prod
+         DB_ADDR: 192.168.233.128:5236
+         DB_DB: db_gzny
+         DB_USER: postgres
+         DB_PWD: geoVis0605!
+         REDIS_HOST: 192.168.233.128
+         REDIS_PORT: 6379
+         REDIS_PWD: geoVis0605!
+         SWAGGER_API_HOST: wtxm.geovisearth.com/gridApi
+         MINIO_ENDPOINT: http://192.168.233.128:9000/
+         MINIO_USER: admin
+         MINIO_PWD: geoVis0605!
+
+   sb_timescale-gateway:
+      image: harbor.geovis.cc/sb_timescale/sb_timescale-gateway:1.0.0-SNAPSHOT
+      container_name: sb_timescale-gateway
+      restart: always
+      ports:
+         - "8080:8080"
+      volumes:
+         - ${LOGS_DIR}/sb_timescale-gateway/:/logs/
+      environment:
+         PG_INIT_MODE: never
+         ACTIVE_PROFILE: prod
+         DB_ADDR: 192.168.233.128:5236
+         DB_DB: db_gzny
+         DB_USER: postgres
+         DB_PWD: geoVis0605!
+         REDIS_HOST: 192.168.233.128
+         REDIS_PORT: 6379
+         REDIS_PWD: geoVis0605!
+         SWAGGER_API_HOST: wtxm.geovisearth.com/gridApi
+         MINIO_ENDPOINT: http://192.168.233.128:9000/
+         MINIO_USER: admin
+         MINIO_PWD: geoVis0605!
+
+   sb_timescale-xxl-executor:
+      image: harbor.geovis.cc/sb_timescale/sb_timescale-xxl-executor:1.0.0-SNAPSHOT
+      container_name: sb_timescale-xxl-executor
+      restart: always
+      ports:
+         - "9019:9019"
+         - "9913:9913"
+      volumes:
+         - ${LOGS_DIR}/sb_timescale-gateway/:/logs/
+      environment:
+         PG_INIT_MODE: never
+         ACTIVE_PROFILE: prod
+         DB_ADDR: 192.168.233.128:5236
+         DB_DB: db_gzny
+         DB_USER: postgres
+         DB_PWD: geoVis0605!
+         REDIS_HOST: 192.168.233.128
+         REDIS_PORT: 6379
+         REDIS_PWD: geoVis0605!
+         SWAGGER_API_HOST: wtxm.geovisearth.com/gridApi
+         MINIO_ENDPOINT: http://192.168.233.128:9000/
+         MINIO_USER: admin
+         MINIO_PWD: geoVis0605!

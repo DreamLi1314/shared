@@ -1,0 +1,6 @@
+spring:
+   application:
+      name: sb-rocketmq-main-api-dev
+
+   redis:
+      database: 3

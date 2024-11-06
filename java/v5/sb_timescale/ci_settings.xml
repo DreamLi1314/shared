@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd">
+   <servers>
+      <server>
+         <id>nexus-geovis</id>
+         <username>admin</username>
+         <password>${REPO_PASSWD}</password>
+      </server>
+      <server>
+         <id>nexus-geovis-releases</id>
+         <username>admin</username>
+         <password>${REPO_PASSWD}</password>
+      </server>
+      <server>
+         <id>nexus-geovis-snapshots</id>
+         <username>admin</username>
+         <password>${REPO_PASSWD}</password>
+      </server>
+   </servers>
+
+   <profiles>
+      <profile>
+         <id>nexus-geovis</id>
+         <repositories>
+            <repository>
+               <id>nexus</id>
+               <name>nexus public repository</name>
+               <url>https://repo.geovisearth.com/repository/maven-public/</url>
+               <releases>
+                  <enabled>true</enabled>
+                  <updatePolicy>never</updatePolicy>
+               </releases>
+               <snapshots>
+                  <enabled>false</enabled>
+                  <updatePolicy>never</updatePolicy>
+               </snapshots>
+               <layout>default</layout>
+            </repository>
+
+            <repository>
+               <id>releases</id>
+               <name>nexus releases repository</name>
+               <url>https://repo.geovisearth.com/repository/maven-releases/</url>
+               <layout>default</layout>
+               <releases>
+                  <enabled>true</enabled>
+                  <updatePolicy>never</updatePolicy>
+               </releases>
+               <snapshots>
+                  <enabled>false</enabled>
+                  <updatePolicy>never</updatePolicy>
+               </snapshots>
+            </repository>
+
+            <repository>
+               <id>snapshots</id>
+               <name>nexus snapshots repository</name>
+               <url>https://repo.geovisearth.com/repository/maven-snapshots/</url>
+               <layout>default</layout>
+               <releases>
+                  <enabled>false</enabled>
+                  <updatePolicy>never</updatePolicy>
+               </releases>
+               <snapshots>
+                  <enabled>true</enabled>
+                  <updatePolicy>always</updatePolicy>
+               </snapshots>
+            </repository>
+
+            <repository>
+               <id>oss.sonatype.org</id>
+               <name>sonatype repository</name>
+               <url>https://oss.sonatype.org/content/groups/public/</url>
+               <layout>default</layout>
+               <releases>
+                  <enabled>true</enabled>
+               </releases>
+               <snapshots>
+                  <enabled>false</enabled>
+               </snapshots>
+            </repository>
+         </repositories>
+
+         <pluginRepositories>
+            <pluginRepository>
+               <id>nexus</id>
+               <name>nexus public repository</name>
+               <url>https://repo.geovisearth.com/repository/maven-public/</url>
+               <releases>
+                  <enabled>true</enabled>
+               </releases>
+               <snapshots>
+                  <enabled>false</enabled>
+               </snapshots>
+            </pluginRepository>
+
+            <pluginRepository>
+               <id>repo1.maven.org</id>
+               <name>maven repo1 repository</name>
+               <url>http://repo1.maven.org/maven2</url>
+               <releases>
+                  <enabled>true</enabled>
+               </releases>
+               <snapshots>
+                  <enabled>false</enabled>
+               </snapshots>
+            </pluginRepository>
+
+            <pluginRepository>
+               <id>oss.sonatype.org</id>
+               <name>sonatype repository</name>
+               <url>https://oss.sonatype.org/content/groups/public/</url>
+               <releases>
+                  <enabled>true</enabled>
+               </releases>
+               <snapshots>
+                  <enabled>false</enabled>
+               </snapshots>
+            </pluginRepository>
+         </pluginRepositories>
+      </profile>
+   </profiles>
+
+   <activeProfiles>
+      <activeProfile>nexus-geovis</activeProfile>
+   </activeProfiles>
+</settings>
