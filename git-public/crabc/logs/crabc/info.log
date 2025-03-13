@@ -1,0 +1,18 @@
+11:27:32.360 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.7 on JackLi with PID 55172 (C:\Workspace\git-public\crabc\crabc-boot\crabc-admin\target\classes started by javaf in C:\Workspace\git-public\crabc)
+11:27:32.374 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+11:27:34.202 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+11:27:34.204 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+11:27:34.204 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+11:27:34.381 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+11:27:35.919 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+11:27:35.992 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+11:27:35.994 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 4.301 seconds (JVM running for 5.64)
+11:27:44.467 [http-nio-9377-exec-4] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzMwNzg1ODYzMzU0LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.cLD-4vtwz288K3E-DsKSqAXviJHUWk3l4QjIznSnu6BvmTRswiAsBC0DtkGv6f3_3t75eB8X4PTkYZ0yN2rAiQ","refresh_token":"300cce3783894b8d8ecbbdb603a8656a","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+11:27:44.467 [http-nio-9377-exec-3] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzMwNzg1ODYzMzU0LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.cLD-4vtwz288K3E-DsKSqAXviJHUWk3l4QjIznSnu6BvmTRswiAsBC0DtkGv6f3_3t75eB8X4PTkYZ0yN2rAiQ","refresh_token":"300cce3783894b8d8ecbbdb603a8656a","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+11:27:44.467 [http-nio-9377-exec-6] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzMwNzg1ODYzMzU0LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.cLD-4vtwz288K3E-DsKSqAXviJHUWk3l4QjIznSnu6BvmTRswiAsBC0DtkGv6f3_3t75eB8X4PTkYZ0yN2rAiQ","refresh_token":"300cce3783894b8d8ecbbdb603a8656a","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+11:27:44.477 [http-nio-9377-exec-8] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+11:27:50.452 [http-nio-9377-exec-3] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+11:27:51.291 [http-nio-9377-exec-3] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.

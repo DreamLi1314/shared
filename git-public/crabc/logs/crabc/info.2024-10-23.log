@@ -1,0 +1,45 @@
+20:24:34.212 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.7 on JackLi with PID 13592 (C:\Workspace\git-public\crabc\crabc-boot\crabc-admin\target\classes started by javaf in C:\Workspace\git-public\crabc)
+20:24:34.215 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+20:24:35.436 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+20:24:35.437 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+20:24:35.437 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+20:24:35.540 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+20:24:36.582 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+20:24:36.615 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 2.877 seconds (JVM running for 4.958)
+20:24:39.309 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+20:24:39.950 [Druid-ConnectionPool-Create-65971622] INFO  c.a.d.p.DruidAbstractDataSource - [setFailContinuous,1900] - {dataSource-1} failContinuous is true
+20:25:42.931 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.7 on JackLi with PID 35892 (C:\Workspace\git-public\crabc\crabc-boot\crabc-admin\target\classes started by javaf in C:\Workspace\git-public\crabc)
+20:25:42.935 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+20:25:44.180 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+20:25:44.181 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+20:25:44.183 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+20:25:44.286 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+20:25:45.195 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+20:25:45.231 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 2.741 seconds (JVM running for 3.542)
+20:25:45.604 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+20:34:31.186 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.7 on JackLi with PID 23128 (C:\Workspace\git-public\crabc\crabc-boot\crabc-admin\target\classes started by javaf in C:\Workspace\git-public\crabc)
+20:34:31.190 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+20:34:32.351 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+20:34:32.352 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+20:34:32.353 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+20:34:32.459 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+20:34:33.427 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+20:34:33.463 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 2.702 seconds (JVM running for 3.573)
+20:34:33.949 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+20:41:34.993 [http-nio-9377-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+20:41:41.921 [http-nio-9377-exec-1] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzI5Njg3MzAxODE1LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.ZNQyAoqhG-u4LHL097EyLT546JQSRzYp8WOv-FCJ_HdLE4pqtRuQhM4zUNJqALfiQtymTlmV-jUoIEw_xg2k0Q","refresh_token":"bc68b9efa0fd42eea9eabc7e24efeb56","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+20:43:10.645 [http-nio-9377-exec-5] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+20:43:12.407 [http-nio-9377-exec-5] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+20:45:23.902 [Druid-ConnectionPool-Create-1423077749] INFO  c.a.d.p.DruidAbstractDataSource - [setFailContinuous,1900] - {dataSource-1} failContinuous is true
+20:46:13.640 [Druid-ConnectionPool-Create-1423077749] INFO  c.a.d.p.DruidAbstractDataSource - [setFailContinuous,1905] - {dataSource-1} failContinuous is false
+20:49:08.335 [Druid-ConnectionPool-Create-1423077749] INFO  c.a.d.p.DruidAbstractDataSource - [setFailContinuous,1900] - {dataSource-1} failContinuous is true
+20:49:58.329 [Druid-ConnectionPool-Create-1423077749] INFO  c.a.d.p.DruidAbstractDataSource - [setFailContinuous,1905] - {dataSource-1} failContinuous is false
+20:52:33.467 [http-nio-9377-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-2 - Starting...
+20:52:34.114 [http-nio-9377-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-2 - Start completed.
+21:43:44.421 [http-nio-9377-exec-8] INFO  c.c.c.a.util.SQLUtil - [analyzeSQL,154] - SQL解析失败：No enum constant com.alibaba.druid.DbType.
+21:43:44.429 [http-nio-9377-exec-8] INFO  c.c.c.a.util.SQLUtil - [analyzeSQL,154] - SQL解析失败：No enum constant com.alibaba.druid.DbType.
+21:59:54.037 [http-nio-9377-exec-1] INFO  c.c.c.a.util.SQLUtil - [analyzeSQL,154] - SQL解析失败：No enum constant com.alibaba.druid.DbType.
+21:59:54.038 [http-nio-9377-exec-1] INFO  c.c.c.a.util.SQLUtil - [analyzeSQL,154] - SQL解析失败：No enum constant com.alibaba.druid.DbType.
+22:23:34.565 [http-nio-9377-exec-7] INFO  c.c.c.a.util.SQLUtil - [analyzeSQL,154] - SQL解析失败：No enum constant com.alibaba.druid.DbType.
+22:23:34.566 [http-nio-9377-exec-7] INFO  c.c.c.a.util.SQLUtil - [analyzeSQL,154] - SQL解析失败：No enum constant com.alibaba.druid.DbType.

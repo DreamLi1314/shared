@@ -1,0 +1,94 @@
+13:45:44.796 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.7 on JackLi with PID 30448 (C:\Workspace\git-public\crabc\crabc-boot\crabc-admin\target\classes started by javaf in C:\Workspace\git-public\crabc)
+13:45:44.801 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+13:45:46.020 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+13:45:46.022 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+13:45:46.022 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+13:45:46.137 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+13:45:47.344 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+13:45:47.388 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 3.048 seconds (JVM running for 3.912)
+13:45:47.505 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+13:46:21.306 [http-nio-9377-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+13:51:03.421 [http-nio-9377-exec-7] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzMwNzg1ODYzMzU0LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.cLD-4vtwz288K3E-DsKSqAXviJHUWk3l4QjIznSnu6BvmTRswiAsBC0DtkGv6f3_3t75eB8X4PTkYZ0yN2rAiQ","refresh_token":"300cce3783894b8d8ecbbdb603a8656a","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+13:51:15.305 [http-nio-9377-exec-10] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+13:51:16.915 [http-nio-9377-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+13:51:21.288 [http-nio-9377-exec-7] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+13:51:25.440 [http-nio-9377-exec-10] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+13:52:37.819 [http-nio-9377-exec-3] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-2 - Starting...
+13:52:38.408 [http-nio-9377-exec-3] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-2 - Start completed.
+13:52:40.749 [http-nio-9377-exec-4] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-3 - Starting...
+13:52:41.315 [http-nio-9377-exec-4] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-3 - Start completed.
+13:52:48.576 [http-nio-9377-exec-6] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-4 - Starting...
+13:52:48.950 [http-nio-9377-exec-6] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-4 - Start completed.
+13:58:21.250 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.7 on JackLi with PID 37088 (C:\Workspace\git-public\crabc\crabc-boot\crabc-admin\target\classes started by javaf in C:\Workspace\git-public\crabc)
+13:58:21.255 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+13:58:22.420 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+13:58:22.423 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+13:58:22.424 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+13:58:22.570 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+13:58:23.544 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+13:58:23.578 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 2.714 seconds (JVM running for 3.54)
+13:58:23.661 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+13:58:49.153 [http-nio-9377-exec-1] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzMwNzg1ODYzMzU0LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.cLD-4vtwz288K3E-DsKSqAXviJHUWk3l4QjIznSnu6BvmTRswiAsBC0DtkGv6f3_3t75eB8X4PTkYZ0yN2rAiQ","refresh_token":"300cce3783894b8d8ecbbdb603a8656a","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+13:58:49.159 [http-nio-9377-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+13:59:04.085 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.7 on JackLi with PID 17760 (C:\Workspace\git-public\crabc\crabc-boot\crabc-admin\target\classes started by javaf in C:\Workspace\git-public\crabc)
+13:59:04.088 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+13:59:05.128 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+13:59:05.129 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+13:59:05.130 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+13:59:05.230 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+13:59:06.116 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+13:59:06.159 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 2.444 seconds (JVM running for 3.23)
+13:59:06.276 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+13:59:47.337 [http-nio-9377-exec-1] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzMwNzg1ODYzMzU0LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.cLD-4vtwz288K3E-DsKSqAXviJHUWk3l4QjIznSnu6BvmTRswiAsBC0DtkGv6f3_3t75eB8X4PTkYZ0yN2rAiQ","refresh_token":"300cce3783894b8d8ecbbdb603a8656a","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+13:59:47.348 [http-nio-9377-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+14:01:24.480 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.7 on JackLi with PID 1536 (C:\Workspace\git-public\crabc\crabc-boot\crabc-admin\target\classes started by javaf in C:\Workspace\git-public\crabc)
+14:01:24.484 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+14:01:25.516 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+14:01:25.517 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+14:01:25.517 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+14:01:25.612 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+14:01:26.455 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+14:01:26.493 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 2.427 seconds (JVM running for 3.791)
+14:01:26.669 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+14:01:30.139 [http-nio-9377-exec-1] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzMwNzg1ODYzMzU0LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.cLD-4vtwz288K3E-DsKSqAXviJHUWk3l4QjIznSnu6BvmTRswiAsBC0DtkGv6f3_3t75eB8X4PTkYZ0yN2rAiQ","refresh_token":"300cce3783894b8d8ecbbdb603a8656a","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+14:01:30.145 [http-nio-9377-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+14:12:34.555 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.7 on JackLi with PID 12372 (C:\Workspace\git-public\crabc\crabc-boot\crabc-admin\target\classes started by javaf in C:\Workspace\git-public\crabc)
+14:12:34.558 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+14:12:35.616 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+14:12:35.617 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+14:12:35.618 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+14:12:35.721 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+14:12:36.642 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+14:12:36.682 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 2.549 seconds (JVM running for 3.803)
+14:12:36.824 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+14:13:49.911 [http-nio-9377-exec-1] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzMwNzg2NTAyMjc0LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.aRNogeKm5fpKP7knevwqOMU-upvxxh6M8PbWbWSkxeptrNtKUV3DuUDU0hOwh1TmeGPmYhlB6HbYZRTQL3ii0A","refresh_token":"ff84c0b0b4594164a7920dc5a1c22111","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+14:13:49.920 [http-nio-9377-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+14:23:43.046 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.7 on JackLi with PID 25336 (C:\Workspace\git-public\crabc\crabc-boot\crabc-admin\target\classes started by javaf in C:\Workspace\git-public\crabc)
+14:23:43.049 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+14:23:44.160 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+14:23:44.162 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+14:23:44.163 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+14:23:44.282 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+14:23:45.218 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+14:23:45.261 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 2.627 seconds (JVM running for 3.764)
+14:23:45.357 [http-nio-9377-exec-2] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzMwNzg1ODYzMzU0LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.cLD-4vtwz288K3E-DsKSqAXviJHUWk3l4QjIznSnu6BvmTRswiAsBC0DtkGv6f3_3t75eB8X4PTkYZ0yN2rAiQ","refresh_token":"300cce3783894b8d8ecbbdb603a8656a","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+14:23:45.368 [http-nio-9377-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+14:23:45.412 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+14:33:06.843 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.7 on JackLi with PID 37820 (C:\Workspace\git-public\crabc\crabc-boot\crabc-admin\target\classes started by javaf in C:\Workspace\git-public\crabc)
+14:33:06.848 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+14:33:07.963 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+14:33:07.964 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+14:33:07.965 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+14:33:08.070 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+14:33:09.023 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+14:33:09.055 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 2.667 seconds (JVM running for 4.1)
+14:33:09.432 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+14:33:24.033 [http-nio-9377-exec-1] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzMwNzg1ODYzMzU0LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.cLD-4vtwz288K3E-DsKSqAXviJHUWk3l4QjIznSnu6BvmTRswiAsBC0DtkGv6f3_3t75eB8X4PTkYZ0yN2rAiQ","refresh_token":"300cce3783894b8d8ecbbdb603a8656a","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+14:33:24.039 [http-nio-9377-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
