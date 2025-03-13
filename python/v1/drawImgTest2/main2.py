@@ -7,11 +7,11 @@ from matplotlib.dates import DateFormatter, HourLocator, DayLocator
 from matplotlib.ticker import FixedLocator, MultipleLocator
 from PIL import Image
 
-
 def draw_axhline(y, plot):
     plt.axhline(y=y, ls='--', color='orange')
 
 
+grey_img_utils.read_grey_img()
 df = pd.read_csv('./testData.csv', index_col='index')
 # index 转化为 Timestamp
 df.index = pd.to_datetime(df.index)

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="af9b4d6c-96c1-4e14-b6a2-9a38758b3ffe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/sb-dubbo.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/sb-dubbo.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sb-dubbo.iws" beforeDir="false" afterPath="$PROJECT_DIR$/sb-dubbo.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../v3/thread-01/src/org/jack/thread01/CreateThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../v3/thread-01/src/org/jack/thread01/CreateThread.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,17 +84,15 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="localRepository" value="$MAVEN_REPOSITORY$" />
-        <option name="mavenHome" value="$USER_HOME$/Software/apache-maven-3.5.3" />
-        <option name="userSettingsFile" value="$USER_HOME$/Software/apache-maven-3.5.3/conf/settings.xml" />
+        <option name="customMavenHome" value="$USER_HOME$/Software/apache-maven-3.9.4" />
+        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
+        <option name="useMavenConfig" value="false" />
       </MavenGeneralSettings>
     </option>
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1680" />
@@ -104,28 +104,20 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555829065267" />
-    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.12382078" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/dreamli/Workspace/shared/java/v1/sb-dubbo",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.jack.user.service" />
@@ -185,8 +177,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ConsumerUserApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="consumer-user (1)" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.jack.user.ConsumerUserApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ConsumerUserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="consumer-user" />
+      <module name="consumer-user (2)" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.jack.user.ConsumerUserApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -202,9 +201,10 @@
     <list>
       <item itemvalue="JUnit.UserServiceTests.testBuyTicket" />
       <item itemvalue="JUnit.ConsumerUserApplicationTests.contextLoads" />
+      <item itemvalue="JUnit.UserServiceTests.testBuyTicket (1)" />
+      <item itemvalue="Spring Boot.ConsumerUserApplication (1)" />
       <item itemvalue="Spring Boot.ProviderTicketApplication" />
       <item itemvalue="Spring Boot.ConsumerUserApplication" />
-      <item itemvalue="JUnit.UserServiceTests.testBuyTicket (1)" />
     </list>
     <recent_temporary>
       <list>
@@ -226,6 +226,15 @@
       </list>
     </option>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -241,56 +250,11 @@
       <workItem from="1565336821565" duration="1369000" />
       <workItem from="1577291190293" duration="460000" />
       <workItem from="1580556939382" duration="6820000" />
+      <workItem from="1737106393194" duration="145000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="156" y="88" width="1184" height="831" key="#Project_Structure" timestamp="1580557754193">
-      <screen x="0" y="23" width="1680" height="961" />
-    </state>
-    <state x="156" y="88" width="1184" height="831" key="#Project_Structure/0.23.1680.961@0.23.1680.961" timestamp="1580557754193" />
-    <state x="638" y="405" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1580560198278">
-      <screen x="0" y="23" width="1680" height="961" />
-    </state>
-    <state x="638" y="405" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.23.1680.961@0.23.1680.961" timestamp="1580560198278" />
-    <state width="1628" height="436" key="GridCell.Tab.0.bottom" timestamp="1580657129540">
-      <screen x="0" y="23" width="1680" height="961" />
-    </state>
-    <state width="1628" height="436" key="GridCell.Tab.0.bottom/0.23.1680.961@0.23.1680.961" timestamp="1580657129540" />
-    <state width="1628" height="436" key="GridCell.Tab.0.center" timestamp="1580657129539">
-      <screen x="0" y="23" width="1680" height="961" />
-    </state>
-    <state width="1628" height="436" key="GridCell.Tab.0.center/0.23.1680.961@0.23.1680.961" timestamp="1580657129539" />
-    <state width="1628" height="436" key="GridCell.Tab.0.left" timestamp="1580657129539">
-      <screen x="0" y="23" width="1680" height="961" />
-    </state>
-    <state width="1628" height="436" key="GridCell.Tab.0.left/0.23.1680.961@0.23.1680.961" timestamp="1580657129539" />
-    <state width="1628" height="436" key="GridCell.Tab.0.right" timestamp="1580657129540">
-      <screen x="0" y="23" width="1680" height="961" />
-    </state>
-    <state width="1628" height="436" key="GridCell.Tab.0.right/0.23.1680.961@0.23.1680.961" timestamp="1580657129540" />
-    <state width="1628" height="436" key="GridCell.Tab.1.bottom" timestamp="1580657129536">
-      <screen x="0" y="23" width="1680" height="961" />
-    </state>
-    <state width="1628" height="436" key="GridCell.Tab.1.bottom/0.23.1680.961@0.23.1680.961" timestamp="1580657129536" />
-    <state width="1628" height="436" key="GridCell.Tab.1.center" timestamp="1580657129536">
-      <screen x="0" y="23" width="1680" height="961" />
-    </state>
-    <state width="1628" height="436" key="GridCell.Tab.1.center/0.23.1680.961@0.23.1680.961" timestamp="1580657129536" />
-    <state width="1628" height="436" key="GridCell.Tab.1.left" timestamp="1580657129535">
-      <screen x="0" y="23" width="1680" height="961" />
-    </state>
-    <state width="1628" height="436" key="GridCell.Tab.1.left/0.23.1680.961@0.23.1680.961" timestamp="1580657129535" />
-    <state width="1628" height="436" key="GridCell.Tab.1.right" timestamp="1580657129536">
-      <screen x="0" y="23" width="1680" height="961" />
-    </state>
-    <state width="1628" height="436" key="GridCell.Tab.1.right/0.23.1680.961@0.23.1680.961" timestamp="1580657129536" />
-    <state x="161" y="138" key="NewModule_or_Project.wizard" timestamp="1580557712252">
-      <screen x="0" y="23" width="1680" height="961" />
-    </state>
-    <state x="161" y="138" key="NewModule_or_Project.wizard/0.23.1680.961@0.23.1680.961" timestamp="1580557712252" />
+    <option name="version" value="3" />
   </component>
 </project>
