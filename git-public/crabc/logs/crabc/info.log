@@ -16,3 +16,17 @@
 11:27:44.477 [http-nio-9377-exec-8] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
 11:27:50.452 [http-nio-9377-exec-3] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
 11:27:51.291 [http-nio-9377-exec-3] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+17:30:15.603 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.8.1 on JackLi with PID 93583 (/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-admin/target/classes started by dreamli in /Users/dreamli/Workspace/shared/git-public/crabc)
+17:30:15.606 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+17:30:16.790 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+17:30:16.792 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+17:30:16.792 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+17:30:16.872 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+17:30:18.332 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+17:30:18.348 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+17:30:18.414 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 3.228 seconds (JVM running for 4.55)
+17:31:03.021 [http-nio-9377-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+17:33:17.326 [http-nio-9377-exec-5] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzQxODU4Mzk3MjUxLCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.P5Rc25jV9WFTQPs-R4ZjT2euRL3WjyWszVJ5M-DQ6amLu6n5bdpU-gdETci7rZkVKbu7c_dI_VCoX8GneBwH5A","refresh_token":"d084b0288d95446a864f61fb71627f04","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+17:33:32.137 [http-nio-9377-exec-2] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+17:33:32.749 [http-nio-9377-exec-2] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.

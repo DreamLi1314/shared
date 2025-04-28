@@ -9,16 +9,27 @@ spring:
       username: postgres
       password: geoVis0605
 
-   # kafka
    kafka:
-      bootstrap-servers:  10.1.109.140:9092,10.1.109.141:9092,10.1.109.98:9092
-      producer:
-         key-serializer: org.apache.kafka.common.serialization.StringSerializer
-         value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      bootstrap-servers: 58.250.114.59:8000   # Kafka 集群的地址
       consumer:
-         group-id: sb-kafka-consumer
-         key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-         value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+         group-id: shenzhen_uss01-group
+         auto-offset-reset: earliest
+         enable-auto-commit: true
+      producer:
+         acks: all
+      properties:
+         # SSL 配置
+         security.protocol: SASL_SSL
+         sasl.mechanism: SCRAM-SHA-256
+         sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="abc2c218-a6ab-450e-94f9-2022aa2a1d9f" password="45309c5f-2ae0-470f-953c-7ec6c45d4606";
+         ssl.truststore.location: /mnt/vos-2dumgj95/geoviswtx/docker/configs/kafka-ui/ssl/szServe.truststore.jks  # SSL 信任库路径
+         ssl.truststore.password: CSJDF@UOM%9546#$
+         ssl.keystore.location: /mnt/vos-2dumgj95/geoviswtx/docker/configs/kafka-ui/ssl/szServe.keystore.jks  # SSL 密钥库路径
+         ssl.keystore.password: CSJDF@UOM%9546#$
+         ssl.key.password: CSJDF@UOM%9546#$
+         ssl.keystore.type: JKS
+         ssl.truststore.type: JKS
+         ssl.enabled.protocols: TLSv1.2
 
 mybatis-plus:
    global-config:

@@ -1,0 +1,12 @@
+/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-datasource/src/main/java/cn/crabc/core/datasource/config/JdbcDataSourceRouter.java
+/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-datasource/src/main/java/cn/crabc/core/datasource/constant/BaseConstant.java
+/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-datasource/src/main/java/cn/crabc/core/datasource/driver/DataSourceManager.java
+/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-datasource/src/main/java/cn/crabc/core/datasource/driver/jdbc/DefaultDataSourceDriver.java
+/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-datasource/src/main/java/cn/crabc/core/datasource/driver/jdbc/JdbcDataSourceDriver.java
+/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-datasource/src/main/java/cn/crabc/core/datasource/driver/jdbc/JdbcMetaData.java
+/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-datasource/src/main/java/cn/crabc/core/datasource/driver/jdbc/JdbcStatement.java
+/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-datasource/src/main/java/cn/crabc/core/datasource/enums/ErrorStatusEnum.java
+/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-datasource/src/main/java/cn/crabc/core/datasource/exception/CustomException.java
+/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-datasource/src/main/java/cn/crabc/core/datasource/mapper/BaseDataHandleMapper.java
+/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-datasource/src/main/java/cn/crabc/core/datasource/mapper/BaseSelectProvider.java
+/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-datasource/src/main/java/cn/crabc/core/datasource/util/PageInfo.java

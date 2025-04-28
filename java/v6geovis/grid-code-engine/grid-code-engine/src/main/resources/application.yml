@@ -1,0 +1,35 @@
+server:
+  port: 27610
+  max-http-header-size: 1024000
+
+spring:
+  application:
+    name: grid-code-engine
+
+  servlet:
+    multipart:
+      max-file-size: 10GB
+      max-request-size: 10GB
+
+  jackson:
+    default-property-inclusion: ALWAYS
+    time-zone: GMT+8
+    date-format: yyyy/MM/dd HH:mm:ss
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "*"
+
+javafamily:
+  swagger:
+    title: 网格编码引擎 Apis
+    version: 1.0
+    contact:
+      name: Jack Li
+      email: lis@geovis.com.cn

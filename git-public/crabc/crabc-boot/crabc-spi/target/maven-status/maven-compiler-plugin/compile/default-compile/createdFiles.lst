@@ -1,0 +1,9 @@
+cn/crabc/core/spi/bean/Table.class
+cn/crabc/core/spi/bean/BaseDataSource.class
+cn/crabc/core/spi/DataSourceDriver.class
+cn/crabc/core/spi/bean/Column.class
+cn/crabc/core/spi/StatementMapper.class
+cn/crabc/core/spi/bean/Schema.class
+cn/crabc/core/spi/PluginException.class
+cn/crabc/core/spi/Mapper.class
+cn/crabc/core/spi/MetaDataMapper.class
