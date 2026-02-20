@@ -1,0 +1,57 @@
+server:
+  port: 27910
+  max-http-header-size: 1024000
+
+spring:
+  application:
+    name: grid-code-engine
+
+  servlet:
+    multipart:
+      max-file-size: 10GB
+      max-request-size: 10GB
+
+  jackson:
+    default-property-inclusion: ALWAYS
+    time-zone: GMT+8
+    date-format: yyyy/MM/dd HH:mm:ss
+
+  kafka:
+    bootstrap-servers: 58.250.114.59:8000   # Kafka 集群的地址
+    consumer:
+      group-id: consumer-eTAPESAirSpace
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+    producer:
+      acks: all
+    properties:
+      # SSL 配置
+      security.protocol: SASL_SSL
+      sasl.mechanism: SCRAM-SHA-256
+      sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="e448e58b-306d-48d2-96c3-a0eb2acc5435" password="0e9c044d-c7c8-47ca-908f-057310d8c2d6";
+      ssl.truststore.location: ${TRUSTSTORE_PATH:./ssl/szServe.truststore.jks}  # SSL 信任库路径
+      ssl.truststore.password: CSJDF@UOM%9546#$
+      ssl.keystore.location: ${KEYSTORE_PATH:./ssl/szServe.keystore.jks}  # SSL 密钥库路径
+      ssl.keystore.password: CSJDF@UOM%9546#$
+      ssl.key.password: CSJDF@UOM%9546#$
+      ssl.keystore.type: JKS
+      ssl.truststore.type: JKS
+      ssl.enabled.protocols: TLSv1.2
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "*"
+
+javafamily:
+  swagger:
+    title: 网格编码引擎 Apis
+    version: 1.0
+    contact:
+      name: Jack Li
+      email: lis@geovis.com.cn

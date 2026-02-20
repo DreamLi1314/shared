@@ -1,0 +1,74 @@
+14:56:05.644 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.8.1 on JackLi with PID 8503 (/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-admin/target/classes started by dreamli in /Users/dreamli/Workspace/shared/git-public/crabc)
+14:56:05.647 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+14:56:07.035 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+14:56:07.036 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+14:56:07.037 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+14:56:07.139 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+14:56:08.140 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+14:56:08.196 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+14:56:08.233 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 3.19 seconds (JVM running for 4.985)
+14:56:20.598 [http-nio-9377-exec-1] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzU3MzEzNTU0MjI3LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.C8OayjJTRtQ07XIzGkvh6O2P9u_QSmRbkWmYK0dmG0KhNEZhObmlEhTprPbWOXmL14J3zDNUBsgNJ0OyXI8vUQ","refresh_token":"c0fa9a3dc2524edabf985b9ce770d186","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+14:56:20.606 [http-nio-9377-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+14:57:52.263 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.8.1 on JackLi with PID 8566 (/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-admin/target/classes started by dreamli in /Users/dreamli/Workspace/shared/git-public/crabc)
+14:57:52.267 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+14:57:53.572 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+14:57:53.573 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+14:57:53.573 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+14:57:53.687 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+14:57:54.704 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+14:57:54.736 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+14:57:54.772 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 2.996 seconds (JVM running for 4.321)
+14:58:11.073 [http-nio-9377-exec-1] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzU3MzEzNTU0MjI3LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.C8OayjJTRtQ07XIzGkvh6O2P9u_QSmRbkWmYK0dmG0KhNEZhObmlEhTprPbWOXmL14J3zDNUBsgNJ0OyXI8vUQ","refresh_token":"c0fa9a3dc2524edabf985b9ce770d186","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+14:58:11.080 [http-nio-9377-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+14:58:29.394 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.8.1 on JackLi with PID 8593 (/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-admin/target/classes started by dreamli in /Users/dreamli/Workspace/shared/git-public/crabc)
+14:58:29.398 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+14:58:30.656 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+14:58:30.658 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+14:58:30.658 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+14:58:30.759 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+14:58:31.715 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+14:58:31.756 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+14:58:31.790 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 2.842 seconds (JVM running for 4.328)
+14:58:50.194 [http-nio-9377-exec-2] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzU3MzEzNTU0MjI3LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.C8OayjJTRtQ07XIzGkvh6O2P9u_QSmRbkWmYK0dmG0KhNEZhObmlEhTprPbWOXmL14J3zDNUBsgNJ0OyXI8vUQ","refresh_token":"c0fa9a3dc2524edabf985b9ce770d186","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+14:58:50.204 [http-nio-9377-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+15:00:16.764 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.8.1 on JackLi with PID 8636 (/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-admin/target/classes started by dreamli in /Users/dreamli/Workspace/shared/git-public/crabc)
+15:00:16.767 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+15:00:17.981 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+15:00:17.982 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+15:00:17.983 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+15:00:18.076 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+15:00:19.040 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+15:00:19.104 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+15:00:19.139 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 2.793 seconds (JVM running for 4.201)
+15:00:26.688 [http-nio-9377-exec-1] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzU3MzEzNTU0MjI3LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.C8OayjJTRtQ07XIzGkvh6O2P9u_QSmRbkWmYK0dmG0KhNEZhObmlEhTprPbWOXmL14J3zDNUBsgNJ0OyXI8vUQ","refresh_token":"c0fa9a3dc2524edabf985b9ce770d186","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+15:00:26.695 [http-nio-9377-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+15:03:03.098 [main] INFO  c.c.c.a.AdminApplication - [logStarting,55] - Starting AdminApplication using Java 17.0.8.1 on JackLi with PID 8705 (/Users/dreamli/Workspace/shared/git-public/crabc/crabc-boot/crabc-admin/target/classes started by dreamli in /Users/dreamli/Workspace/shared/git-public/crabc)
+15:03:03.102 [main] INFO  c.c.c.a.AdminApplication - [logStartupProfileInfo,632] - No active profile set, falling back to 1 default profile: "default"
+15:03:04.610 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9377"]
+15:03:04.612 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+15:03:04.613 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+15:03:04.725 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+15:03:05.922 [Thread-1] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+15:03:06.124 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9377"]
+15:03:06.195 [main] INFO  c.c.c.a.AdminApplication - [logStarted,61] - Started AdminApplication in 3.556 seconds (JVM running for 5.197)
+15:06:38.836 [http-nio-9377-exec-1] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [token={"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJleHBpcmVUaW1lIjoxNzU3MzEzNTU0MjI3LCJ1c2VyTmFtZSI6ImFkbWluIiwidXNlcklkIjoxfQ.C8OayjJTRtQ07XIzGkvh6O2P9u_QSmRbkWmYK0dmG0KhNEZhObmlEhTprPbWOXmL14J3zDNUBsgNJ0OyXI8vUQ","refresh_token":"c0fa9a3dc2524edabf985b9ce770d186","expires":3600}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+15:06:38.845 [http-nio-9377-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+15:13:42.246 [http-nio-9377-exec-8] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+15:13:42.846 [http-nio-9377-exec-8] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+15:14:06.887 [http-nio-9377-exec-5] INFO  c.c.c.a.util.SQLUtil - [analyzeSQL,154] - SQL解析失败：EOF
+15:14:06.888 [http-nio-9377-exec-5] INFO  c.c.c.a.util.SQLUtil - [analyzeSQL,154] - SQL解析失败：EOF
+15:24:05.568 [http-nio-9377-exec-10] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-2 - Starting...
+15:24:05.856 [http-nio-9377-exec-10] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-2 - Start completed.
+15:24:07.972 [http-nio-9377-exec-7] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-3 - Starting...
+15:24:08.222 [http-nio-9377-exec-7] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-3 - Start completed.
+15:24:12.424 [http-nio-9377-exec-8] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-4 - Starting...
+15:24:12.951 [http-nio-9377-exec-8] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-4 - Start completed.
+15:24:23.377 [http-nio-9377-exec-9] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-5 - Starting...
+15:24:25.971 [http-nio-9377-exec-9] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-5 - Start completed.
+15:25:18.189 [http-nio-9377-exec-5] INFO  c.c.c.a.util.SQLUtil - [analyzeSQL,154] - SQL解析失败：No enum constant com.alibaba.druid.DbType.
+15:25:18.190 [http-nio-9377-exec-5] INFO  c.c.c.a.util.SQLUtil - [analyzeSQL,154] - SQL解析失败：No enum constant com.alibaba.druid.DbType.

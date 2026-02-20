@@ -1,0 +1,22 @@
+{
+    "instruction": "把自然语言转换成 SQL 查询语句",
+    "model_config": {
+        "name": "/Qwen/Qwen3-VL-8B-Instruct",
+        "provider": "yangyaofei/vllm/vllm",
+        "mode": "agent-chat",
+        "completion_params": {
+
+        }
+    },
+    "arr": [
+        {
+            "name": "name",
+            "age": 1
+        },
+        {
+            "name": "jack",
+            "age": 24
+        }
+    ],
+    "no_variable": false
+}
